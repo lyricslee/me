@@ -1,0 +1,333 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>00_RL_course</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h1 id="toc_0">资料</h1>
+
+<ul>
+<li><p><a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning">磨烦 Python RL 代码实践</a></p></li>
+<li><p><a href="http://wulc.me/2018/05/09/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0(2)-%E4%BB%8E%20Q-Learning%20%E5%88%B0%20DQN/">强化学习笔记(2)-从 Q-Learning 到 DQN</a></p></li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/25239682">深度强化学习（Deep Reinforcement Learning）入门：RL base &amp; DQN-DDPG-A3C introduction</a></p></li>
+<li><p><a href="https://spinningup.openai.com/en/latest/spinningup/rl_intro.html">RL 入门 来自 openai</a></p></li>
+<li><p><a href="http://karpathy.github.io/2016/05/31/rl/">Deep Reinforcement Learning: Pong from Pixels</a></p></li>
+<li><p><a href="https://mpatacchiola.github.io/blog/2016/12/09/dissecting-reinforcement-learning.html">非常详细的入门教程 issecting Reinforcement Learning</a></p></li>
+<li><p><a href="https://github.com/openai/baselines">openai baselines RL 算法实现</a></p></li>
+</ul>
+
+<h3 id="toc_1">Stochastic Policies</h3>
+
+<p>The two most common kinds of stochastic policies in deep RL are categorical policies and diagonal Gaussian policies.</p>
+
+<p>Categorical policies can be used in discrete action spaces, while diagonal Gaussian policies are used in continuous action spaces.</p>
+
+<h3 id="toc_2">David Silver 强化学习课程（UCL）</h3>
+
+<p>注：这是David Silver大神2015在UCL开的课，现在感觉已经在DeepMind走向巅峰了，估计得等他那天想回学校培养学生才可能开出新的课吧。非常推荐入门学习，建立基础的RL概念。<br/>
+课程主页：<a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">link</a></p>
+
+<p>对应slide（课件）：<br/>
+Lecture 1: Introduction to Reinforcement Learning <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/intro_RL.pdf">link</a><br/>
+Lecture 2: Markov Decision Processes <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/MDP.pdf">link</a><br/>
+Lecture 3: Planning by Dynamic Programming <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/DP.pdf">link</a><br/>
+Lecture 4: Model-Free Prediction <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/MC-TD.pdf">link</a><br/>
+Lecture 5: Model-Free Control <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/control.pdf">link</a></p>
+
+<p>Lecture 6: Value Function Approximation <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/FA.pdf">link</a><br/>
+Lecture 7: Policy Gradient Methods <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/pg.pdf">link</a><br/>
+Lecture 8: Integrating Learning and Planning <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/dyna.pdf">link</a><br/>
+Lecture 9: Exploration and Exploitation <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/XX.pdf">link</a><br/>
+Lecture 10: Case Study: RL in Classic Games <a href="http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching_files/games.pdf">link</a></p>
+
+<h3 id="toc_3"><a href="http://rail.eecs.berkeley.edu/deeprlcourse/">UC berkeley 2018 秋季</a></h3>
+
+<ul>
+<li><p>RL algorithms<br/>
+Lecture 1: Introduction and Course Overview<br/>
+Lecture 2: Supervised Learning and Imitation<br/>
+Lecture 3: TensorFlow and Neural Nets Review Session (notebook)<br/>
+Lecture 4: Reinforcement Learning Introduction<br/>
+Lecture 5: Policy Gradients Introduction</p>
+<p>Lecture 6: Actor-Critic Introduction<br/>
+Lecture 7: Value Functions and Q-Learning<br/>
+Lecture 8: Advanced Q-Learning Algorithms<br/>
+Lecture 9: Advanced Policy Gradients<br/>
+Lecture 10: Optimal Control and Planning</p>
+<p>Lecture 11: Model-Based Reinforcement Learning<br/>
+Lecture 12: Advanced Model Learning and Images<br/>
+Lecture 13: Learning Policies by Imitating Other Policies<br/>
+Lecture 14: Probability and Variational Inference Primer<br/>
+Lecture 15: Connection between Inference and Control</p></li>
+<li><p>advanced topics<br/>
+Lecture 16: Inverse Reinforcement Learning<br/>
+Lecture 17: Exploration: Part 1<br/>
+Lecture 18: Exploration: Part 2<br/>
+Lecture 19: Transfer Learning and Multi-Task Learning<br/>
+Lecture 20: Meta-Learning</p>
+<p>Lecture 21: Parallelism and RL System Design<br/>
+Lecture 22: Advanced Imitation Learning and Open Problems<br/>
+Lecture 24: Guest Lecture: Gregory Kahn<br/>
+Lecture 25: Guest Lecture: Quoc Le &amp; Barret Zoph</p></li>
+</ul>
+
+</div></body>
+
+</html>

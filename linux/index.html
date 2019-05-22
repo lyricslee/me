@@ -1,0 +1,442 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>index</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h3 id="toc_0">1. 深度强化学习笔记(Deep Reinforcement Learning)</h3>
+
+<ul>
+<li><a href="rl/00_RL_course.html">0. RL 资料整理</a></li>
+<li><a href="rl/ALL_IntroRL.html">1. RL 强化学习入门</a></li>
+<li><a href="rl/ALL_DQN.html">2. DQN all in one</a></li>
+<li><a href="rl/ALL_PG.html">3. PG all in on</a></li>
+<li><a href="rl/ALL_DDPG.html">4. DDPG all in one</a></li>
+</ul>
+
+<h4 id="toc_1">1.1 UCB RL note(知乎谢天)</h4>
+
+<ul>
+<li><a href="rl/04_UCB_1-6.html">1. UCB_1-6 Policy Gradient</a></li>
+<li><a href="rl/05_UCB_7-10.html">2. UCB_7-10 Q-learning &amp; Advanced PG</a></li>
+<li><a href="rl/06_UCB_11.html">3. UCB_11 Model-Based RL</a></li>
+<li><a href="rl/07_UCB_16.html">4. UCB_16  Inverse Reinforcement Learning</a></li>
+</ul>
+
+<h3 id="toc_2">2. tools</h3>
+
+<ul>
+<li><a href="linux/01_linux_cmd.html">linux shell</a></li>
+</ul>
+
+<h3 id="toc_3">3. reserch</h3>
+
+<ul>
+<li><a href="paper/music_papers.html">music 合成方法总结</a></li>
+<li><a href="paper/03%20lyrics_generation.html">lyrics generation 歌词生成方法总结</a></li>
+</ul>
+
+<h3 id="toc_4">4. 多伦多大学自动驾驶课程</h3>
+
+<ul>
+<li><a href="paper/driver_00.html">1. 课程说明</a></li>
+<li><a href="paper/driver_01_introduce.html">2. 第一部分：自动驾驶基础知识</a></li>
+</ul>
+
+<h3 id="toc_5">5. Deep Learning</h3>
+
+<ul>
+<li><a href="ml/04_TCN.html">1. TCN seq-to-seq model</a></li>
+<li><a href="ml/02_tensorflow.html">2. tensorflow introduce</a></li>
+<li><a href="ml/06_NLP_Notebook.html">3. NLP 课程笔记</a></li>
+</ul>
+
+<h3 id="toc_6">6. Machine Learning</h3>
+
+<ul>
+<li><a href="ml/03_KL_cross_entroy.html">1. KL cross_entry</a></li>
+<li><a href="ml/unsupervised_learning.html">2. UnsupervisedLearning K-mean</a></li>
+<li><a href="ml/MLRegressionPCAPCR.html">3. Regression_PCA_PCR</a></li>
+<li><a href="ml/kernel%20_trick.html">4. kernel _trick</a></li>
+<li><a href="ml/DeepLearning.html">5. Deep Learning</a></li>
+<li><a href="ml/DecisionTree.html">6. Decision Tree</a></li>
+<li><a href="ml/PLA.html">7. PLA: Perceptrons Learning Alogrithm</a></li>
+</ul>
+
+<h3 id="toc_7">7. Autonomous System</h3>
+
+<ul>
+<li><a href="rl/08_BFS_DFS_Search.html">1. BFS_DFS_Heuristics</a></li>
+<li><a href="rl/09_PI_VI.html">2. Policy iteration And Value iteration</a></li>
+</ul>
+
+<h3 id="toc_8">A: 强化学习算法列表</h3>
+
+<table>
+<thead>
+<tr>
+<th>分类</th>
+<th>名称</th>
+<th>说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>DQN</td>
+<td>DQN</td>
+<td>记忆池+固定目标网络</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Double DQN</td>
+<td>将动作选择和价值估计分开，避免价值过高估计</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Dueling DQN</td>
+<td>将Q值分解为状态价值和优势函数，得到更多有用信息</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Prioritized Replay Buffer</td>
+<td>将经验池中的经验按照优先级进行采样</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Multi-Step Learnin</td>
+<td>多步执行使得目标价值估计更为准确</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Distributional DQN(Categorical DQN)</td>
+<td>得到价值分布</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>NoisyNet</td>
+<td>增强模型的探索能力</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Rainbow: all in one</td>
+<td>六种方法进行了一个整合</td>
+</tr>
+<tr>
+<td>DQN</td>
+<td>Deep Recurrent Q-Learning for Partially Observable MDPs</td>
+<td>DQN 和 LSTM 的结合</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>TNPG</td>
+<td>共轭梯度法 求解自然策略梯度 (NPG)</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>ACKTR</td>
+<td>完全正交的Kronecker-factor技术 求解自然策略梯度 (NPG)</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>TRPO</td>
+<td>相比TNPG，TRPO由于有了一个检验手段和线搜索，能承受更大的步长。</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>PPO-clip</td>
+<td>对优势的估计进行一个截断，限制了新策略空间的范围。</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>GAE</td>
+<td>discounted rewards to estimate the advantage</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>Actor-Critic</td>
+<td>结合了 Policy Gradient (Actor) 和 Function Approximation (Critic) 的方法</td>
+</tr>
+<tr>
+<td>PG</td>
+<td>A3C</td>
+<td>A3C （基于 actor-critic）算法是并行算法，可以有效的利用多核。</td>
+</tr>
+<tr>
+<td>DDPG</td>
+<td>DDPG</td>
+<td>连续空间 Actor-Critic + DQN 的结合</td>
+</tr>
+<tr>
+<td>DDPG</td>
+<td>TD3</td>
+<td>改善 DDPG Q 值 overestimate 导致 policy 在错误的 Q 值 errors 上 exploit 的问题</td>
+</tr>
+<tr>
+<td>DDPG</td>
+<td>SAC</td>
+<td>entropy regularization(exploration-exploitation trade-off)</td>
+</tr>
+</tbody>
+</table>
+
+</div></body>
+
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>07_UCB_16</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h3 id="toc_0">第 16 讲 逆强化学习 Inverse Reinforcement Learning</h3>
+
+<h4 id="toc_1">1 逆增强学习问题</h4>
+
+<p>迄今为止，我们做增强学习的时候都是对特定任务来手工定义收益函数的思路来完成任务。但是要真正实现稍微智能化的目标，我们更倾向于在不知道具体任务的时候，去观察专家的行为然后推测他想干什么，也就是学习他的收益函数，然后再使用增强学习算法，这也称为逆增强学习。在这里，我们将利用上一篇[概率图模型与软化增强学习]中讲到的近似最优模型来达成这一学习目的。</p>
+
+<p>收益函数的来源有很多。对于很多（有得分的）游戏来说，我们只是需要让游戏的得分最大化就行了，收益函数是非常自然的。但是在很多现实世界中的问题中并不是那么简单，而且原因千奇百怪。比如说有个机器人任务，想让它拿起壶往杯子里倒水。要让机器人模仿这个动作倒是不困难，但是如何鉴别水是不是真的倒进去了可能会非常困难（因为机器人并不是拿来喝），手工设置一个这样的函数也是很烦的。比如说有个对话系统，跟人类交流来做技术支持解决问题，也需要关注用户是否满意这样的互动，体验好不好，这个其实也很难具体评价。对于自动驾驶，即便是有很多成文条例，但也有很多隐性的不成文的规则、公约和常识要去遵守，做一个文明司机，这个在人工设置的收益函数里面也很难刻画。这些的特点是，相对手工来做一个收益函数，由人来介绍怎么做会比较容易。</p>
+
+<p>在之前，我们也介绍过模仿学习（行为克隆），也就是直接模仿专家的行为而不需要理解其中原因。这也是实践中的一个备选项，在有些时候也能满足要求，尤其是观测数据很多，且域漂移 (domain shift) 比较小的情况，但不见得能适应广泛的情况。同时，模仿学习只能捕捉到台面上的动作：盲目模仿所有的环节，不管重要不重要，如果在教学过程中出现一点错误，就会被学进系统中。此外，学习者和教学者可能能力不同，如人倒一杯水的过程可能和机器人的过程不同，如果机器人能学习到目标则它可以自适应做得更好。</p>
+
+<p>从示范中推测收益函数的问题又被称为逆最优控制问题 (Inverse Optimal Control, IOC) 或者逆增强学习问题 (Inverse Reinforcement Learning, IRL) (Kalman, 1964; Ng and Russell, 2000)。</p>
+
+<p>在“正”增强学习问题中，我们得到的是状态空间\(\mathbf{s}\in\mathcal{S}，决策空间\mathbf{a}\in\mathcal{A}\)，部分基于模型的问题还会给定系统转移动态\(p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})，以及收益函数r(\mathbf{s},\mathbf{a})\)：通过这些去求一个最优策略\(\pi^*(\mathbf{a}|\mathbf{s})。在逆增强学习问题中，我们同样有状态空间\mathbf{s}\in\mathcal{S}，决策空间\mathbf{a}\in\mathcal{A}\)，（或有的）系统转移动态\(p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})，和很多从最优策略下的轨迹分布\pi^*(\tau)中抽取出来的轨迹样本\{\tau_i\}\)：从中学习出一个参数化的收益函数\(r_\psi(\mathbf{s},\mathbf{a})，其中\psi是参数，再使用它来学习最优策略\pi^*(\mathbf{a}|\mathbf{s})。参数化的收益函数简单形式可以是线性的，r_\psi(\mathbf{s},\mathbf{a})=\psi^\top\mathbf{f}(\mathbf{s},\mathbf{a})\)，参数是权重向量，对若干个特征函数做一个加权线性组合；也可以是一个复杂的神经网络。我们先讨论线性的，再讨论神经网络。</p>
+
+<p>逆增强学习的主要挑战是，这个问题可能是定义不足的 (underdefined)，因为我们可能已经对这个世界非常了解了，有很多先验知识，但是事实上机器学习算法啥都不知道：比如一个东西向右移动了，可能是因为它喜欢向右移动，也可能是因为它喜欢的东西在右边，或者其他什么原因，我们有很多很多选择去解释它，答案并不唯一而且是非常模糊的。同样，我们很难去评判已经学到的收益函数。因为在逆增强学习问题中，我们要尝试去改进收益函数，然而去评估收益函数的时候，我们要求解类似梯度的东西，这其实是正增强学习问题要做的事情，因此有点类似于正增强学习是逆增强学习内循环中的子问题，在样本使用和计算上都很困难。实践中，（人类）专家指导很可能不是精确最优的，这点在上一篇中已经有所讨论，这个也造成困难。</p>
+
+<p>一个早期的逆增强学习算法叫做特征匹配逆增强学习 (Feature matching IRL)，可以给我们一些启发。这里先假定收益函数是若干特征函数的线性组合，\(r_\psi(\mathbf{s},\mathbf{a})=\psi^\top\mathbf{f}(\mathbf{s},\mathbf{a})。如果这些特征选得比较好，我们只需要选权重的话，我们就会考虑去匹配最优策略下的期望。具体来说，如果对于一个收益函数r_\psi，最优策略为\pi^{r_\psi}，那么我们就希望去找到一组参数，使得\mathbf{E}_{\pi^{r_\psi}}[\mathbf{f}(\mathbf{s},\mathbf{a})]=\mathbf{E}_{\pi^*}[\mathbf{f}(\mathbf{s},\mathbf{a})]，后者是未知的最优专家策略。左边是边缘化的期望，或者我们就直接运行\pi^{r_\psi}\)，然后抽样估计特征的期望。最优策略下特征的期望是要用专家给出的样本来算的。事实上，参数并不是唯一的，我们可以从支持向量机 (SVM) 中借鉴最大间隔 (maximum margin) 原理来得到一个比较靠谱的解，如\(\max_{\psi,m}m\text{ s.t. }\psi^\top\mathbf{E}_{\pi^*}[\mathbf{f}(\mathbf{s},\mathbf{a})]\geq\psi^\top\max_{\pi\in\Pi}\mathbf{E}_\pi[\mathbf{f}(\mathbf{s},\mathbf{a})]+m\)，也就是找一个分割超平面把最优解下的期望收益和策略簇\Pi内其他所有策略的期望收益相区分开，并且使得间隔m最大。这个问题与原问题不同，只是尝试去这么做。然而不难发现，如果\(\pi^*\in\Pi，那么最优解落在分割超平面上，这个m总是0，这个间隔就不起效果了。因此，可能这样一刀切的间隔是不好的，我们有必要去体现策略不同下期望收益和专家策略有差异（专家策略就应该间距为0），使得和专家策略相差得越多，策略越糟糕。定义两个策略的距离为D(\pi,\pi^*)，那么使用一个与SVM类似的技巧，\min_\psi\frac{1}{2}\Vert\psi\Vert^2\text{ s.t. }\psi^\top\mathbf{E}_{\pi^*}[\mathbf{f}(\mathbf{s},\mathbf{a})]\geq\max_{\pi\in\Pi}\psi^\top\mathbf{E}_\pi[\mathbf{f}(\mathbf{s},\mathbf{a})]+D(\pi,\pi^*)\)。距离可以定义为两个策略的期望特征的差异。整体来说，这个方法还是问题多多。</p>
+
+<p>首先，为了解决不唯一性，做最大间隔的方法看上去不能说不奇怪，很难说明为什么间距大就代表收益大，有点随便。正如很多分类问题根本不是线性可分的一样，我个人看到这个模型时想到的第一个问题这边也提到了，如果专家的策略不是最优的，可能这个最优化问题根本就无解。如果要强行处理的话，可以通过增加一些带惩罚的松弛变量来某种程度上缓解这个问题（这也是SVM里面的思路了），但这样做还是很随意，对专家的非最优行为并没有清晰的建模，解释并不能令人满意。从计算上看，这个带约束的优化问题也是非常复杂的，即便右边这个max好求（离散的话就是把约束拆开，如果右边这个max问题是强对偶的那么就使用对偶方法转成min，就变成了存在性问题），很难应用扩展性好的如基于随机梯度等方法推广到复杂的非线性神经网络。关于这类比较古老的方法，可以参考Abbeel and Ng (2004) 发表在ICML的&quot;Apprenticeship Learning via Inverse Reinforcement Learning&quot;和Ratliff et al. (2006) 发表在ICML的&quot;Maximum Margin Planning&quot;。</p>
+
+<p>另一种想法的出发点是我们上一篇中讲到的对人类次优行为使用概率图模型建模，使用人类行为数据进行拟合，并推测出收益函数。继续假设\(p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\propto\exp(r(\mathbf{s}_t,\mathbf{a}_t))，那么轨迹条件概率p(\tau|\mathcal{O}_{1:T})\propto p(\tau)\exp\left(\sum_tr(\mathbf{s}_t,\mathbf{a}_t)\right)，正比于该轨迹实际的发生的概率乘上轨迹总收益的自然指数。根据我们的假设也不难看出，使用这个模型去做逆增强学习，本质上是去学习最优性变量\mathcal{O}_t的分布。我们把参数化的收益函数的参数\psi放进来， p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t,\psi)\propto\exp(r_\psi(\mathbf{s}_t,\mathbf{a}_t))\)，我们要学习的就是这个收益参数，且最优变量取决于\psi；类似地，轨迹条件概率\(p(\tau|\mathcal{O}_{1:T},\psi)\propto p(\tau)\exp\left(\sum_tr_\psi(\mathbf{s}_t,\mathbf{a}_t)\right)。我们现有的数据是从最优策略下的轨迹分布\pi^*(\tau)中抽样得到的轨迹样本\{\tau_i\}。我们的学习可以做最大似然学习，也就是最大化对数似然函数：\max_\psi\frac{1}{N}\sum_{i=1}^N\log p(\tau_i|\mathcal{O}_{1:T},\psi)。代入上面的条件概率，在这个最大化问题中p(\tau)是常数可以忽略；如果我们令轨迹收益r_\psi(\tau)=\sum_tr_\psi(\mathbf{s}_t,\mathbf{a}_t)，那么\max_\psi\frac{1}{N}\sum_{i=1}^Nr_\psi(\tau_i)-\log Z，后面多了一项归一化项Z=\int p(\tau)\exp(r_\psi(\tau))\mathrm{d}\tau\)，称为partition function。</p>
+
+<p>要用梯度法优化参数，我们对这个对数似然函数关于参数求梯度，则根据链式法则\(\nabla_\psi\mathcal{L}=\frac{1}{N}\sum_{i=1}^N\nabla_\psi r_\psi(\tau_i)-\int \frac{1}{Z}p(\tau)\exp(r_\psi(\tau))\nabla_\psi r_\psi(\tau)\mathrm{d}\tau。此时我们发现\frac{1}{Z}p(\tau)\exp(r_\psi(\tau))=p(\tau|\mathcal{O}_{1:T},\psi)，然后第一项也是期望的话，梯度就变成了一个很有趣的差了，\nabla_\psi\mathcal{L}=\mathbf{E}_{\tau\sim\pi^*(\tau)}[\nabla_\psi r_\psi(\tau)]-\mathbf{E}_{\tau\sim p(\tau|\mathcal{O}_{1:T},\psi)}[\nabla_\psi r_\psi(\tau)]\)，就是专家策略下的轨迹分布下的收益关于参数的梯度减去当前收益函数对应的软化最优策略下的轨迹分布下的收益关于参数的梯度。第一块是关于数据的，第二块是从当前策略进行采样。这样的梯度类似于想要增加数据的概率，也要减少模型的概率。第一块可以从专家样本中估计，第二块更多是一些推断。</p>
+
+<p>这里我们来讨论第二块期望怎么估计。把第二块期望的轨迹收益按照时间拆开，\(\mathbf{E}_{\tau\sim p(\tau|\mathcal{O}_{1:T},\psi)}\left[\nabla_\psi\sum_{t=1}^Tr_\psi(\mathbf{s}_t,\mathbf{a}_t)\right]=\sum_{t=1}^T \mathbf{E}_{(\mathbf{s}_t,\mathbf{a}_t)\sim p(\mathbf{s}_t,\mathbf{a}_t|\mathcal{O}_{1:T},\psi)}[\nabla_\psi r_\psi(\mathbf{s}_t,\mathbf{a}_t)]。其中状态行动分布p(\mathbf{s}_t,\mathbf{a}_t|\mathcal{O}_{1:T},\psi)=p(\mathbf{a}_t|\mathbf{s}_t,\mathcal{O}_{1:T},\psi)p(\mathbf{s}_t|\mathcal{O}_{1:T},\psi)\)。容易发现，前者就是我们上一篇中的策略，后者就是我们上一篇中的路径概率，\(p(\mathbf{a}_t|\mathbf{s}_t,\mathcal{O}_{1:T},\psi)=\frac{\beta(\mathbf{s}_t,\mathbf{a}_t)}{\beta(\mathbf{s}_t)}，p(\mathbf{s}_t|\mathcal{O}_{1:T},\psi)\propto\alpha(\mathbf{s}_t)\beta(\mathbf{s}_t)。从而，p(\mathbf{s}_t,\mathbf{a}_t|\mathcal{O}_{1:T},\psi)\propto\beta(\mathbf{s}_t,\mathbf{a}_t)\alpha(\mathbf{s}_t)\)，是后向信息和前向信息之积。</p>
+
+<p>令\(\mu_t(\mathbf{s}_t,\mathbf{a}_t)\propto\beta_t(\mathbf{s}_t,\mathbf{a}_t)\alpha_t(\mathbf{s}_t)作为在t时刻状态行动(\mathbf{s}_t,\mathbf{a}_t)\)访问概率，那么第二块的期望就可以写成一个二重积分\(\sum_{t=1}^T\int\int \mu_t(\mathbf{s}_t,\mathbf{a}_t)\nabla_\psi r_\psi(\mathbf{s}_t,\mathbf{a}_t)\mathrm{d}\mathbf{s}_t\mathrm{d}\mathbf{a}_t，也可以简写为一个内积关系\sum_{t=1}^T \vec{\mu}_t^\top\nabla_\psi\vec{r}_\psi\)。从而，我们填补了梯度公式，并得到了一个最大熵逆增强学习 (MaxEnt IRL) 算法，循环执行以下步骤：</p>
+
+<ul>
+<li>给定\(\psi，按照上一篇的方法求出对应的\beta(\mathbf{s}_t,\mathbf{a}_t)和\alpha(\mathbf{s}_t)\)</li>
+<li>计算访问概率\(\mu_t(\mathbf{s}_t,\mathbf{a}_t)\propto\beta_t(\mathbf{s}_t,\mathbf{a}_t)\alpha_t(\mathbf{s}_t)。\)</li>
+<li>求解梯度\(\nabla_\psi\mathcal{L}=\frac{1}{N}\sum_{i=1}^N\sum_{t=1}^T\nabla_\psi r_\psi(\mathbf{s}_{i,t},\mathbf{a}_{i,t})-\sum_{t=1}^T\int\int \mu_t(\mathbf{s}_t,\mathbf{a}_t)\nabla_\psi r_\psi(\mathbf{s}_t,\mathbf{a}_t)\mathrm{d}\mathbf{s}_t\mathrm{d}\mathbf{a}_t。\)</li>
+<li>走一个梯度步\(\psi\leftarrow\psi+\eta\nabla_\psi\mathcal{L}。\)</li>
+</ul>
+
+<p>这个是表格形式的最大熵逆增强学习的算法。该思想由Ziebart et al. (2008) 发表在AAAI上的&quot;Maximum Entropy Inverse Reinforcement Learning&quot;提出。之所以称为最大熵，因为原理其实与上一篇中的熵正则化类似。我们可以说明如果我们的\(r_\psi(\mathbf{s}_t,\mathbf{a}_t)=\psi^\top\mathbf{f}(\mathbf{s}_t,\mathbf{a}_t)是这样的线性形式，那么其实这样的算法是在最优化\max_\psi\mathcal{H}(\pi^{r_\psi})\text{ s.t. }\mathbf{E}_{\pi^{r_\psi}}[\mathbf{f}]=\mathbf{E}_{\pi^*}[\mathbf{f}]\)，在保证学习的策略的特征和专家策略特征一致的基础上使得策略的熵最大。</p>
+
+<p>Ziebart et al. (2008) 发表在AAAI上的&quot;Maximum Entropy Inverse Reinforcement Learning&quot;使用这一套方法用于道路网络导航的MDP问题。根据人类驾驶员的驾驶路径数据弄出一个MDP问题，状态是在哪个交叉口，行动是在每个交叉口往哪儿走，因此状态和行动空间都是离散的，虽然很大但是还是可以弄成一个大表的。他们的目标用于看这个人的驾车路线（GPS等）来实时推测他想去的目的地；也用于找怎么样的道路是代价更高/低的。他们使用线性代价函数，手工定制了路的类型（高速、主道、辅道）、速度、车道、转向等特征。这说明在实际问题中这种表格形式也是有一定可行性的。</p>
+
+<p>Wulfmeier et al. (2015) 的&quot;Maximum Entropy Deep Inverse Reinforcement Learning&quot;及其应用，Wulfmeier et al. (2016) 发表在IROS上的&quot;Watch This: Scalable Cost-Function Learning for Path Planning in Urban Environments&quot;也使用了类似的方法，还是使用了表格的形式，但是收益函数的设置更复杂，是一个用神经网络来对若干人工特征进行非线性组合的形式，算法本质上和最大熵逆增强学习没有区别，只是需要用神经网络来计算收益，最后需要用梯度去更新的也是神经网络。注意这个问题中状态空间只是一个二维平面，行动空间是离散的方向。该方法的主要局限性是仍然需要迭代求解MDP，而且还需要假设系统动态是已知的。</p>
+
+<h4 id="toc_2">2 深度逆增强学习</h4>
+
+<p>前面我们提到了逆增强学习的经典处理方法最大熵逆增强学习法，是一个学习收益函数的概率框架。这类算法的表格实现可以推广到收益函数是一个使用神经网络组合特征的非线性形式，但是状态空间和行动空间都得离散且比较小，因为求解梯度需要枚举所有状态-行动对，然后递推求解几个动态规划问题：当状态空间和行动空间大的时候就不能接受了。要处理深度逆增强学习问题，我们希望能适应离散较大的甚至是连续的状态行动空间，而且我们需要对系统动态未知的情况下做有效的学习。在无模型的增强学习算法中我们使用了一些抽样手段，在这里也希望能用上去。</p>
+
+<p>假设我们不知道系统动态，但可以像普通增强学习一样抽样。注意到我们前面对数似然函数的梯度\(\nabla_\psi\mathcal{L}=\mathbf{E}_{\tau\sim\pi^*(\tau)}[\nabla_\psi r_\psi(\tau)]-\mathbf{E}_{\tau\sim p(\tau|\mathcal{O}_{1:T},\psi)}[\nabla_\psi r_\psi(\tau)]\)，前者是专家样本数据中得到的，后者是当前收益函数对应最优策略下的。要做到后者，一个比较直接的想法是使用任何最大熵增强学习方法学习出策略\(p(\mathbf{a}_t|\mathbf{s}_t,\mathcal{O}_{1:T},\psi)\)，然后根据这个策略来采集{\tau_j}。此时，就用专家样本的结果减掉新抽样本的结果，\(\nabla_\psi\mathcal{L}\approx\frac{1}{N}\sum_{i=1}^N\nabla_\psi r_\psi(\tau_i)-\frac{1}{M}\sum_{j=1}^M\nabla_\psi r_\psi(\tau_j)\)来做无偏估计。然而事实上这种学习的做法是代价很高的，因为我们不假定有模型，所以可能要用无模型的增强学习算法，这将使得每一步都花掉很多很多时间。</p>
+
+<p>这里我们可以采用一些小技巧，我们可以不用完全地把对应的最优策略学出来，而只是每次把策略改进一点点，然后用这个不准确的策略去近似估计梯度。然而现在多出来一个问题，由于我们使用的策略是不正确的（不是最优的策略），因此我们的估计量将不再无偏。对于分布错误的问题，</p>
+
+<p>一个有力武器是重要性抽样（我们在策略梯度法部分有过介绍），用其他分布下抽样结果来得到正确分布下的无偏估计：\[\nabla_\psi\mathcal{L}\approx\frac{1}{N}\sum_{i=1}^N\nabla_\psi r_\psi(\tau_i)-\frac{1}{\sum_jw_j}\sum_{j=1}^Mw_j\nabla_\psi r_\psi(\tau_j)，其中权重为 w_j=\frac{p(\tau_j)\exp(r_\psi(\tau_j))}{\pi(\tau_j)}\]，分子正比于收益的指数（我觉得Levine教授原文\(w_j=\frac{\exp(r_\psi(\tau_j))}{\pi(\tau_j)}\)少了一个概率，无法推导成下面的形式，或者是可能它的定义和我上面说的不同了，请评论区大神帮忙研究下），分母是现在分布的概率。因为我们前面会除以权重之和，就不需要关注w_j归一化的问题。使用之前策略梯度法一样的展开，对同一条\(\tau_j，我们得到w_j=\frac{p(\mathbf{s}_1)\prod_tp(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\exp(r_\psi(\mathbf{s}_t,\mathbf{a}_t))}{p(\mathbf{s}_1)\prod_tp(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\pi(\mathbf{a}_t|\mathbf{s}_t)}=\frac{\exp(\sum_tr_\psi(\mathbf{s}_t,\mathbf{a}_t))}{\prod_t\pi(\mathbf{a}_t|\mathbf{s}_t)}这样比较简单的形式。进一步，最优下\pi(\tau)\propto p(\tau)\exp(r_\psi(\tau))\)，无需做IS。每一步策略迭代都使我们更接近最优分布，因此事实上是在逐步改进的。</p>
+
+<p>Finn et al. (2016) 发表在ICML上的文章&quot;Guided Cost Learning: Deep Inverse Optimal Control via Policy Optimization&quot; 提出了引导代价学习 (guided cost learning) 算法。需要给定一些人工的示范，然后算法从一个随机的策略\pi 开始，通过运行策略\pi去生成随机样本，然后使用重要性抽样和人工示范的方式来更新收益函数，根据收益函数稍微更新一下分布，然后下一阶段的分布更好。最后，我们得到了最终的类似于专家的收益函数和对应的策略。事实上，这个文章中使用了基于模型的算法中的GPS算法来做策略更新，然而事实上任何改进策略的方法应当都是适用的。她们的文章中使用这样的方法来“教”机器人完成人工动手的操作如摆放盘子和往目标杯子里倒水。这项工作相对更早期的逆增强学习算法，如Kalakrishnan et al. (2013) &quot;Learning Objective Functions for Manipulation&quot; 的路径积分IRL (path integral IRL) 和Boularias et al. (2011) &quot;Relative Entropy Inverse Reinforcement Learning&quot; 的相对熵IRL (relative entropy IRL) 的思路的改进主要在于，早期的算法虽然使用了重要性抽样，但是没有下面的那个箭头，没有对策略进行更新，也因此只得到收益函数而不产生最终的策略。但是早期算法如果在初始分布不错的情况下（要求可能较高），也是可以得到一些不错效果的。她们比较了手工设计的收益函数，相对熵IRL和GCL算法的效果。</p>
+
+<p>事实上，很可能我们得到的收益函数不是一个很好的收益函数，但是往往这个策略函数反倒还可以。</p>
+
+<h4 id="toc_3">3 与生成对抗网络 (GAN) 的联系</h4>
+
+<p>Goodfellow et al. (2014) 提出了生成对抗网络 (Generative Adversarial Networks) 红遍机器学习界。GAN是一个生成模型，由两个神经网络组成，一个生成网络，一个判别网络。判别网络用于输入一张图片，判断是生成网络生成的还是数据集里面真实的；而生成网络则尝试通过生成类似于数据集里图片的方式“欺骗”判别网络。IRL也和GAN有一些相似之处，在我们最大似然估计中，尝试去增加专家样本的出现概率，减少当前策略样本的出现概率。Finn et al. (2016) 发表于NIPS的文章 &quot;A Connection between Generative Adversarial Networks, Inverse Reinforcement Learning, and Energy-Based Models&quot; 进行一个对比，IRL中的轨迹对应着GAN中的样本，IRL中的策略对应着GAN中的生成器（生成轨迹和样本），而IRL收益函数则对应了GAN中的判别器。</p>
+
+<p>事实上，可以令GAN的判别器取决于收益的方式来完成类似的目标。假设一个轨迹在专家（数据）分布下的概率是\(p(\tau)\)，当前策略下的概率是\(q(\tau)\)，最优判别器应该为\(D^*(\tau)=\frac{p(\tau)}{p(\tau)+q(\tau)}。在IRL中，我们假设专家分布下的概率是\frac{1}{Z}\exp(R_\psi)，从而D_\psi(\tau)=\frac{\frac{1}{Z}\exp(R_\psi)}{\frac{1}{Z}\exp(R_\psi)+q(\tau)}\)。</p>
+
+<p>我们的判别器要最小化损失函数 (reward/discriminator optimizaion) \(\mathcal{L}_{\text{discriminator}}(\psi)=\mathbf{E}_{\tau\sim p}[-\log D_\psi(\tau)]+\mathbf{E}_{\tau\sim q}[-\log (1-D_\psi(\tau))]\)，简单说就是使得对应分布下的似然最大，这也是IRL的目标函数。我们的生成器要最小化损失函数 (policy/generator optimization) \(\mathcal{L}_{\text{generator}}(\theta)=\mathbf{E}_{\tau\sim q}[\log(1-D_\psi(\tau))-\log D_\psi(\tau)]=\mathbf{E}_{\tau\sim q}[\log q(\tau)+\log Z-R_\psi(\tau)]\)，使得在当前分布下判别器尽可能分不清，这个结论和上篇中的熵正则化的增强学习的结论是很相似的。对于未知的系统动态，我们交替进行策略更新来最大化收益函数，然后进行收益更新来提高样本收益且降低当前策略收益，也是类似这样的过程。GCL算法中，机器人尝试的收益函数是要去最小化的，人类示范的收益函数是要去最大化的，去尝试学习最大熵模型的分布\(p(\tau)\propto\exp(r(\tau))\)。此外，一个有趣的交汇是，IRL也和基于能量的模型 (energy-based models, EBM) 很有关系。</p>
+
+<p>Ho and Ermon (2016) 发表在NIPS上的 &quot;Generative adversarial imitation learning&quot; 一文将GAN和模仿学习联系得更直接，就认为机器人的动作是负样本，人类示范动作是正样本，\(D(\tau)\)是一个二分类器来表示轨迹是一个正样本的概率，并使用\(\log D(\tau)\)作为收益函数。事实上它和GCL是差不多的，只是GCL的D是一个给定的函数形式，而这边D是一个二分类器（因此该算法不是IRL，但是非常像），总体来说两个算法都是GAN的变种。</p>
+
+<p>总体来说，IRL是从专家示范中推断出未知收益函数的手段， 一类比较好用的IRL算法是最大熵IRL，相对类似超平面分割的方法来说可以消除歧义，也解决了人类示范可能不是最优这种情况。这类算法可以用表格动态规划来实现，比较简单有效，但是只有在状态行动空间较小，动态已知的情况下才能应用。有一类微分最大熵IRL这边没有涉及，它适合于大而连续的空间，但需要知道系统动态。我们这里讲的深度IRL使用的是基于样本的最大熵IRL，可以用于连续空间，可以不假设有模型存在，较广泛。它的实现可以用GCL算法，该算法与GAN也有很深的渊源，和它紧密相关的还有生成对抗模仿学习算法（但不是IRL，不推测收益函数）。</p>
+
+</div></body>
+
+</html>

@@ -1,0 +1,674 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>05_UCB_7-10</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h3 id="toc_0">第七讲 值函数</h3>
+
+<p><a href="https://zhuanlan.zhihu.com/p/32909860">https://zhuanlan.zhihu.com/p/32909860</a></p>
+
+<h4 id="toc_1">1 动态规划与值函数的拟合</h4>
+
+<p>在上一讲的演员-评论家算法中，本质上我们已经把在某种策略下的值函数（这里的值函数是广义的，包括V、Q、A等）用到增强学习的算法里面去了，形成一个策略-值函数的交融算法。而在这一篇中，我们尝试去构造一个没有“演员”的“评论家”，也就是纯粹的值函数方法。我们在之前的学习中也了解到值函数的厉害之处，它自身包含了非常多的信息。</p>
+
+<p>我们在之前的两篇中分别介绍了策略梯度法和演员-评论家算法，它们的特点本质上都是寻找策略梯度，而只是演员-评论家算法使用某种值函数来试图给出策略梯度的更好估计。然而策略梯度通常有非常高的方差，要把它弄好需要花费很大的努力。</p>
+
+<p>那么我们可能会考虑一个问题：强化学习能否彻底抛开策略梯度这一架构？</p>
+
+<p>回忆优势函数\(A^\pi(\mathbf{s}_t,\mathbf{a}_t)=Q^\pi(\mathbf{s}_t,\mathbf{a}_t)-V^\pi(\mathbf{s}_t)\)，指的是给定策略，在状态\(\mathbf{s}_t\)下，采用了行动\(\mathbf{a}_t\)能比该策略的平均情况期望今后收益多出多少。我们在演员-评论家算法里面花了很大力气去估计这个东西。假设我们在某个策略下已经知道这个函数，那么意义是，如果我们在状态\(\mathbf{s}_t\)下执行\(\arg\max_{\mathbf{a}_t}A^\pi(\mathbf{s}_t,\mathbf{a}_t)\)，也就是根据优势函数得到一个当前最好的决策（当然我们得坚持之后还是完全按照策略\pi来），那么根据定义，这个决策必然是在期望意义下最优的：换句话说，它至少不差于任何的\(\mathbf{a}_t\sim\pi(\mathbf{a}_t|\mathbf{s}_t)\)。这个结论是非常显然的；值得注意的是，这个结论的成立性是广泛的，和策略\(\pi\)具体是什么东西没关系。</p>
+
+<p>刚才的结论给了我们一个策略改进（第三步蓝色方块）的思路。对于一个策略\pi，如果我们已经得到了它对应的优势函数，那么我们必然可以构造出一个新的策略\(\pi&#39;(\mathbf{a}_t|\mathbf{s}_t)=I\left(\mathbf{a}_t=\arg\max_{\mathbf{a}_t}A^\pi(\mathbf{s}_t,\mathbf{a}_t)\right)\)：刚才我们已经指出了在任意一个状态下，这样的策略不差于原策略，至少和原策略一样优且有可能更好。需要注意的是这是一个确定性策略。事实上这是本篇中要涉及的算法的内在思想。</p>
+
+<h4 id="toc_2">2 策略迭代法 (Policy Iteration, PI)</h4>
+
+<p>作为开始，我们先不引入神经网络和复杂的动态系统等很复杂的东西，假设状态和行动的个数很少，以至于V、Q、A函数都能用一个表格来记录下来；转移概率也是完全已知的。在这个最简单的环境里，上述算法就可以用一个非常经典的策略迭代法 (Policy Iteration, PI) 来简单实现。策略迭代法循环执行以下两个步骤：</p>
+
+<ul>
+<li>策略评估 (Policy Evaluation)：计算所有的\(A^\pi(\mathbf{s},\mathbf{a})\)。</li>
+<li>策略改进 (Policy Improvement)：令\(\pi\leftarrow\pi&#39;\)，其中\(\pi&#39;(\mathbf{a}_t|\mathbf{s}_t)=I\left(\mathbf{a}_t=\arg\max_{\mathbf{a}_t}A^\pi(\mathbf{s}_t,\mathbf{a}_t)\right)\)。</li>
+</ul>
+
+<p>要执行这个过程，最大的问题就是如何计算\(A^\pi(\mathbf{s},\mathbf{a})\)。在之前我们提到的是，\(A^\pi(\mathbf{s},\mathbf{a})=r(\mathbf{s},\mathbf{a})+\gamma\mathbf{E}[V^\pi(\mathbf{s}&#39;)]-V^\pi(\mathbf{s})\)。因为在这里我们的转移概率已经知道了，因此我们只需要去研究值函数V就行了。这一类方法广义上被称为动态规划 (Dynamic Programming, DP)。形式上，假设我们已知转移概率为\(p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})\)，且状态和行动都是离散的而且空间足够小，这样我们所有的数据都可以在表里记下来。</p>
+
+<p>类似于我们在之前提到的自助法，\(V^\pi(\mathbf{s})\leftarrow\mathbf{E}_{\mathbf{a}\sim\pi(\mathbf{a}|\mathbf{s})}[r(\mathbf{s},\mathbf{a})+\gamma\mathbf{E}_{\mathbf{s}&#39;\sim p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})}[V^\pi(\mathbf{s}&#39;)]]\)。自助法的意思是，我们只需要在后面插入当前的估计（就是查表得到）就行了。（这里我补充一下，从深层次来说，这样的表达式又叫Bellman方程，但在这个课中似乎不涉及到这一块的理论）由于我们现在采用的是一个确定性策略，这样的单点确定性策略也可以写作\pi(\mathbf{s})=\mathbf{a}，即给定状态下得出行动这样的一个函数形式。于是，之前的公式就可以被进一步简写为\(V^\pi(\mathbf{s})\leftarrow r(\mathbf{s},\pi(\mathbf{s}))+\gamma\mathbf{E}_{\mathbf{s}&#39;\sim p(\mathbf{s}&#39;|\mathbf{s},\pi(\mathbf{s}))}[V^\pi(\mathbf{s}&#39;)]\)——这也就成为了我们策略评估步的公式，我们用值函数V去替代优势函数A。需要注意的是，标准的策略迭代法的第一步需要关于我们的当前策略解出比较精确的V<sup>\pi，本质上是一个不动点问题：一种方法是之前的公式进行反复迭代直到收敛；另一种方法是求解一个比较大的线性系统（之前的公式是线性的）。</sup></p>
+
+<h4 id="toc_3">3 值函数迭代法 (Value Iteration, VI)</h4>
+
+<p>不要忘记我们本篇的目标是在算法中完全抛开策略函数。可以回顾我们每一步更新的新策略其实都是\(\arg\max_{\mathbf{a}_t}A^\pi(\mathbf{s}_t,\mathbf{a}_t)\)，而给定状态\mathbf{s}_t\(下，A^\pi(\mathbf{s}_t,\mathbf{a}_t)和Q^\pi(\mathbf{s}_t,\mathbf{a}_t)\)之间其实只相差了一个常数\(V^\pi(\mathbf{s}_t)，\)因此\(\arg\max_{\mathbf{a}_t}A^\pi(\mathbf{s}_t,\mathbf{a}_t)=\arg\max_{\mathbf{a}_t}Q^\pi(\mathbf{s}_t,\mathbf{a}_t)\)，我们可以用Q去替代A在这里的地位。</p>
+
+<p>事实上，如果我们有了一个大Q表，每一行代表一个状态，每一列代表一个行动，那么我们只需要标出每一行的最大值的格子位置就可以了，因此Q函数本身就可以隐式地表示一个策略；同样，\(\max_{\mathbf{a}}Q(\mathbf{s},\mathbf{a})\) 正是对应的值函数。那么这样，我们就正式地把策略的重要地位给架空了，得到一个更简单的动态规划求解方法：值函数迭代法 (Value Iteration, VI)。事实上该方法可以把以下两步混在一起把Q函数架空，但是Q函数在我们的值函数方法中有很高的地位，我们不这样做。我们反复执行以下两步，直到收敛。其中第一步属于绿色方块，第二步属于蓝色方块。</p>
+
+<ul>
+<li>更新Q函数：\(Q(\mathbf{s},\mathbf{a})=r(\mathbf{s},\mathbf{a})+\gamma\mathbf{E}[V(\mathbf{s}&#39;)]\)。</li>
+<li>更新V函数：\(V(\mathbf{s})=\max_\mathbf{a}Q(\mathbf{s},\mathbf{a})\)。</li>
+</ul>
+
+<h4 id="toc_4">4 拟合值函数迭代算法 (Fitted Value Iteration)</h4>
+
+<p>在对经典的两大动态规划算法进行完简单的介绍后，我们考虑的是如何把这样的方法搬运到深度增强学习中来。在相对比较复杂的问题中，我们知道状态个数是非常之大的，很难用一个很大的表来保存所有状态的V值或者Q值。譬如在一个彩色的赛车游戏中，分辨率是200 * 200，那么根据屏幕显示而设定的状态总数可以达到\(|\mathcal{S}|=(255^3)^{200\times200}\)，这个数字大得超乎想象。这样的个数随着维度的增长而几何爆炸的问题通常称为维度灾难 (curse of dimensionality)。引入到深度增强学习中，一个非常直接的想法就是使用一个巨大的神经网络来代替这个大表，如弄一个参数为\phi的深度神经网络来拟合V: \(\mathcal{S}\rightarrow\mathbb{R}\)函数，输入状态，输出对应的值函数。为了训练这样的函数，我们使用一个平方损失函数\(\mathcal{L}(\phi)=\frac{1}{2}\left\Vert V_\phi(\mathbf{s})-\max_\mathbf{a}Q^\pi(\mathbf{s},\mathbf{a})\right\Vert^2\) 来做这样的回归问题。从而，之前的值函数迭代法可以被改写为以下的拟合值函数迭代算法 (Fitted Value Iteration)：</p>
+
+<ul>
+<li>\(\mathbf{y}_i\leftarrow\max_{\mathbf{a}_i}(r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\mathbf{E}[V_\phi(\mathbf{s}_i&#39;)])\)。</li>
+<li>\(\phi\leftarrow\arg\min_\phi\frac{1}{2}\sum_i\left\Vert V_\phi(\mathbf{s}_i)-\mathbf{y}_i\right\Vert^2\)。</li>
+</ul>
+
+<p>第一步我们就和之前演员-评论家算法一样计算出一个目标，然后第二步训练神经网络减少神经网络输出与目标的值函数之间的差异。然而事实上，第一步的这个max操作是非常难做的：一个最大的问题是我们假设我们已经知道了系统的转移概率！要做这个max，我们必须知道每个行动会导致概率往哪些状态转移。我们用一些无模型的增强学习，可能可以执行很多操作来看结果，但状态往往不能回撤复原以尝试其他的选项；而第一步的max要求我们尝试各种不同的操作来看结果。</p>
+
+<h4 id="toc_5">5 拟合Q函数迭代算法 (Fitted Q-Iteration)</h4>
+
+<p>我们尝试去避免做这么强的假设。回顾我们之前的策略迭代法，我们迭代进行两步：第一步求解Q<sup>\pi(\mathbf{s},\mathbf{a})，第二步用这个Q函数来更新策略。其中，第一步的做法可以是反复迭代值函数</sup> \(V^\pi(\mathbf{s})\leftarrow r(\mathbf{s},\pi(\mathbf{s}))+\gamma\mathbf{E}_{\mathbf{s}&#39;\sim p(\mathbf{s}&#39;|\mathbf{s},\pi(\mathbf{s}))}[V^\pi(\mathbf{s}&#39;)] ，然后再通过一步转移和加上r(\mathbf{s},\mathbf{a}) 来得到Q函数；但同样也可以是Q^\pi(\mathbf{s},\mathbf{a})\leftarrow r(\mathbf{s},\mathbf{a})+\gamma\mathbf{E}_{\mathbf{s}&#39;\sim p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})}[Q^\pi(\mathbf{s}&#39;,\pi(\mathbf{s}&#39;))]\)。现在的Q函数可以用样本来拟合出来。这一切告诉我们：只要有Q函数，一切就可以在不知道系统转移概率的情况下运转起来。进一步，我们也考虑将Q函数使用诸如神经网络的结构来近似，得到拟合Q函数迭代算法 (Fitted Q-Iteration)：</p>
+
+<ul>
+<li>\(\mathbf{y}_i\leftarrow r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\mathbf{E}[V_\phi(\mathbf{s}_i&#39;)]，其中我们使用\max_{\mathbf{a}&#39;}Q_\phi(\mathbf{s}_i&#39;,\mathbf{a}&#39;)来近似\mathbf{E}[V_\phi(\mathbf{s}_i&#39;)]\)。</li>
+<li>\(\phi\leftarrow\arg\min_\phi\frac{1}{2}\sum_i\left\Vert Q_\phi(\mathbf{s}_i,\mathbf{a}_i)-\mathbf{y}_i\right\Vert^2\)。</li>
+</ul>
+
+<p>可以发现，这样的决策算法的根本好处在于不需要去同一状态尝试不同的行动选项，因为Q函数已经告诉你不同行动的效果了：我们无需在真实环境中尝试各种不同行动后复位，而只需要在我们所涉及的Q函数拟合器上做这点就可以了。此外，我们这样的两步算法有很大的优点。第一，算法中只需要用到很多\((\mathbf{s},\mathbf{a},r,\mathbf{s}&#39;)\)的一步转移样本，而这些样本是可以离线的；这个在演员-评论家算法中是不通用的。第二，这个算法只用到一个网络，没有用到策略梯度，因此也没有高方差的问题。但是，这个算法的致命缺点是，对于这样的非线性函数拟合机制下的算法，没有任何收敛性保证（不进行拟合的大表格Q迭代算法在一定条件下有收敛性）。我们接下来会进一步探讨这些优缺点。</p>
+
+<h4 id="toc_6">6 一个完整的拟合Q函数迭代算法的一个简单框架是这样的：</h4>
+
+<ul>
+<li>执行某个策略，收集容量为N的数据集\(\{(\mathbf{s}_i,\mathbf{a}_i,r_i,\mathbf{s}&#39;_i)\}\)。</li>
+<li>\(\mathbf{y}_i\leftarrow r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\max_{\mathbf{a}_i&#39;}Q_\phi(\mathbf{s}_i&#39;,\mathbf{a}_i&#39;)\)。</li>
+<li>\(\phi\leftarrow\arg\min_\phi\frac{1}{2}\sum_i\left\Vert Q_\phi(\mathbf{s}_i,\mathbf{a}_i)-\mathbf{y}_i\right\Vert^2\)。反复执行K次2-3步骤后跳回第一步继续收集数据。</li>
+</ul>
+
+<p>第一步的策略其实是任意的，因为Q函数迭代算法不对数据集的策略做出任何假设。根据收集数据数量的不同，可以变成收集一堆数据的批量算法，也可以变成只收集一个数据的在线算法。第三步可以选择怎么去训练神经网络，比如走多少个梯度步，算得精确一点还是简单走几步就停了。</p>
+
+<p>现在来解释该算法的离线 (off-policy) 性质。实际上第一步可以用上任意策略的数据，因为第二步和第三步的计算没有需要用到当前策略下的数据，而只是单步转移的片段就可以了。\(\max_{\mathbf{a}_i&#39;}Q_\phi(\mathbf{s}_i&#39;,\mathbf{a}_i&#39;)\)只需要对决策空间的一个枚举，而转移r(\mathbf{s}_i,\mathbf{a}_i)，在给定了状态和行动的情况下，也跟当前策略没关系。某种意义上可以说Q函数是对策略的一个解耦合。因此，我们可以收集一大堆转移数据放进一个大桶里，我们的算法从大桶中抽取数据，这个算法照样可以运转。</p>
+
+<p>那么拟合Q函数迭代算法到底在优化一些什么呢？在第二步中，如果我们是表格Q函数迭代的话，max就是在改进策略。第三步中，我们在最小化一个期望误差</p>
+
+<p>\(\mathcal{E}=\frac{1}{2}\mathbf{E}_{(\mathbf{s},\mathbf{a})\sim\beta}\left[Q_\phi(\mathbf{s},\mathbf{a})-\left[r(\mathbf{s},\mathbf{a})+\gamma\max_{\mathbf{a}&#39;}Q_\phi(\mathbf{s}&#39;,\mathbf{a}&#39;)\right]\right]\)</p>
+
+<p>也被称为Bellman误差。可以发现，在理想情况下，如果这个误差为0，那么我们所求得的Q函数就满足</p>
+
+<p>\(Q^*(\mathbf{s},\mathbf{a})=r(\mathbf{s},\mathbf{a})+\gamma\max_{\mathbf{a}&#39;}Q^*(\mathbf{s}&#39;,\mathbf{a}&#39;)\)</p>
+
+<p>这正是确定最优Q函数的Bellman方程，也对应了最优策略：</p>
+
+<p>\(\pi^*(\mathbf{a}_t|\mathbf{s}_t)=I\left(\mathbf{a}_t=\arg\max_{\mathbf{a}_t}Q^*(\mathbf{s}_t,\mathbf{a}_t)\right)\)</p>
+
+<p>这个最优策略最大化期望收益。</p>
+
+<p>如果我们不使用近似，且每一个\((\mathbf{s},\mathbf{a})\)都有概率发生的话，那么我们可以说明\(\mathcal{E}=0\)对应着最优策略。在这边，即便算法是离线的，但是收集数据的分布还是有很大关系的。一个极端情况，我们假设\(\beta\)只是一个单点分布，除了一个状态外概率都为0：这样我们就成为只知道一个状态的井底之蛙了，不能对其他状态的好坏做出正确评价。因此，尽管算法是离线的，但请尽可能确保我们收集的数据中包含了真正运行时会访问到的那些状态和行动。此外，如果我们使用诸如神经网络的东西去拟合Q函数表，那么之前所说的大量理论保证将丧失。</p>
+
+<p>在之前的拟合Q函数迭代算法中，我们收集大量数据，然后反复做样本-做回归。我们把每次收集的样本数设为1，然后把K设为1，并且设置只走一个梯度步，就变成了在线Q迭代算法 (Online Q-iteration)，循环以下三步。</p>
+
+<ul>
+<li>执行某个行动\mathbf{a}_i，收集观察数据\((\mathbf{s}_i,\mathbf{a}_i,r_i,\mathbf{s}&#39;_i)\)。</li>
+<li>\(\mathbf{y}_i\leftarrow r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\max_{\mathbf{a}_i&#39;}Q_\phi(\mathbf{s}_i&#39;,\mathbf{a}_i&#39;)\)。</li>
+<li>\(\phi\leftarrow\phi-\alpha\frac{\mathrm{d} Q_\phi(\mathbf{s}_i,\mathbf{a}_i)}{\mathrm{d}\phi}(Q_\phi(\mathbf{s}_i,\mathbf{a}_i)-\mathbf{y}_i)\)。</li>
+</ul>
+
+<p>该算法每轮执行一个行动，得到一个转移观察，算出目标值，做一步的随机梯度下降。这是标准的Q学习算法，虽然是离线的，但还是和刚才所说的一样，第一步的支撑集希望足够大。那么如何选择行动呢？我们最终的行动服从一个单点分布，选择一个使得Q最大的行动。但是如果我们把这个东西直接搬过来在学习过程中使用的话，是不好的。事实上，这是在线学习中的一个很纠结的问题：探索 (exploration) 和开发 (exploitation)。学习就是一个探索的过程，如果我们还没进行足够的探索，在Q函数还不够准确的时候，我们根本无法分别出到底哪个是真正好的，会忽略掉真正优秀的方案。在在线学习中，有多种启发式方法来脱离这一局面。一种策略称为\epsilon-贪心，也就是分给最大的\(\mathbf{a}_t^*=\arg\max_{\mathbf{a}_t}Q^*(\mathbf{s}_t,\mathbf{a}_t)(1-\epsilon)\)的大概率的同时，也保留\epsilon概率平均分给其他所有的\((|\mathcal{A}|-1)\)种行动。另一种常用的设定是Boltzmann探索，概率分布为\(\pi(\mathbf{a}_t|\mathbf{s}_t)\propto\exp(Q_\phi(\mathbf{s}_t,\mathbf{a}_t))\)。它假定Q函数多多少少知道一些哪个行动好，但是有噪音。这样Q比较大的行动有显著较高的概率被选到，同时保持了其他选项的可能性。</p>
+
+<h4 id="toc_7">7 算法的理论</h4>
+
+<p>让我们回到非神经网络近似的值函数迭代算法，它本质上在做\(V(\mathbf{s})\leftarrow\max_\mathbf{a}[r(\mathbf{s},\mathbf{a})+\gamma\mathbf{E}[V(\mathbf{s}&#39;)]]\)。那么第一个问题就是，这个算法收敛么？如果是的话，收敛到什么？首先，我们定义一个备份算子 (backup operator) \(\mathcal{B}\) ，形式上写作\(\mathcal{B}V=\max_\mathbf{a}r_\mathbf{a}+\gamma\mathcal{T}_\mathbf{a}V，其中r_\mathbf{a}\)是所有状态下选择行动\mathbf{a}的一步收益的向量，\(\mathcal{T}_\mathbf{a}\)指的是选择行动\(\mathbf{a}的\)转移矩阵，诸如\(\mathcal{T}_{\mathbf{a},i,j}=p(\mathbf{s}&#39;=i|\mathbf{s}=j,\mathbf{a})\)，max是按分量取最大。实际上，我们可以发现最优下，\(V^*\)是\(\mathcal{B}\)算子的一个不动点，因为\(V^*(\mathbf{s})=\max_\mathbf{a}[r(\mathbf{s},\mathbf{a})+\gamma\mathbf{E}[V^*(\mathbf{s}&#39;)]]，所以V^*=\mathcal{B}V^*\)。与之前Q函数的讨论相似，这一个不动点总是存在，总是唯一，且总是对应着最优策略。现在我们的关键问题是如何去找到这样一个不动点，因为不动点意味着最优值函数和最优策略。</p>
+
+<p>虽然在理论上，一个无限大的深度神经网络可以拟合任意函数，但是在实际使用中，我们一般只能使用一个有限大小的神经网络，因此它能表示的只是所有函数的一个子集。</p>
+
+<p>顺便说一下，在演员-评论家算法中用的\(V^\pi\)，指的是关于策略\(\pi\)的值函数，是评论家用的函数；而在值函数迭代中用的\(V^*\)，则是最优策略\(\pi^*\)所代表的值函数，也是最优的值函数。</p>
+
+<h3 id="toc_8">第八讲 Q-Function DQN</h3>
+
+<h4 id="toc_9">回放缓冲池与目标网络</h4>
+
+<p>在上一篇中，我们介绍了一些纯粹使用值函数的方法（这个是在动态规划中最最经典的要素），最重要的是Q学习方法，这类方法抛开了一个显式的策略，直接去学习Q函数，使我们知道在某个特定的状态下执行某一操作效果有多好；也指出了如果我们使用神经网络来进行拟合所可能出现的不收敛现象：这些问题将在所有的使用某些结构（如神经网络）拟合值函数，然后使用拟合的值函数作为“评论家”来做自助的方法中都存在。在这一篇中，我们将介绍一些方法，使得在实践中这些问题能被有效克服。</p>
+
+<p>我们之前已经说明过，它不是一个梯度下降算法，因此，梯度法的收敛性在这里不适用。第二点很关键的问题是，在普通的SGD中，我们常常认为每一次拿到的数据之间都有一定的不相关性；而在第一步收集的数据中，数据通常都是非常相关的：下一步的观察数据可能和这一步非常相关。因此，梯度也会非常相关。因此，我们会尝试去使用一些手段来缓解这些问题。</p>
+
+<p>我们考虑解决的问题主要有两个：序贯状态的强相关性，以及目标值总是在变动。</p>
+
+<ul>
+<li><p>序贯样本为什么会成为痛点？<br/>
+让我们先考虑一个简单的回归问题，这个回归问题尝试去拟合一堆数据，而这堆数据是一个正弦波。一般我们希望数据是独立同分布的，而我们在序贯问题中先得到了开始的几个样本，然后逐渐得到后面几组，每得到一组我们就走一个梯度步。这样我们就很难去学习整个正弦波，而更容易在局部形成过拟合的同时，忘掉了其他样本的信息。在演员-评论家算法中，可以采用一些并行学习的方法，这里Q学习也可以：使用多个独立的智能体进行独立的数据收集，然后使用同步或者异步的方法进行梯度更新，这样可以使得样本的相关度减轻，但是这样的做法可能是相当“繁重”的。</p></li>
+<li><p>回放缓冲池 (Replay Buffer)<br/>
+另一种更常见的做法，回放缓冲池 (Replay Buffer)，利用到了Q学习算法本质上是离线 (off-policy) 的这样一个性质：也就是说，Q学习算法使用到的数据不需要根据当前的策略收集得到。相对的，演员-评论家算法是一个在线 (on-policy) 算法，因此对于演员-评论家算法来说并行学习是首选之一，然而在Q学习中并非如此。在拟合Q迭代算法中，我们每一步收集一些样本，然后进行若干步目标值构造和回归。在收集样本的步骤中，我们可以使用任意策略（当然我们希望样本的支撑集足够大），因此我们不妨假设一个极端情形：收集样本的步骤被完全省略了，我们在很早的时候就收集了非常非常多的样本，然后全部丢在了一个数据库之中，我们在每次训练更新的时候随便从里面拉出一些来。这样做完全是可以的，因为我们事实上不根据策略和模拟器进行任何交互。</p></li>
+</ul>
+
+<p>这给了我们一个启示，我们可以构造一个样本池\(\mathcal{B}\)，然后每次从里面抽出一批样本，进行梯度更新： \(\phi\leftarrow\phi-\alpha\sum_i\frac{\mathrm{d} Q_\phi(\mathbf{s}_i,\mathbf{a}_i)}{\mathrm{d}\phi}\left(Q_\phi(\mathbf{s}_i,\mathbf{a}_i)-\left(r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\max_{\mathbf{a}_i&#39;}Q_\phi(\mathbf{s}_i&#39;,\mathbf{a}_i&#39;)\right)\right)\)</p>
+
+<p>这样做的好处不仅在于这样抽出的样本不再具有很强的相关性了，同时我们每次可以用的样本量也从1个变成了很多个，可以使用多样本来降低梯度的方差（有点类似于mini-batch SGD的做法）。现在我们想要知道的是，高覆盖面的数据到底从哪里来。在实践中，对于很大的状态空间，我们通常很难去很好地覆盖；我们能做到的最好情况的可能也只是覆盖我们所可能到的沧海之一粟。因此，我们在Q学习的过程中，还是需要同时去为样本池补充新鲜血液。这也要求我们使用一些探索策略向外界环境输出一些不同的策略，然后得到样本进入样本池。训练过程有点像某些抽奖箱子里每次抽一张卡，抽完丢回去再抽。因为我们投入的数据会被反复使用到，有点类似于回放，因此被称为回放缓冲池 (Replay Buffer)。</p>
+
+<p>从而，一个（同步的）使用回放缓冲池的Q学习算法是这样的：</p>
+
+<ol>
+<li>使用某些策略（如\(\epsilon\)-贪心）跟环境打交道收集一批数据\(\{(\mathbf{s}_i,\mathbf{a}_i,r_i,\mathbf{s}&#39;_i)\}\)，并加入到回放缓冲池\(\mathcal{B}\)中。</li>
+<li>从回放缓冲池\(\mathcal{B}\)中抽一批样本\(\{(\mathbf{s}_i,\mathbf{a}_i,r_i,\mathbf{s}&#39;_i)\}\)。</li>
+<li>更新一个梯度步：\(\phi\leftarrow\phi-\alpha\sum_i\frac{\mathrm{d} Q_\phi(\mathbf{s}_i,\mathbf{a}_i)}{\mathrm{d}\phi}\left(Q_\phi(\mathbf{s}_i,\mathbf{a}_i)-\left(r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\max_{\mathbf{a}_i&#39;}Q_\phi(\mathbf{s}_i&#39;,\mathbf{a}_i&#39;)\right)\right)\)，<br/>
+反复执行2-3步K次之后返回第一步继续收集样本。</li>
+</ol>
+
+<p>注意到，如果缓冲区足够大的话，那么新进入数据占权重其实是很小的，很可能不会被抽到。当然这不是个问题，新进数据只是为了让样本池的支撑集更广（更新Q函数使得更新策略，新策略会访问到之前没去过的地方）而已。在K的选择上，通常选择1就不错，然而如果数据获取代价比较高的话（如需要与真实物理系统打交道），更大的K有时候会产生更高的数据使用效率。由此，回放缓冲池成功解决了数据的强相关性问题，但是目标值的变动问题还是没有解决。</p>
+
+<p>之前听过一个童话，说小猪问妈妈幸福在哪里，妈妈表示在尾巴上，然后小猪尝试咬自己尾巴但是抓不到，但是妈妈表示只要你一直走幸福就会一直跟着你。暖心的小童话在这边就变成了一个讨厌的事实：我们想要使得\(Q_\phi(\mathbf{s}_i,\mathbf{a}_i)尽量靠近目标值r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\max_{\mathbf{a}_i&#39;}Q_\phi(\mathbf{s}_i&#39;,\mathbf{a}_i&#39;)，但只要我们不停迭代Q_\phi(\mathbf{s}_i,\mathbf{a}_i)\)，我们的目标值就跟尾巴一样一直会动来动去的！这就跟射击中的移动靶一样，总比固定靶要难打很多。但是如果我们能够像之前一样，先把目标值算出来，然后再去做最小化最小二乘的回归，那么这样的回归就会稳定很多。</p>
+
+<h4 id="toc_10">目标网络 (Target Network)</h4>
+
+<p>在这里，我们把之前的思想改造成一个目标网络 (Target Network)，以提高实践中的稳定性（虽然还是没有什么理论保证）。整体想法与之前使用回放缓冲池的Q学习算法没有什么太大区别，只不过是我们再执行若干步（如10000步）整个算法迭代后，就把整个网络的参数\phi存下来称为目标网络\phi&#39;（就像很多软件的自动存档功能一样），然后我们每次做的梯度步变成了\(\phi\leftarrow\phi-\alpha\sum_i\frac{\mathrm{d} Q_\phi(\mathbf{s}_i,\mathbf{a}_i)}{\mathrm{d}\phi}\left(Q_\phi(\mathbf{s}_i,\mathbf{a}_i)-\left(r(\mathbf{s}_i,\mathbf{a}_i)+\gamma\max_{\mathbf{a}_i&#39;}Q_{\phi&#39;}(\mathbf{s}_i&#39;,\mathbf{a}_i&#39;)\right)\right)\)</p>
+
+<p>就是说我们的目标不再是Q_\phi而是Q_{\phi&#39;}了。这样就能使得我们的“靶子”在一段时间内保持确定，不再是每走一个梯度步目标就动一下，就像“秦王绕柱走”一样的“放风筝”策略一样避敌。等我们已经足够接近靶子了，然后再允许靶子动到一个更好的地方去。我们可以发现，如果我们把靶子固定，那么这个算法非常接近一个监督学习算法。这跟人一样，一开始学走路就把步伐放得太大容易摔跤，我们这样做可以把训练速度放下来，同时提高训练的稳定性，从而这个目标网络更新步数需要权衡以提高收敛概率：太大训练太慢，太小则容易不稳定。理论上，这样做不改变任何事情，但是实践中，这样降低靶子移动的频率，非常有助于训练的稳定性，减少训练所需要的时间。</p>
+
+<p>综合这两种技巧，Mnih et al. (2013) 在NIPS提出了举世闻名的深度Q网络 (Deep Q Network, DQN) 算法，也是深度Q学习中最经典的算法。</p>
+
+<ol>
+<li>在环境中执行某个操作\(\mathbf{a}_i\)，观察到\((\mathbf{s}_i,\mathbf{a}_i,r_i,\mathbf{s}&#39;_i)\)，并加入到回放缓冲池\(\mathcal{B}\)中。</li>
+<li>均匀地从回放缓冲池\(\mathcal{B}\)中抽取一个小批量样本\(\{(\mathbf{s}_j,\mathbf{a}_j,r_j,\mathbf{s}&#39;_j)\}\)。</li>
+<li>使用目标网络\(Q_{\phi&#39;}\)，计算出目标值\(y_j=r_j+\gamma\max_{\mathbf{a}_j&#39;}Q_{\phi&#39;}(\mathbf{s}_j&#39;,\mathbf{a}_j&#39;)\)。</li>
+<li>走一个梯度步，\(\phi\leftarrow\phi-\alpha\sum_j\frac{\mathrm{d} Q_\phi(\mathbf{s}_j,\mathbf{a}_j)}{\mathrm{d}\phi}\left(Q_\phi(\mathbf{s}_j,\mathbf{a}_j)-y_j\right)。\)</li>
+<li>每隔N步，把整个神经网络的参数\(\phi\)复制到目标网络\(\phi&#39;\)中去。返回第一步。</li>
+</ol>
+
+<p>小批量样本的特性是，其中第三第四步是可以并行的。<br/>
+关于目标网络，也有另一种实现策略。看上图，我们在第一个绿色方块更新了目标网络，此后若干个步骤，我们都将以这个目标网络为基础进行迭代，然后逐渐误差越来越大，直到下一个目标网络更新点，就形成了一个断点。这样其实对于步骤和步骤之间并不公平，有些步骤访问的延迟很高，有的步骤则很低。为了使得延迟公平化，可以使用一个类似于指数平滑的方法（随机优化中的Polyak Averaging），不再是若干步执行更新而是每一步都做一个小变动：\(\phi&#39;\leftarrow\tau\phi&#39;+(1-\tau)\phi\)。实践中\tau=0.999效果不错。从优化的角度，可以对这样的做法有一些理论解释。</p>
+
+<p>现在，让我们对在线Q学习、拟合Q迭代、DQN算法进行一个比较。我们可以发现，对于有回放缓冲池和目标网络的Q学习算法来说，最外层循环是更新目标网络的参数，内层循环是使用同一个策略收集若干数据集丢进缓冲池后，迭代若干次从池中抽样然后做小批量样本的梯度步；而对于拟合Q迭代算法，最外层循环是使用同一个策略收集若干数据集丢进缓冲池，而内层循环则是更新目标网络的参数，然后迭代抽样做梯度步。外面两层操作顺序是相反的。DQN是其中的一个特例。</p>
+
+<p>从而，我们可以把过程的主要步骤分为三部分：第一步是数据收集 (data collection)，第二步是目标更新 (target update)，第三步是Q函数回归 (Q-function regression)。此外，还有一个从缓冲池里丢弃旧数据的操作。第一步的数据收集是用于充实我们的缓冲池的。我们拿我们有一定探索性质的策略与外界打交道，从而获得一些转移数据；如果缓冲区太大了，我们也需要把一些旧数据丢进垃圾桶（如把缓冲区弄成一个固定大小的循环型，老的数据自然被丢弃），这是因为旧数据可能是在很垃圾的策略下得到的，已经没什么实际价值。第二步以一定的频率（或者Polyak Averaging）用当前的参数去更新目标网络参数，如果我们想稳定一点的话，这一步通常频率很低。第三步是一个学习过程，它从目标网络中取得参数，从缓冲池中取得数据，然后进行回归以后更新当前的参数。广义看，不同的算法之间，只在于这几个操作的频率有所区别，取决于样本取得代价，网络更新代价和对稳定性的需求。对于在线Q学习，我们取得数据后只使用一次就丢弃了（也就是样本池里只有一个样本），三个步骤的频率是一样的。对于DQN，缓冲池比较大，第一步和第三步运行频率一致，而第二步频率很低。对于拟合Q迭代，就形成了一个嵌套结构，第三步是第二步的内循环，而第二步是第一步的内循环，频率指数降低。</p>
+
+<h4 id="toc_11">让Q学习更好的技巧</h4>
+
+<p>我们在前面已经知道，Q函数本身是有意义的：在某个状态下，我们进行了某种操作，今后会带来的期望收益。那么我们使用之前估计得到的Q函数值是否能准确反映呢？Mnih et al. (2015) 在Nature上的论文做了一系列正面实验。上面四个图中，上面两个是平均收益，下面两个是平均Q值，我们发现当估计的Q值上升的时候，总体来说收益也呈一个上升的趋势；但是在训练片段中收益波动相当大，Q值虽然不能很好去拟合收益，但是波动相对小，相对光滑。下面举两个Atari游戏的例子来说明这些值函数的意义。</p>
+
+<ul>
+<li>上图显示了几个问题的几种不同Q学习的效果 (Schaul et al., 2015)。发现对于不同的问题，Q学习在有些问题上很可靠，在有些问题上波动很大，需要花很多力气来让Q学习稳定下来。因此发现几个能让Q学习比较可靠的问题来试验程序，譬如Pong和Breakout。如果这些例子上表现不好，那就说明程序有问题。</li>
+<li>回放缓冲池的大小越大，Q学习的稳定性越好。我们往往会用到上百万个回放样本，那么内存上怎么处理是决定性的。建议图像使用uint8 (1字节无符号整型) 存储，然后在存储\((\mathbf{s},\mathbf{a},r,\mathbf{s}&#39;)\)的时候不要重复存储同样的数据。</li>
+<li>训练的时候要耐心。DQN的收敛速度很慢，对于Atari游戏经常需要1000-4000万帧，训练GPU也得几个小时到一天的时间，这样才能看出能显著地比随机策略要来的好。</li>
+<li>在使用\(\epsilon\)贪心等策略的时候，一开始把探索率调高一些，然后逐渐下降。</li>
+<li>Bellman误差可能会非常大，因此可以对梯度进行裁剪（clipping，也就是设一个上下限），或者使用Huber损失进行光滑。</li>
+<li>在实践中，使用双重Q学习很有帮助，改程序也很简单，而且几乎没有任何坏处。</li>
+<li>使用N步收益也很有帮助，但是可能会带来一些问题。</li>
+<li>除了探索率外，学习率 (Learning Rate, 也就是步长) 也很重要，可以在一开始的时候把步长调大一点，然后逐渐降低，也可以使用诸如ADAM的自适应步长方案。</li>
+<li>多用几个随机种子试一试，有时候表现差异会很大。</li>
+</ul>
+
+<h4 id="toc_12">行动空间连续时的Q学习怎么办？</h4>
+
+<p>在我们之前的问题中，通常假设策略很容易得到：\[\pi(\mathbf{a}_t|\mathbf{s}_t)=I\left(\mathbf{a}_t=\arg\max_{\mathbf{a}_t}Q_\phi(\mathbf{s}_t,\mathbf{a}_t)\right)\]，求max只需要遍历行动空间就行了；目标值\[y_j=r_j+\gamma\max_{\mathbf{a}_j&#39;}Q_{\phi&#39;}(\mathbf{s}_j&#39;,\mathbf{a}_j&#39;)\]的max也是这样。但是如行动空间是连续的时候，这个max就不容易做了。这个问题在后者中尤其严重，因为它是训练过程中最内层循环要做的事情，频率比前者要高多了。那么如何做max呢？</p>
+
+<ul>
+<li><p>第一种想法是直接做优化。在最内层循环做基于梯度的优化算法（如SGD）相对来说是比较慢的。注意到我们的行动空间通常都是比较低维的（相对整个系统而言），不使用梯度信息的随机优化也许能有用武之地。最简单的方法是使用离散随机踩点：\(\max_\mathbf{a}Q(\mathbf{s},\mathbf{a})\approx\max\{Q(\mathbf{s},\mathbf{a}_1),\ldots,Q(\mathbf{s},\mathbf{a}_N)\}\)，其中行动是从某些分布（如均匀分布）中得到的。这个方法是最简单的，而且还比较容易并行，但是这样得到的结果是不准确的，尤其是在维度增加的情况下看起来就不像是能找到一个效果很好的解；不过有些时候，我们也不真正在乎优化求解的精度。此外，还有一些更好的方法，譬如交叉熵方法 (Cross-entropy Methods) 这样的迭代随机优化算法，或者如CMA-ES (Covariance Matrix Adaptation Evolutionary Strategies) 这样的进化算法。这些通常在不超过40维的决策问题中有效。</p></li>
+<li><p>第二种方法是，我们选取一个比较容易优化的函数簇来拟合我们的Q函数。在此之前，我们适用的都是通用的神经网络来拟合Q，有些情况下我们不必要这么做。譬如在Q函数是二次函数的时候，Q_\phi(\mathbf{s},\mathbf{a})=-\frac{1}{2}(\mathbf{a}-\mu_\phi(\mathbf{s}))<sup>\top</sup> P_\phi(\mathbf{s})(\mathbf{a}-\mu_\phi(\mathbf{s}))+V_\phi(\mathbf{s})，我们就训练一个神经网络或者其他结构，输入状态，输出(\mu,P,V)，其中\mu和V都是向量，P是矩阵（可以用如低秩形式表示）。这样的方法称为NAF (Normalized Advantage Functions)，它的天然特性就是\mu_\phi(\mathbf{s})=\arg\max_\mathbf{a}Q_\phi(\mathbf{s},\mathbf{a})和V_\phi(\mathbf{s})=\max_\mathbf{a}Q_\phi(\mathbf{s},\mathbf{a})。这个很容易和高斯分布建立起联系；当然，这样的Q函数中行动是没有界限的。我们这么做的话，算法上不需要做任何改变，非常容易，而且和原来的Q学习一样高效。但是缺点就在于Q函数只能是固定的形式（如这里的二次函数），非常受限，Q函数的建模泛化能力将大大降低。</p></li>
+<li><p>第三种方法比第二种方法更为广泛，是去新学习一个最大化器，在Lillicrap et al. (2016) 在ICLR上的一篇文章中被作为DDPG (Deep Deterministic Policy Gradient) 算法介绍。考虑到\max_\mathbf{a}Q_\phi(\mathbf{s},\mathbf{a})=Q_\phi\left(\mathbf{s},\arg\max_\mathbf{a}Q_\phi(\mathbf{s},\mathbf{a})\right)，可以想的是另外训练一个最大化器\(\mu_\theta(\mathbf{s})\approx\arg\max_\mathbf{a}Q_\phi(\mathbf{s},\mathbf{a})\)，作为最大化的算子。训练的方法是，让\(\theta\leftarrow\arg\max_\theta Q_\phi(\mathbf{s},\mu_\theta(\mathbf{s}))\)，这个可以用梯度上升法，梯度可以遵循链式法则：\(\frac{\mathrm{d}Q_\phi}{\mathrm{d}\theta}=\frac{\mathrm{d}Q_\phi}{\mathrm{d}\mathbf{a}}\frac{\mathrm{d}\mathbf{a}}{\mathrm{d}\theta}。从而，我们的目标值y_j=r_j+\gamma\max_{\mathbf{a}_j&#39;}Q_{\phi&#39;}(\mathbf{s}_j&#39;,\mu_\theta(\mathbf{s}_j&#39;))\)。整个DDPG算法迭代执行以下步骤：</p>
+<ol>
+<li>在环境中执行某个操作\mathbf{a}_i，观察到\((\mathbf{s}_i,\mathbf{a}_i,r_i,\mathbf{s}&#39;_i)\)，并加入到回放缓冲池\(\mathcal{B}\)中。</li>
+<li>均匀地从回放缓冲池\(\mathcal{B}\)中抽取一个小批量样本\(\{(\mathbf{s}_j,\mathbf{a}_j,r_j,\mathbf{s}&#39;_j)\}\)。</li>
+<li>使用目标网络\(Q_{\phi&#39;}\)和最大化器\(\mu_{\theta&#39;}\)，计算出目标值\(y_j=r_j+\gamma\max_{\mathbf{a}_j&#39;}Q_{\phi&#39;}(\mathbf{s}_j&#39;,\mu_{\theta&#39;}(\mathbf{s}_j&#39;))\)。</li>
+<li>当前网络走一个梯度步，\(\phi\leftarrow\phi-\alpha\sum_j\frac{\mathrm{d} Q_\phi(\mathbf{s}_j,\mathbf{a}_j)}{\mathrm{d}\phi}\left(Q_\phi(\mathbf{s}_j,\mathbf{a}_j)-y_j\right)\)。</li>
+<li>最大化器走一个梯度步，\(\theta\leftarrow\theta+\beta\sum_j\frac{\mathrm{d}\mu(\mathbf{s}_j)}{\mathrm{d}\theta}\frac{\mathrm{d}Q(\mathbf{s}_j,\mathbf{a})}{\mathrm{d}\mathbf{a}}\)。</li>
+<li>使用Polyak Averaging更新\(\phi&#39;和\theta&#39;\)。<br/>
+相当于相对DQN，只是增加了一个最大化器，第三步使用最大化器，第五步更新最大化器，同时最大化器的更新也是用Polyak Averaging。</li>
+</ol>
+<p>合Q迭代的方法控制小赛车（和其他低维度系统），因为较早期，所以拟合的函数簇包含了随机森林和神经网络。它们是训练了一个自编码器 (autoencoder) 来降维，在隐层上面做Q学习。这是同时出现Q学习和神经网络比较早的论文，但是Q学习没有和神经网络直接结合起来。两者直接结合起来，产生的最经典的DQN出自于Mnih et al. (2013) 在NIPS上的文章，用同一种方法成功攻克了多种Atari游戏。它们的训练直接使用图像，而不是在一个隐空间中训练。这个工作使用了回放缓冲池和目标网络的技术，使用了一步的备份和一步的梯度步。这个结果在后来也有很多技巧可以改进，如双重Q学习。Lillicrap et al. (2015) 最早提出了Q学习在连续控制（简单机器人模拟器）上的应用，即DDPG。这项工作考虑连续的空间，并使用了一个最大化器网络；采用了回放缓冲池、目标网络、Polyak Averaging更新等技术，使用了一步的备份和一步的梯度步（与DQN一致）。Gu et al. (2017) 使用Q学习法控制真实的机器人。这项工作同样考虑连续控制，对Q函数采用了二次函数的NAF近似，也同样采用了回放缓冲池和目标网络技术。在收集数据上，使用了多个不同的机器人来并行处理。因为是真实物理场景，数据比较难采集，所以每个模拟步走了4个梯度步（一步备份）。</p></li>
+</ul>
+
+<h4 id="toc_13">dobule DQN</h4>
+
+<p><a href="https://zhuanlan.zhihu.com/p/32994423">https://zhuanlan.zhihu.com/p/32994423</a><br/>
+<a href="https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/4-5-double_DQN/">https://morvanzhou.github.io/tutorials/machine-learning/reinforcement-learning/4-5-double_DQN/</a></p>
+
+<p>van Hasselt et al. (2010, 2015) 的双重Q学习 (Double Q-learning) 技术用于缓解这一问题：它本身希望切断过高估计的行动 - 过高估计的值的传导这样的一个链条。如果最大Q决策选择和它对应的Q函数的相关性被斩除，那么这就不再是一个问题了。</p>
+
+<p>双重Q学习的想法就是，不要使用同一个网络来确定行动和估计Q函数值。它使用两个网络\phi_A和\phi_B，更新时候采用以下交错手段：</p>
+
+<ul>
+<li>\(Q_{\phi_A}(\mathbf{s},\mathbf{a})\leftarrow r+\gamma Q_{\phi_B}(\mathbf{s}&#39;,\arg\max_{\mathbf{a}&#39;}Q_{\phi_A}(\mathbf{s}&#39;,\mathbf{a}&#39;))\)</li>
+<li>\(Q_{\phi_B}(\mathbf{s},\mathbf{a})\leftarrow r+\gamma Q_{\phi_A}(\mathbf{s}&#39;,\arg\max_{\mathbf{a}&#39;}Q_{\phi_B}(\mathbf{s}&#39;,\mathbf{a}&#39;))\)</li>
+</ul>
+
+<h4 id="toc_14">Prioritized Experience Replay (DQN) (Tensorflow)</h4>
+
+<p>这一套算法重点就在我们 batch 抽样的时候并不是随机抽样, 而是按照 Memory 中的样本优先级来抽. 所以这能更有效地找到我们需要学习的样本.</p>
+
+<p>那么样本的优先级是怎么定的呢? 原来我们可以用到 TD-error, 也就是 Q现实 - Q估计 来规定优先学习的程度. 如果 TD-error 越大, 就代表我们的预测精度还有很多上升空间, 那么这个样本就越需要被学习, 也就是优先级 p 越高.</p>
+
+<p>有了 TD-error 就有了优先级 p, 那我们如何有效地根据 p 来抽样呢? 如果每次抽样都需要针对 p 对所有样本排序, 这将会是一件非常消耗计算能力的事. 好在我们还有其他方法, 这种方法不会对得到的样本进行排序. 这就是这篇 paper 中提到的 SumTree.</p>
+
+<h4 id="toc_15">Dueling DQN (Tensorflow)</h4>
+
+<p>只要稍稍修改 DQN 中神经网络的结构, 就能大幅提升学习效果, 加速收敛. 这种新方法叫做 Dueling DQN. 用一句话来概括 Dueling DQN 就是. 它将每个动作的 Q 拆分成了 state 的 Value 加上 每个动作的 Advantage.</p>
+
+<h4 id="toc_16">Deep Deterministic Policy Gradient (DDPG)</h4>
+
+<p>强化学习中的一种actor critic 的提升方式 Deep Deterministic Policy Gradient (DDPG), DDPG 最大的优势就是能够在连续动作上更有效地学习.</p>
+
+<p>现在我们来说说 DDPG 中所用到的神经网络. 它其实和我们之前提到的 Actor-Critic 形式差不多, 也需要有基于 策略 Policy 的神经网络 和基于 价值 Value 的神经网络, 但是为了体现 DQN 的思想, 每种神经网络我们都需要再细分为两个, Policy Gradient 这边, 我们有估计网络和现实网络, 估计网络用来输出实时的动作, 供 actor 在现实中实行. 而现实网络则是用来更新价值网络系统的. 所以我们再来看看价值系统这边, 我们也有现实网络和估计网络, 他们都在输出这个状态的价值, 而输入端却有不同, 状态现实网络这边会拿着从动作现实网络来的动作加上状态的观测值加以分析, 而状态估计网络则是拿着当时 Actor 施加的动作当做输入.在实际运用中, DDPG 的这种做法的确带来了更有效的学习过程.</p>
+
+<p>一句话概括 DDPG: Google DeepMind 提出的一种使用 Actor Critic 结构, 但是输出的不是行为的概率, 而是具体的行为, 用于连续动作 (continuous action) 的预测. DDPG 结合了之前获得成功的 DQN 结构, 提高了 Actor Critic 的稳定性和收敛性.</p>
+
+<h3 id="toc_17">第 9 讲 Advanced Policy Gradients 策略梯度进阶</h3>
+
+<p><a href="https://zhuanlan.zhihu.com/p/33704986">https://zhuanlan.zhihu.com/p/33704986</a></p>
+
+<h4 id="toc_18">1 策略梯度法的缺陷</h4>
+
+<p>在第四篇中，我们已经对策略梯度法进行了基本的介绍，也指出了它的一些问题，给出了一些比较简单但是很重要的的方差削减手段，还对如何使用重要性抽样法离线使用在线策略给了一个概述。在这一篇中，UC Berkeley的博士研究生Joshua Achiam为我们介绍策略梯度法的改进。</p>
+
+<p>一般的增强学习问题试图求解的是得到一个被\(\theta\)参数化的策略，来最大化期望累积收益\(\max_\theta J(\pi_\theta):=\mathbf{E}_{\tau\sim\pi_\theta}\left[\sum_{t=0}^\infty\gamma^tr_t\right]\)，而策略梯度法使用（随机）梯度上升算法来求解策略参数，因此需要算出梯度\(g=\nabla_\theta J(\pi_\theta)=\mathbf{E}_{\tau\sim\pi_\theta}\left[\sum_{t=0}^\infty\gamma^t\nabla_\theta\log\pi_\theta(\mathbf{a}_t|\mathbf{s}_t)A^{\pi_\theta}(\mathbf{s}_t,\mathbf{a}_t)\right]\)。</p>
+
+<p>我们是采用抽样的方法来估计这个梯度的。直接进行策略梯度法不是一个很好的方法。第一大缺陷是样本效率低，因为我们抽样是要根据\(\pi_\theta\)分布得到的，而如果在线使用策略梯度法的话，我们很难回收旧数据得到无偏估计，但样本数据只使用一次就得丢掉了也是很可惜的。另一大缺陷是，策略参数空间（譬如神经网络空间）中下的距离并不等于策略空间下的距离，这也会带来很严重的性能问题，策略梯度方向的步长很难准确设定。其中策略空间的意思是，比如对于表格形式的策略（状态和行动都是有限离散的），策略空间为\(\Pi=\left\{\pi:~\pi\in\mathbb{R}^{|\mathcal{S}|\times|\mathcal{A}|},\sum_a\pi_{sa}=1,\pi_{sa}\geq0\right\}\)，相当于一个随机矩阵 (stochastic matrix) 空间。</p>
+
+<p>从样本效率的角度看，一般策略梯度法在一步梯度步后就得把刚收集的数据抛弃了，然后重新收集数据。这是因为策略梯度法每次要求的是一个在线的梯度，然后我们需要用简单随机抽样来做无偏估计，就得按照当前策略确定的分布来。一般我们有两种方法来得到这个无偏估计：第一种是我们直接在环境中运行这个策略并收集样本轨迹，然后来得到估计，这种相对更稳定；另一种取巧的方法我们在之前也已经反复使用过，使用其他策略得到的轨迹数据，然后使用重要性抽样的方法，这种的样本效率较高但比较不稳定。</p>
+
+<p>事实上，使用重要性抽样有比较大的方差问题。这也就是说明了，即便两个策略之间只有一丁点的差异，但是它们累积的差异可以很大，致使重要性抽样的权重爆炸或者消失。此外，之前的策略所在的区域可能恰好都是访问到效果不好的那些部分，可能我们之前收集到的样本轨迹的收益比现在策略下都明显偏低，因此实际上会新信息不足。因此，如何有效利用之前策略的数据来进行策略更新，成了一个很重要的问题。</p>
+
+<p>在策略梯度法中，正确选择步长也是非常困难的，因为我们是从参数空间的角度考虑距离。梯度步考虑\(\theta_{k+1}=\theta_k+\alpha_k\hat{g}_k\)。当然，一个比较常见的思路是选取一个自适应的步长机制，如使用ADAM/RMSProp之类的万能药膏，可能有一些效果，但不实际解决问题。如果步长过大，那么可能会发生一些很难处理的糟糕情况，如下图中在最优解的右侧有一个断崖，如果步长过大的话就会发生表现坍塌，而且由于新的解周围梯度为0而几乎无法继续使用梯度方法复原。但是如果我们使用较小的步长的话，收敛速度上将不能忍受。而且有一点是，“正确的”步长取决于我们当前在策略空间的什么位置。</p>
+
+<p>事实上，策略参数空间上的距离和策略的距离可能根本不是一码事。考虑一个二元分类策略<br/>
+\[\pi_\theta(a)=\left\{\begin{array}{ll}\sigma(\theta)&amp;a=1\\1-\sigma(\theta)&amp;a=2\end{array}\right.\].=，其中\sigma类似于一个一元的sigmoid函数。因为我们是做梯度步，所以考虑同等距离变化的\theta可能带来策略变化的差异是巨大的，如下图。因此，如何作出一个梯度更新准则使得策略的变化不超出我们目标，也是我们要考虑的重要问题。</p>
+
+<h4 id="toc_19">2 策略表现的界</h4>
+
+<p>在之前策略梯度法的分析之中，我们总结出了几个关键要素：一个是尽可能有效地利用最近生成出的策略产生的数据，另一个是按照执行策略空间的距离而不是策略参数空间的距离执行梯度步。为了设计优化算法，首先我们需要明确目标是什么。我们给出一个策略相对表现恒等式 (Relative policy performance identity)，\[J(\pi&#39;)-J(\pi)=\mathbf{E}_{\tau\sim\pi&#39;}\left[\sum_{t=0}^\infty\gamma^tA^\pi(s_t,a_t)\right]\]。这个恒等式的证明比较容易，我们对右侧进行展开，根据优势函数的定义得到\[\mathbf{E}_{\tau\sim\pi&#39;}\left[\sum_{t=0}^\infty\gamma^tA^\pi(s_t,a_t)\right]=\mathbf{E}_{\tau\sim\pi&#39;}\left[\sum_{t=0}^\infty\gamma^t(R(s_t,a_t,s_{t+1})+\gamma V^\pi(s_{t+1})-V^\pi(s_t))\right]\]。第一项拿出来就是\[J(\pi&#39;)\]，后两项合并\[\mathbf{E}_{\tau\sim\pi&#39;}\left[\sum_{t=0}^\infty\gamma^{t+1}V^\pi(s_{t+1})-\gamma^t V^\pi(s_t)\right]=-\mathbf{E}_{\tau\sim\pi&#39;}[V^\pi(s_0)]=-J(\pi)\] ，即得出结论。</p>
+
+<p>要改进策略，我们总希望能够使得改进后的策略越强越好，即\(\max_{\pi&#39;}J(\pi&#39;)\)，这样就没有抽样的问题了。如果两个策略非常接近，那么可以想象这样的处理还是很赞的。</p>
+
+<ul>
+<li>为了量化处理这个问题，Achiam et al. (2017) 给出了一个策略相对表现的界 (relative policy performance bounds)，<br/>
+\[|J(\pi&#39;)-(J(\pi)+\mathcal{L}_\pi(\pi&#39;))|\leq C\sqrt{\mathbf{E}_{s\sim d^\pi}[D_{\text{KL}}(\pi&#39;\Vert\pi)[s]]} \]  给出了这个近似误差的上界，是常数乘上KL距离的平方根，因此，近似效果和两个分布的KL散度（在前面提到过）非常有关，其中\(D_{\text{KL}}(\pi&#39;\Vert\pi)[s]=\sum_{a\in\mathcal{A}}\pi&#39;(a|s)\log\frac{\pi&#39;(a|s)}{\pi(a|s)}。\) 事实上，\(\mathcal{L}_\pi(\pi&#39;)=\mathbf{E}_{\tau\sim\pi}\left[\sum_{t=0}^\infty\gamma^t\frac{\pi&#39;(a|s)}{\pi(a|s)}A^\pi(s_t,a_t)\right]\)。</li>
+</ul>
+
+<p>这样，这个新的近似的目标函数就由旧策略所决定了。它的第一大优势是，这个形式有点类似于重要性抽样，但与之前不同的是，连乘的形式变成了累和的形式，因此重要性抽样权重不会随着时间增多而爆炸或消失。此外，如果我们将这个新的关于策略参数\(\theta的\)目标函数在之前策略参数\(\theta_k\)附近线性化，它关于策略参数的一阶梯度正好与\(J(\pi_\theta)-J(\pi_{\theta_k})\)的一致：也就是说， \(\nabla_\theta\mathcal{L}_{\theta_k}(\theta)|_{\theta_k}=\mathbf{E}_{\tau\sim\pi_{\theta_k}}\left[\sum_{t=0}^\infty\gamma^t\frac{\nabla_\theta\pi_\theta(a_t|s_t)|_{\theta_k}}{\pi_{\theta_k}(a_t|s_t)}A^{\pi_{\theta_k}}(s_t,a_t)\right]=\mathbf{E}_{\tau\sim\pi_{\theta_k}}\left[\sum_{t=0}^\infty\gamma^t\nabla_\theta\log\pi_\theta(a_t|s_t)|_{\theta_k}A^{\pi_{\theta_k}}(s_t,a_t)\right]\) 。关于这一套理论，可以参考Kakade and<br/>
+Langford (2002) 发表在ICML上的&quot;Approximately Optimal Approximate Reinforcement Learning&quot;、Schulman et al. (2015) 发表在ICML上的&quot;Trust Region Policy Optimization&quot;、Achiam et al. (2017) 发表在ICML上的&quot;Constrained Policy Optimization&quot;。</p>
+
+<h4 id="toc_20">3 单调改进理论</h4>
+
+<p>将前面策略相对表现的界进行绝对值拆分，得到\(J(\pi&#39;)-J(\pi)\geq \mathcal{L}_\pi(\pi&#39;)-C\sqrt{\mathbf{E}_{s\sim d^\pi}[D_{\text{KL}}(\pi&#39;\Vert\pi)[s]]}\)。左边是我们的真实目标函数，可以证明，如果我们对右侧的函数关于\(\pi\)&#39;进行最大化，那么我们就能保证策略是相对\(\pi\)有改进的，类似于一个Majorize-Maximize (MM) 算法。右侧表达式的一大可行性是，\(\mathcal{L}_\pi(\pi&#39;)\)和KL散度都可以被基于原策略\pi的样本所估计出来。</p>
+
+<p>现在我们把目标转移到求解\(\pi_{k+1}=\arg\max_{\pi&#39;}\left[\mathcal{L}_{\pi_k}(\pi&#39;)-C\sqrt{\mathbf{E}_{s\sim d^{\pi_k}}[D_{\text{KL}}(\pi&#39;\Vert\pi_k)[s]]}\right]\)。一个很严重的问题是，当\gamma相当接近1的时候，常数C非常大，大概有\(\left(\frac{1}{1-\gamma}\right)^2\)这个级别。我们可以用这个方法来进行梯度步，也能保证单调的改进，但是这个步长有可能非常小。在最优化中的一个常见方法是，把这个KL惩罚项放到约束条件里，作为一个信赖域 (trust region)，通过约束上界来控制最坏情况的数值，\(\pi_{k+1}=\arg\max_{\pi&#39;}\mathcal{L}_{\pi_k}(\pi&#39;)~\text{s.t.}~\mathbf{E}_{s\sim d^{\pi_k}}[D_{\text{KL}}(\pi&#39;\Vert\pi_k)[s]]\leq\delta\)，可以证明，这么做最多只会牺牲一点点理论。这个优化问题将是策略梯度法的理论基础，因为目标函数和约束的计算都可以使用前一个策略的数据来估计，效率较高；在约束上，就是控制新策略关于原来策略的KL散度，是控制在策略空间上的某种意义上的距离，和参数空间怎么扭曲没有关系。这样的理论就使得我们前面提到过的几个问题得到较好的缓解。</p>
+
+<h4 id="toc_21">4 自然策略梯度 (NPG) 算法</h4>
+
+<p>现在我们的优化问题变成了\[\pi_{k+1}=\arg\max_{\pi&#39;}\mathcal{L}_{\pi_k}(\pi&#39;)~\text{s.t.}~\bar{D}_{\text{KL}}(\pi&#39;\Vert\pi_k)\leq\delta\]，但是对于譬如神经网络的结构是比较难处理的。我们之前介绍过使用类似ADMM的对偶梯度方法来交替进行更新，另一种代价更低的方法是使用局部近似（因为两个策略实际上是相当接近的，所以局部效果也应当好）。我们对将参数化的目标函数展开到一阶，\(\mathcal{L}_{\theta_k}(\theta)\approx\mathcal{L}_{\theta_k}(\theta_k)+g^\top(\theta-\theta_k)\)，对于优化问题来说前一项是常数，相当于是策略梯度和策略参数的一个内积\(（\nabla_\theta\mathcal{L}_{\pi_{\theta_k}}(\pi_\theta)|_{\theta_k}=\nabla_\theta(J(\pi_\theta)-J(\pi_{\theta_k}))|_{\theta_k}=\nabla_\theta J(\pi_\theta)|_{\theta_k}\)，一阶导等于策略梯度）；对KL散度展开到二阶（因为零阶一阶都是0，自己对自己的KL散度是0，KL散度是非负的所以在邻域内梯度都是0，且Hessian阵在这个局部区域内是半正定的），\(\bar{D}_{\text{KL}}(\pi&#39;\Vert\pi_k)\approx\frac{1}{2}(\theta-\theta_k)^\top H(\theta-\theta_k)。因此我们的近似问题的迭代格式为，\theta_{k+1}=\arg\max_\theta g^\top(\theta-\theta_k)~\text{s.t.}~\frac{1}{2}(\theta-\theta_k)^\top H(\theta-\theta_k)\leq\delta。这是一个凸的QCQP问题，强对偶成立。最后得到的结果是\theta_{k+1}=\theta_k+\sqrt{\frac{2\delta}{g^\top H^{-1}g}}H^{-1}g\)。这个结果非常有趣，因为\(g:=\nabla_\theta\mathcal{L}_{\theta_k}(\theta)|_{\theta_k}\)等于策略梯度，我们的方向是\(H^{-1}g\)，只是左乘一个矩阵重新调整一下，因此被称为自然策略梯度 (natural policy gradient, NPG)；步长的计算涉及到策略梯度和自然策略梯度的一个内积。\(Hessian阵H=\mathbf{E}_{s,a\sim\theta_k}\left[\nabla_\theta\log\pi_\theta(a|s)|_{\theta_k}\nabla_\theta\log\pi_\theta(a|s)|_{\theta_k}^\top\right]\)是半正定的，是一个Fisher信息矩阵。之所以叫自然，因为NPG方向\(H^{-1}g\)是协变 (covariant) 的，不管对策略进行怎么样的参数化，它始终指向同一个方向（可以理解为在不同的结构下做同样的事情）。</p>
+
+<ul>
+<li>因此，我们得到了NPG算法。从一组的初始策略参数\theta_0开始，我们循环迭代k=0,1,\ldots执行以下步骤：
+<ol>
+<li>使用策略\(\pi_k=\pi(\theta_k)\)收集轨迹样本\(\mathcal{D}_k\)。</li>
+<li>使用任意的优势估计算法来估计优势\(\hat{A}_t^{\pi_k}\)。</li>
+<li>使用\hat{A}_t<sup>{\pi_k}估计目标函数梯度\hat{g}_k，根据样本估计Hessian矩阵\hat{H}_k。</sup></li>
+<li>进行一步NPG更新，\(\theta_{k+1}=\theta_k+\sqrt{\frac{2\delta}{\hat g_k^\top \hat H_k^{-1}\hat g_k}}\hat H_k^{-1}\hat g_k\)。</li>
+</ol></li>
+</ul>
+
+<p>\(\delta\)的选择在实践中需要尝试，通常从0.01-0.05在很多任务中都适用。进一步地，对于神经网络，参数个数是非常大的，那么Hessian阵会有O(N<sup>2)的元素，且进行一步矩阵求逆需要O(N<sup>3)，在存储上和计算上都不太可行。一种解决方法是使用共轭梯度法</sup></sup> (CG) 等间接算法来求解，CG法执行j步后，把Hg=x的解投影到Krylov子空间\text{span}{g,Hg,\ldots,H<sup>{j-1}g}中，而且每次只需要使用矩阵向量乘法。</sup></p>
+
+<p>kl = ... # 定义KL散度为theta的函数<br/>
+v = tf.placeholder(dtype = tf.float32, shape = [N])<br/>
+kl_gradient = tf.gradients(kl, theta)<br/>
+kl_gradient_vector_product = tf.sum(kl_gradient * v)<br/>
+kl_hessian_vector_product = tf.gradients(kl_gradient_vector_product, theta)</p>
+
+<p>我们可以在每一次迭代中，固定步数地执行CG，这就被称为截断自然策略梯度法 (Truncated Natural Policy Gradient, TNPG)。值得注意的是，如果使用的数据过少，可能NPG方向就会很不对，效果就不好（即便样本很大，最好采样比率也在0.5-0.1之间）。一种其他的处理方法叫ACKTR算法，由Wu et al. (2017) 发表在NIPS上的文章&quot;Scalable trust-region method for deep reinforcement learning using Kronecker-factored approximation&quot;提出，使用一种完全正交的Kronecker-factor技术。</p>
+
+<h4 id="toc_22">信赖域策略优化 (TRPO) 算法</h4>
+
+<p>在NPG算法中，我们事实上存在一些问题。首先，NPG迭代过程中对于信赖域大小\delta其实不鲁棒，有些步中信赖域大小太大可能会降低表现性能。第二，我们对KL散度进行了二阶近似，因此KL散度的限制可能会被违反。为了解决这些问题，我们需要保证\mathcal{L}_{\theta_k}(\theta_{k+1})\geq0，也需要\(\bar{D}_{\text{KL}}(\theta\Vert\theta_k)\leq\delta\)。信赖域策略优化算法本质上就是TNPG算法加上一个线搜索，搜索的步长指数下降，找到一个最小的j使得\(\theta_{k+1}=\theta_k+\alpha^j\Delta_k\)满足这两个条件：如果超过了某个步数还不满足，说明还需要继续收集数据。因此，算法从一组的初始策略参数\theta_0开始，循环迭代k=0,1,\ldots执行以下步骤：</p>
+
+<ol>
+<li>使用策略\(\pi_k=\pi(\theta_k)\)收集轨迹样本\(\mathcal{D}_k\)。</li>
+<li>使用任意的优势估计算法来估计优势\(\hat{A}_t^{\pi_k}\)。</li>
+<li>使用\(\hat{A}_t^{\pi_k}\)估计目标函数梯度\(\hat{g}_k\)，根据样本估计\(Hessian矩阵\hat{H}_k\)并给出函数\(f(v)=\hat{H}_kv\)。</li>
+<li>使用\(n_{\text{CG}}\)步CG算法，得到\(x_k\approx\hat{H}_k^{-1}\hat{g}_k\)，从而更新向量\(\Delta_k\approx\sqrt{\frac{2\delta}{x_k^\top\hat{H}_kx_k}}x_k\)。</li>
+<li>搜索步长，找到一个最小的j使得\(\theta_{k+1}=\theta_k+\alpha^j\Delta_k满足\mathcal{L}_{\theta_k}(\theta_{k+1})\geq0，\bar{D}_{\text{KL}}(\theta\Vert\theta_k)\leq\delta。从而\theta_{k+1}=\theta_k+\alpha^j\Delta_k\)。</li>
+</ol>
+
+<p>相比TNPG，TRPO由于有了一个检验手段和线搜索，能承受更大的步长。Achiam推荐大家使用Duan et al. (2016) 发表在ICML上的工作&quot;Benchmarking Deep Reinforcement Learning for Continuous Control&quot;，来进行各种算法的公正比较，应该说是对各种算法实现到一个比较完善的水平了。从他们的比较看，相比其他算法，TNPG/TRPO算法确实是基本上在稳定地单调改进策略，而且效果远胜于波动很大的其他算法。</p>
+
+<h4 id="toc_23">近端策略优化 (PPO) 算法</h4>
+
+<p>另一种不计算自然梯度而的控制KL散度的约束条件的方法叫近端策略优化 (Proximal Policy Optimization, PPO) 算法，由Schulman et al. (2017) 的文章&quot;Proximal Policy Optimization Algorithms&quot;中提出，没有太多理论，但在实践中效果不错。</p>
+
+<h4 id="toc_24">1 第一种方法还是回到对KL散度加惩罚，叫做适应性KL惩罚项 (adaptive KL penalty)。</h4>
+
+<p>策略更新按照一个无约束优化问题\(\theta_{k+1}=\arg\max_\theta\mathcal{L}_{\theta_k}(\theta)-\beta_k\bar{D}_{\text{KL}}(\theta\Vert\theta_k)\)，其中罚参数\beta_k算是一个Lagrange乘子。使用一些启发式方法就能效果不错了，如循环迭代k=0,1,\ldots执行以下步骤：</p>
+
+<ul>
+<li>使用策略\(\pi_k=\pi(\theta_k)\)收集部分轨迹样本\(\mathcal{D}_k\)。</li>
+<li>使用任意的优势估计算法来估计优势\(\hat{A}_t^{\pi_k}\)。</li>
+<li>固定乘子，执行若干步minibatch SGD更新策略\(\theta_{k+1}=\arg\max_\theta\mathcal{L}_{\theta_k}(\theta)-\beta_k\bar{D}_{\text{KL}}(\theta\Vert\theta_k)\)，步长为ADAM。</li>
+<li>启发式地调整乘子，如\(\bar{D}_{\text{KL}}(\theta_{k+1}\Vert\theta_k)\geq 1.5\delta则\beta_{k+1}=2\beta_k，如\bar{D}_{\text{KL}}(\theta_{k+1}\Vert\theta_k)\leq \delta/1.5则\beta_{k+1}=\beta_k/2\)。</li>
+<li><br/>
+这个算法对初始的惩罚因子（乘子）不敏感，因为它随着几步迭代后变化很大。在有一些迭代步中可能会违反KL约束，但是在大多数的步骤中并不会。</li>
+</ul>
+
+<h4 id="toc_25">第二种方法是使用一个截断的目标函数 (clipped objective)。</h4>
+
+<p>令\(r_t(\theta)=\frac{\pi_\theta(a_t|s_t)}{\pi_{\theta_k}(a_t|s_t)}\)，从而对优势的估计进行一个截断，变成\(\mathcal{L}^{\text{CLIP}}_{\theta_k}(\theta)=\mathbf{E}_{\tau\sim\pi_k}\left[\sum_{t=0}^T[\min(r_t(\theta)\hat{A}_t^{\pi_k},\text{clip}(r_t(\theta),1-\epsilon,1+\epsilon)\hat{A}_t^{\pi_k})]\right]\)，</p>
+
+<p>其中超参数\epsilon可以选择譬如0.2，然后执行\(\theta_{k+1}=\arg\max_\theta\mathcal{L}_{\theta_k}^{\text{CLIP}}(\theta)\)。虽然没有很多理论，但是实践中效果不错。直觉上来说，使用截断函数和min函数，是为了让估计更加悲观，使得不要让当步策略走得太远。这样执行是非常容易的，只需要在白板策略梯度法上对目标函数稍加修改就可以了。循环迭代k=0,1,\ldots执行以下步骤：</p>
+
+<ul>
+<li>使用策略\(\pi_k=\pi(\theta_k)\)收集部分轨迹样本\(\mathcal{D}_k\)。</li>
+<li>使用任意的优势估计算法来估计优势\(\hat{A}_t^{\pi_k}\)。</li>
+<li>执行若干步minibatch SGD更新策略\(\theta_{k+1}=\arg\max_\theta\mathcal{L}_{\theta_k}^{\text{CLIP}}(\theta)\)，步长为ADAM。</li>
+</ul>
+
+<p>第二种方法实际效果至少比第一种要更好，而且更容易实现，因此是PPO类方法中最值得推荐的。对于这两个方法，值得注意的共同点是，相较于之前的只算出一个策略梯度就扔数据，我们重新设定了目标函数，然后使用数据进行minibatch SGD步，效果可能更好。</p>
+
+<h3 id="toc_26">第 10 讲 Optimal Control and Planning 优化控制和规划</h3>
+
+<h4 id="toc_27">1 基于模型的增强学习方法</h4>
+
+<p>在之前的增强学习简介之中，我们已经了解了我们的增强学习问题的一般结构是：给定一个状态\mathbf{s}，策略函数\(\pi_\theta(\mathbf{a}|\mathbf{s})\)可以由某种含参\theta的结构（如策略梯度法和演员-评论家算法使用显式的策略网络，值函数方法的策略是隐式的）确定，并通过这个策略函数得到一个行动\mathbf{a}，将(\mathbf{s},\mathbf{a})共同输入给环境，环境通过某些转移概率函数p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})，得到新的状态\mathbf{s}&#39;，形成一个循环。根据Markov性，轨迹\(\tau=\{\mathbf{s}_1,\mathbf{a}_1,\ldots,\mathbf{s}_T,\mathbf{a}_T\}\)的发生概率为\(p_\theta(\tau)=p(\mathbf{s}_1)\prod_{t=1}^T\pi_\theta(\mathbf{a}_t|\mathbf{s}_t)p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\)，是由我们掌握的策略函数和环境掌握的转移概率共同决定的。增强学习问题的目标是最大化总收益函数的关于轨迹的期望，一般来说就是得到一组最优的参数使得\(\theta^*=\arg\max_\theta\mathbf{E}_{\tau\sim p_\theta(\tau)}\left[\sum_tr(\mathbf{s}_t,\mathbf{a}_t)\right]\)。我们在前几篇中主要介绍了无模型 (model-free) 的深度增强学习算法，这些算法的主要特征是不假设我们知道初始分布p(\mathbf{s}_1)和转移概率p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)：在一般的问题中，这些概率是非常难知道的；这些无模型方法可以很好地绕开这些不知道的东西，我们甚至不尝试去学习这些转移概率。</p>
+
+<p>在一些问题中，我们可以假设我们知道系统的转移概率 (dynamics) 。最简单地，我们设计一个AI来下棋（如围棋，棋类的规则是众所周知的）；很多系统是容易建模的，如给汽车设计一个导航系统（不是具体的驾驶行为，而是站在比较高角度的路径规划，这个就会相对容易很多，各种地图上已经有很完善的类似功能了）；更具体地，我们可能会在一个模拟器中研究诸如机器人运动和视频游戏的问题，我们可以通过模拟器得到下一个状态到底是什么。退一步说，即便我们不知道转移是什么，但我们在很多问题中也可以学出这些转移。比如在系统识别 (system identification) 问题中，我们已经有一个模型结构（如机器人的结构已知）了，需要通过学习去拟合里面未知参数（如机器人的各部分质量和摩擦系数等）；更广泛地，我们可能会去用观察到的转移数据去拟合一个广义的模型（比如神经网络或者高斯过程）。</p>
+
+<p>那么这些转移概率是毫无用处的么？如果我们能知道这些转移概率，通常问题就会变得简单很多。不同于无模型的方法，基于模型的 (model-based) 增强学习方法通过学习转移概率来决定如何选择行动。在这一篇中，我们将先介绍如果我们完全知道转移概率，如何进行行动决策（最优控制、轨迹优化）；之后，我们再去关注如何去学习未知的转移概率，以及如何通过诸如模仿最优控制的方法学习策略。</p>
+
+<p>让我们先忘记策略这个东西的存在。类似之前人在老虎面前的决策问题，我们需要给出一连串决策，使得被老虎吃掉的概率最小：\(\min_{\mathbf{a}_1,\ldots,\mathbf{a}_T}\log p(被老虎吃掉|\mathbf{a}_1,\ldots,\mathbf{a}_T)，这类问题通常能转化为一个最小化代价的问题：\min_{\mathbf{a}_1,\ldots,\mathbf{a}_T} \sum_{t=1}^T c(\mathbf{s}_t,\mathbf{a}_t) \mbox{ s.t. } \mathbf{s}_t=f(\mathbf{s}_{t-1},\mathbf{a}_{t-1})\)，或者是最大化收益。我们假设环境f是确定的，目标是最大化收益问题，那么问题的结构就变成了环境向智能体给出了初始状态\mathbf{s}_1，然后智能体做出一系列的行动决策\(\mathbf{a}_1,\ldots,\mathbf{a}_T=\arg\max_{\mathbf{a}_1,\ldots,\mathbf{a}_T}\sum_{t=1}^Tr(\mathbf{s}_t,\mathbf{a}_t)~\text{s.t.}~\mathbf{s}_{t+1}=f(\mathbf{s}_t,\mathbf{a}_t)\)，直接交给环境。在确定性环境下，我们上面做的就是一个最优控制了；而对于环境是随机的情况下，轨迹条件概率为\(p_\theta(\mathbf{s}_1,\ldots,\mathbf{s}_T|\mathbf{a}_1,\ldots,\mathbf{a}_T)=p(\mathbf{s}_1)\prod_{t=1}^Tp(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)（注意是我们给定行动决策序列之后，状态序列的概率）\)，我们一下子做好的期望收益最大的开环 (open-loop) 控制系统\(\mathbf{a}_1,\ldots,\mathbf{a}_T=\arg\max_{\mathbf{a}_1,\ldots,\mathbf{a}_T}\mathbf{E}\left[\sum_{t=1}^Tr(\mathbf{s}_t,\mathbf{a}_t) |\mathbf{a}_1,\ldots,\mathbf{a}_T\right]\)就不见得是最优的了：因为我们通常没有必要一下子把所有的决策全部做了，可以通过做第一个决策来观察之后是什么样的随机情况这样的反馈机制，来继续做后面的决策，使得接下来的决策做得更好。这样的机制通常被称为闭环 (closed-loop)。下图说明，区别在于开环系统在一开始就把所有决策单向传递给环境，因此不接受反馈；闭环系统则每次只传递单次行动，并接受下一个状态作为反馈。</p>
+
+<p>在一个闭环控制系统中，我们就需要一个策略\(\pi(\mathbf{a}_t|\mathbf{s}_t)了\)，在策略的加持下，我们的轨迹概率就变成了\(p(\mathbf{s}_1,\mathbf{a}_1,\ldots,\mathbf{s}_T,\mathbf{a}_T)=p(\mathbf{s}_1)\prod_{t=1}^T\pi(\mathbf{a}_t|\mathbf{s}_t)p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\)；我们需要做的是得到一个最优的策略\pi(\mathbf{a}_t|\mathbf{s}_t)，使得期望收益最大：\(\pi=\arg\max_\pi\mathbf{E}_{\tau\sim p(\tau)}\left[\sum_{t=1}^Tr(\mathbf{s}_t,\mathbf{a}_t)\right]\)。关于这个策略簇，我们在之前提到的主要是用一个神经网络来确定，此外在这一篇中我们还将提到使用经典的轨迹优化 (trajectory optimization) 方法来训练一个（时变的）线性策略簇\mathbf{K}_t\mathbf{s}_t+\mathbf{k}_t，基本上就是主要执行\mathbf{k}_t，并使用当前给定状态做出一些线性修正。因此，根据我们限定的策略簇不同，策略的学习可以从非常简单到非常复杂。</p>
+
+<h4 id="toc_28">2 交叉熵方法 (CEM)</h4>
+
+<p>我们的第一类规划算法是随机优化，通常用于时长比较短的问题。让我们先将之前的控制问题进行一些抽象，如\(\mathbf{a}_1,\ldots,\mathbf{a}_T=\arg\max_{\mathbf{a}_1,\ldots,\mathbf{a}_T}J(\mathbf{a}_1,\ldots,\mathbf{a}_T)\)，其中\(J(\mathbf{a}_1,\ldots,\mathbf{a}_T)\)是某种函数，我们并不关心具体是什么，只是想把它最大化；再进一步把决策序列写成\(\mathbf{A}=\arg\max_\mathbf{A}J(\mathbf{A})\)。（因为在这边我们的决策只能决策行动，决策和行动是一码事，在后文中，我们将action行动和decision决策混用）在上一篇讲Q学习的连续控制中，我们也提到了这类算法中最简单的是从某种分布（如均匀分布）中挑选若干个决策序列\(\mathbf{A}_1,\ldots,\mathbf{A}_N，然后选取\arg\max_iJ(\mathbf{A}_i)\)。这样的算法在低维问题中还是有一定效果的，有时候被称为随机打靶法 (random shooting method)。</p>
+
+<p>这种方法的一个改良版本称为交叉熵方法 (Cross-entropy Method, CEM)，对30到50维这样的问题效果不错。在之前的随机打靶法中，我们需要从某种分布中选取决策序列，但是关键问题是，我们使用哪一种分布？在一开始，我们对于如何选择\mathbf{A}_i没有任何先验知识，所以采用某种均匀的先验分布p(\mathbf{A})。经过一把采样之后（如上图的四个采样），我们发现有一些样本效果比较好，于是我们选出几个较好的样本，来拟合一个分布（如采用图中的高斯分布），作为下一次采样的先验分布。通常认为这样的分布抽样效果会比之前的要好，但是对于很病态的问题我们也没什么太好的办法。第二次采样（下图）进一步更新分布。对于连续值输入的交叉熵方法，算法可以描述成以下步骤的循环：</p>
+
+<ul>
+<li>从先验分布p(\mathbf{A})中抽样：\(\mathbf{A}_1,\ldots,\mathbf{A}_N。\)</li>
+<li>计算\(J(\mathbf{A}_1),\ldots,J(\mathbf{A}_N)\)。</li>
+<li>选取一个M&lt;N（也可以选一个比例），挑选出J值最大的子集\(\mathbf{A}_{i_1},\ldots,\mathbf{A}_{i_M}。\)</li>
+<li>用\(\mathbf{A}_{i_1},\ldots,\mathbf{A}_{i_M}\)重新拟合先验分布\(p(\mathbf{A})。\)</li>
+</ul>
+
+<p>我们拟合的分布通常使用多元高斯分布，在维度较高时甚至简化成协方差矩阵为对角阵的情况也不错。有一种叫做CMA-ES的方法，有点像是在CEM方法中加入动量以进行改进，每次不是重新去拟合高斯分布，而是去追随一个高斯分布跟随J值最大子集移动的方向。这类优化方法本质上并不是很好，只是因为做起来比较容易：如果都是使用神经网络的话，这些值求起来比较容易，也比较适合并行。所以这个方法的优点主要是，一，非常简单；二，并行求解起来非常快。但是它也有很严重的问题，第一点就是这种基于抽样的方法对维度有比较强的限制，即便我们的问题不是很病态，维度一大也会很容易错过表现好的抽样区域；第二点我们这样抽样也使得我们只能处理开环规划的问题。</p>
+
+<h4 id="toc_29">3 蒙特卡洛树搜索 (MCTS)</h4>
+
+<p>在离散决策问题中，蒙特卡洛树搜索 (Monte Carlo Tree Search, MCTS) 是用于求解闭环控制的复杂问题的更先进的工具。这一方法在离散问题中非常通用，它也在AlphaGo的早期版本中承担很重要的作用。</p>
+
+<p>在上图中，我们假设初始状态s_1已知，每一步的行动有0和1两种。每次执行完毕一个操作a_1以后，就会进入一个新的状态s_2，然后继续往复。这样我们随着时间展开成一棵非常庞大的树，要想去对这棵树做一个彻底的搜索（哪怕展开的层数一多）显然是非常不切实际的。在之前我们采用了“树搜索”的思想，这个时候我们对其加一些“蒙特卡洛”。我们搜索到一定程度后，树就不再展开：把此时的叶子节点作为叶子来看待，使用一些启发式策略（也可以是随机策略）来评估这些叶子节点的好坏。即便这个策略并不好也没关系，我们只需要继续对每个叶子节点出发继续执行这个策略若干步来看最后结果怎样，来大概给这个叶子节点的效果打个分。注意，此时打分的复杂度不再是指数级别的，而是叶子的个数乘上启发式策略运行长度。这个方法的基本思想是，如果当前已经进入了一个优势很大的局面（或者已经赢了），那么一些比较菜的策略也应该能把优势保持到最后；如果我们已经进入了一个怎样都会输的不利局面，那很多人的选择也是乱玩把游戏结束了。因此不会对我们的启发式策略要求很高。因此，在实际中，大家做MCTS的时候通常选择的就是随机策略，选一个很好的策略通常是次要的。</p>
+
+<p>在实际中，即便我们对深度进行了限制，这棵搜索树的节点扩展还是指数级别的。因此，我们不能指望搜索所有的路径。</p>
+
+<p>MCTS的最核心想法还是搜索最“有前途”的节点（选择最大价值的节点），然后加入一些小小的修正，来补偿那些访问比较少的部分（也倾向于很少被访问到的节点）。譬如说我们从一个节点出发走一步，行动0之后的节点打分为+10，行动1之后的节点打分为+15。当然，这些都不是这个行动真实价值：因为毕竟只是一些很糟糕的随机策略得出的评分而已，而且可能有一定随机性。但是这个值还是有一定意义的，可能认为+15的节点比+10的节点可能会稍微好上一点点：因此如果我们时间有限的话，更愿意在+15的节点上进行探索投资。</p>
+
+<p>MCTS的一般结构为：</p>
+
+<ul>
+<li>假设当前决策的根节点为s_1，使用某种TreePolicy(s_1)得到一个叶子节点s_l。</li>
+<li>使用某种随机策略（或其他）DefaultPolicy(s_l)评估该叶子节点。</li>
+<li>更新在s_1到s_l路径上的所有值，并返回第一步重新循环若干次。</li>
+<li>循环1-3若干次后，从根节点s_1的所有决策中找一个评分最高的。</li>
+</ul>
+
+<p>reePolicy有很多，其中一个很流行的UCT (Upper Confidence Bounds for Trees) TreePolicy(s_t)为：如果s_t没有完全被展开（也就是从状态s_t有行动没有被评估过），那么选择一个没有评估过的新行动a_t；否则就选取一个得分最大的儿子s_{t+1}，其中得分公式为<br/>
+\(\text{Score}(s_{t+1})=\frac{Q(s_{t+1})}{N(s_{t+1})}+2C\sqrt{\frac{2\ln N(s_t)}{N(s_{t+1})}}\)，越大越好，Q(s_t)为该节点为跟的子树的所有已经被展开过的节点的评分之和，N(s_t)为该节点为根的子树中已经被展开过的节点个数，因此\(\frac{Q(s_t)}{N(s_t)}\)就是s_t的平均评分了；后者则是用来评估稀有性。我们使用一个例子来解释该算法。</p>
+
+<p>关于MCTS，Browne et al. (2012)的&quot;A Survey of Monte Carlo Tree Search Methods&quot;给了一个很好的研究综述。Guo et al. (2014) 发表在NIPS上的&quot;Deep Learning for Real-Time Atari Game Play Using Offline Monte-Carlo Tree Search Planning&quot;一文提供了一种使用MCTS来提供Atari游戏样本，并使用监督学习（也就是之前所提到过的模仿学习）的方法来训练Atari游戏策略。他们使用DAgger算法来实现模仿学习，回忆DAgger算法的第一步是从数据集训练策略，第二步是用策略取得新样本，第三步是人工标注新样本，第四步是将新样本并入数据集。他们在第三步中引入MCTS来对每个样本进行“应该选择哪个动作”的标注。之所以要在MCTS之外训练一个游戏策略，一方面是因为在实时游戏中，MCTS通常效率很低，而且耗费很大计算量（注：这也是AlphaGo Lee版使用大量计算力，每一盘据说耗费电费数千美元的原因，而进入AlphaGo Master版认为神经网络已经效果不错了，那么MCTS的地位就下降了，决策更加轻量级：MCTS的引入是为了弥补神经网络不准确的缺陷）；另一方面，训练一个策略可能会有很多其他用途，比如做一些感知 (perception) 和泛化 (generalization) 到其他状态。</p>
+
+<h4 id="toc_30">5 轨迹优化</h4>
+
+<p>轨迹优化 (Trajectory Optimization) 是连续控制中的重要问题。在这里，我们假设状态和行动都是连续的。使用控制的记号，我们的问题可以被写作：\(\min_{\mathbf{u}_1,\ldots,\mathbf{u}_T}\sum_{t=1}^Tc(\mathbf{x}_t,\mathbf{u}_t)~\text{s.t.}~\mathbf{x}_t=f(\mathbf{x}_{t-1},\mathbf{u}_{t-1})\)，</p>
+
+<p>其中x代表状态s，u代表行动a，f代表状态转移（动态，dynamics）。在这里，因为约束是等号，对于这样的确定性问题，我们也可以写作一个无约束问题：\(\min_{\mathbf{u}_1,\ldots,\mathbf{u}_T}c(\mathbf{x}_1,\mathbf{u}_1)+c(f(\mathbf{x}_1,\mathbf{u}_1),\mathbf{u}_2)+\ldots+c(f(\ldots),\mathbf{u}_T)\)，由于非常复杂通常不会这么去写，但是这么写是无约束的所以一定程度上更方便使用一些基于梯度的优化算法。我们需要的是以下几类梯度：\(\frac{\mathrm{d}f}{\mathrm{d}\mathbf{x}_t},\frac{\mathrm{d}f}{\mathrm{d}\mathbf{u}_t},\frac{\mathrm{d}c}{\mathrm{d}\mathbf{x}_t},\frac{\mathrm{d}c}{\mathrm{d}\mathbf{u}_t}\)，使用类似于反向传播的链式法则，我们就能求出目标函数关于行动的梯度。</p>
+
+<p>在实践中，这样的一阶算法通常效果并不是很好，使用二阶微分信息通常是非常有帮助的：原因是，考虑到第一次行动\mathbf{u}_1，在整个式子里面出现了很多次，因此\mathbf{u}_1的值是非常敏感的，相对来说最后一次行动的影响则非常小，这样得到的梯度是非常病态 (ill-condition) 的，容易梯度爆炸或者梯度消失。因此使用一阶算法在实践中往往不太可行，但是好消息是这样的问题结构事实上容易得到一些非常有效的二阶算法。注意这些算法并不去训练一个神经网络，但对解决这一类的或者相关的增强学习问题很有帮助。</p>
+
+<p>关于轨迹优化，有两类思想有所区别的算法（注：我不知道这两个名词应该怎么翻译，就随便写一个意译了）。一类是射击法 (shooting method)，这类方法只关注去优化每一个时刻的行动\mathbf{u}_t，而把状态\mathbf{x}_t看作是行动产生的结果。另一类叫做搭配法 (collocation method)，同时优化每个时刻的状态\mathbf{x}_t和行动\mathbf{u}_t，同时使用约束来将状态和行动维系起来（甚至有时候只优化状态，而把行动看成状态转移的手段）。在为非线性动态系统提供求解方法之前，我们先来研究一类线性模型，以及对应的控制器LQR (Linear Quadratic Regulator, 线性二次型调节器)。</p>
+
+</div></body>
+
+</html>

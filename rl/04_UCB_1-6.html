@@ -1,0 +1,515 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>04_UCB_1-6</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h3 id="toc_0">第一讲 课程大纲</h3>
+
+<ol>
+<li>从监督学习到决策</li>
+<li>基础强化学习：Q 学习和策略梯度</li>
+<li>高级模型学习和预测、distillation、奖励学习</li>
+<li>高级深度强化学习：置信域策略梯度、actor-critic 方法、探索</li>
+<li><p>开放性问题、学术讲座、特邀报告</p></li>
+</ol>
+
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/43200487">笔记：UC Berkeley深度强化学习课程-01 课程介绍</a></li>
+</ul>
+
+<h4 id="toc_1">1.1 当将强化学习应用到实际世界的连续决策中时，还需要关注以下几个问题：</h4>
+
+<ul>
+<li><p>1）超越从奖励中学习<br/>
+基础的强化学习理论是从“奖励”（Rewards）中学习，奖励在现实中可能不好实现，我们需要会有以下的Topics：</p>
+<ol>
+<li>从例子中学习——逆向强化学习（Inverse Reinforcement Learning）</li>
+<li>跨领域学习——迁移学习（Transfer Learning）、元学习（Meta-Learning）</li>
+<li>学习预测并根据预测进行决策</li>
+</ol></li>
+<li><p>3）监督的其他形式</p>
+<ol>
+<li>从演示中学习。——直接复制演示的动作；或者从演示的动作中推断奖励</li>
+<li>从观察世界中学习。——应用预测；非监督学习</li>
+<li>从其他任务中学习。——迁移学习；元学习</li>
+</ol></li>
+</ul>
+
+<h3 id="toc_2">第二讲 Imitation 模仿学习</h3>
+
+<ol>
+<li>时序决策定义</li>
+<li>模仿学习<br/>
+2.1 动作克隆<br/>
+2.2 动作纠正<br/>
+2.3 DAgger: Dataset Aggregation<br/>
+2.4 专家学习</li>
+<li><p>例子</p></li>
+</ol>
+
+<ul>
+<li><p>2.1 动作克隆<br/>
+模仿学习的一种方式为动作克隆（behavior cloning）即完全模仿，别人做什么就模仿做什么。以自动驾驶为案例。先采集人类驾驶汽车的观测 o_{t} 和动作 a_{t} ，然后通过训练，得到监督学习的策略 \pi_{\theta}(a_{t}|o_{t}) 。</p>
+<p>动作克隆会得到好的效果吗？效果往往是很差的。如下图所示，横轴是时间，纵轴是状态，竖轴是代价（Cost）。开始时，状态相同，随时运行，由于偏差的原因，导致状态发生变化；下一时刻，由于状态发生了偏离，就会选择更加错误的动作，导致状态发生更大的偏离，如此反复，偏离越来越大。</p></li>
+<li><p>2.2 动作纠正<br/>
+NVIDIA的方案中，与传统监督学习不同的是，汽车前方安装了左摄像头、中摄像头、右摄像头。在采集的时候，分别将驾驶员的操作、三个摄像头进行记录，训练CNN网络。</p>
+<p>中间的摄像头用于学习地图，学习路线；左摄像头看到的图像时，汽车需要向右进行运动，相当于向右纠偏；右摄像头看到的图像时，汽车需要向左进行运动，相当于向左纠偏。神经网络相当于即学习到了路线，也学习到了如何纠偏。</p>
+<p>从更广泛的意义上理解，这样的做法本质上是一个稳定控制器 (stabilizing controller)，对于漂移的情况给出了对于偏差的补偿校正方案。即便我们单条的轨迹可能偏离很大，但是整体轨迹的分布还是比较稳定的。如下图。</p></li>
+<li><p>2.3 DAgger: Dataset Aggregation<br/>
+对于一个轨迹分布\(p(\tau)\)，其中轨迹\(\tau := (\mathbf{s}_1,\mathbf{a}_1,\mathbf{s}_2,\mathbf{a}_2,\ldots,\mathbf{s}_T,\mathbf{a}_T)\)。我们的训练数据中其实是符合一个特定的轨迹分布的，称为 \(p_{\mathrm{data}}(\mathbf{o}_t)\)。当我们真正运行我们的策略时，因为行动会对将来的观测产生影响，实际上轨迹路线上看到的数据分布将和训练数据的分布不同，称为\(p_{\pi_\theta}(\mathbf{o}_t)\)，通常与\(p_{\mathrm{data}}(\mathbf{o}_t)\)不同。</p>
+<p>如何让\(p_{\pi_\theta}(\mathbf{o}_t)=p_{\mathrm{data}}(\mathbf{o}_t)\)？Stephane Ross等人提出了DAgger算法，算法原文如下：</p>
+<p>DAgger算法的思路：与其让\(p_{\pi_\theta}(\mathbf{o}_t)努力去接近p_{\mathrm{data}}(\mathbf{o}_t)，不如让p_{\mathrm{data}}(\mathbf{o}_t)更加贴近p_{\pi_\theta}(\mathbf{o}_t)\)。譬如从收集数据的时候就“根据”\(\pi_\theta去做，它的目标是从分布p_{\pi_\theta}(\mathbf{o}_t)收集训练数据。为了做到这一点，我们只需要去运行策略\pi_\theta(\mathbf{a}_t|\mathbf{o}_t)\)来收集一些新的数据就可以了。困难的是，我们需要去对\(\mathbf{a}_t\)进行重新标记：我们不仅仅是需要图像，更重要的是要给出对应的行动才是。一个简化版本的DAgger算法是这样的：</p>
+<ol>
+<li>从人工提供的数据集\(\mathcal{D}=\{\mathbf{o}_1,\mathbf{a}_1,\mathbf{o}_2,\mathbf{a}_2,\ldots,\mathbf{o}_N,\mathbf{a}_N\}中训练出策略\pi_\theta(\mathbf{a}_t|\mathbf{o}_t)\)\；</li>
+<li>运行策略\(\\pi_\theta(\mathbf{a}_t|\mathbf{o}_t)来获得一个新的数据集\mathcal{D}_\pi=\{\mathbf{o}_1,\ldots,\mathbf{o}_M\}\)\；</li>
+<li>人工来对数据集\(\\mathcal{D}_\pi进行标注，得到一系列\mathbf{a}_t\)\；</li>
+<li>合并数据集，\(\\mathcal{D}\leftarrow\mathcal{D}\cup\mathcal{D}_{\pi}\)\。返回第一步。</li>
+</ol>
+<p>DAgger难题在于第3步，需要持续人工进行标注\mathcal{D}_\pi，选择合适的动作\mathbf{a}_t。对于一些场景第3步是方便实现的，而对于例如自动驾驶的大部分场景，第3步实现是非常困难的。这个限制了DAgger算法的广泛使用。</p></li>
+<li><p>2.4 专家学习（Fit the expert）<br/>
+专家的行为往往有两个特性：非马尔科夫行为（Non-Markovian behavior），多模态行为（Multimodal behavior）。</p>
+<ol>
+<li><p>过去状态的利用 <br/>
+对于马尔科夫性的策略，策略只依赖第 t 时刻的观察 o_{t} ，而非马尔科夫性的策略，依赖过去所有的观察。如何利用过去的观察，直接将所有的观察应用于网络的训练中是不实际的，因为有众多的权重需要训练，而导致无法实现。典型的可以共享权重的方法来进行历史观察的处理，循环卷积神经网络有明显的效果，LSTM网络在这类型的处理中有很好的优势。</p></li>
+<li><p>多模态行为<br/>
+当我们要驾驶无人机躲避一棵树的时候，我们可能会向左绕或者向右绕，但如果将这些决策进行平均的话就变成向前飞然后撞上去了，就悲剧了。如果我们采用离散的概率分布，如果离散成(向左飞，向前飞，向右飞)，那么肯定向左向右有一个很大的概率而向前飞概率很低。而如果我们使用连续的概率分布，或者我们将它离散化得非常细，那么概率分布将会一团糟。通常我们会选用高斯分布作为策略的分布，而高斯分布式单峰，则出现下图的问题，选择了向前飞。如何解决？</p>
+<ol>
+<li><p>第一种方法是使用高斯分布的混合（Output mixture of Gaussians），即把分布表示为\(\pi(\mathbf{a}|\mathbf{o})=\sum_i w_i \mathcal{N}(\mu_i,\Sigma_i)\)这样的加权线性组合，这样就可以代表一些多峰分布； </p></li>
+<li><p>第二种是使用隐性变量模型 (Latent variable models)，输出还是高斯分布，但对输入进行了处理，输入是正态分布变量。</p></li>
+<li><p>第三种是使用自回归离散化 (Autoregressive Discretization)。如果有连续的动作，一个可行的方法是将其离散化；但是如果维度大了，离散化后的联合分布将维度灾难。一个小技巧是避免联合离散化所有维度。假设我们有三个维度，首先我们离散化维度1，通过诸如Softmax的方法得到维度1的几个离散分类的分布p(d_1)。然后我们从这个分布里面进行抽样，得到维度1的值（其实是某个分类），然后把这个值输送给另一个神经网络（顺便还有图像或者某些隐藏层数据），这个神经网络给出离散化后维度2的分布，再如此得到维度3的分布。这样做的一个好处是，维度2的分布是以维度1的样本为条件的，即p(d_2|d_1)。这样就可以表示出任何的联合分布，但是在一个时段只需要离散化一个维度。当你训练这样的模型时，只需要给每个维度的正确值就可以了，做一个标准的监督学习过程。在测试中，需要依此采样然后馈入后续网络之中。</p></li>
+</ol></li>
+</ol></li>
+</ul>
+
+<h3 id="toc_3">第三讲 MDP 和常用算法概述</h3>
+
+<p><a href="https://zhuanlan.zhihu.com/p/44575779">https://zhuanlan.zhihu.com/p/44575779</a></p>
+
+<h4 id="toc_4">3.1 值函数和Q函数</h4>
+
+<ul>
+<li>Q函数: \(Q^\pi(\mathbf{s}_t,\mathbf{a}_t)=\sum_{t&#39;=t}^T\mathbf{E}_{\pi_\theta}[r(\mathbf{s}_{t&#39;},\mathbf{a}_{t&#39;})|\mathbf{s}_t,\mathbf{a}_t]，从t时刻状态为\mathbf{s}_t起，执行行动\mathbf{a}_t\)，之后根据给定策略决策，未来总收益的条件期望。</li>
+<li><p>值函数 (value function):\(V^\pi(\mathbf{s}_t)=\sum_{t&#39;=t}^T\mathbf{E}_{\pi_\theta}[r(\mathbf{s}_{t&#39;},\mathbf{a}_{t&#39;})|\mathbf{s}_t]\)，从t时刻状态为\(\mathbf{s}_t\)起，根据给定策略决策，未来总收益的条件期望。<br/>
+由于Q函数和值函数的特别关系，值函数也可以表示为\(V^\pi(\mathbf{s}_t)=\mathbf{E}_{\mathbf{a}_t\sim\pi(\mathbf{a}_t|\mathbf{s}_t)}[Q^\pi(\mathbf{s}_t,\mathbf{a}_t)]。\)</p></li>
+<li><p>如何利用值函数和Q函数来求解最优策略：</p>
+<p>如果我们现在有一个策略\pi，且我们知道\(Q^\pi(\mathbf{s},\mathbf{a})，那么我们可以构造一个新的策略——如果  \mathbf{a}=\arg\max_\mathbf{a}Q^\pi(\mathbf{s},\mathbf{a}) ，则\pi&#39;(\mathbf{a}|\mathbf{s})=1\)，这个策略至少和\pi一样好（且可能更好），是因为这一个策略最大化未来的收益。这一点与当前的\pi是什么没有关系。</p>
+<p>我们可以增加“好的行动”发生的概率。注意到，\(V^\pi(\mathbf{s})=\mathbf{E}[Q^\pi(\mathbf{s},\mathbf{a})]代表了在策略\pi(\mathbf{a}|\mathbf{s})下的行动平均水平，所以如果Q^{\pi}(\mathbf{s},\mathbf{a})&gt;V^\pi(\mathbf{s})\)，就能说明\mathbf{a}是高于平均水平的行动。那么我们便可以改动策略，使得这样的行动发生的概率上升。</p></li>
+</ul>
+
+<h4 id="toc_5">3.2 强化学习的类型</h4>
+
+<p>强化学习的目标是最大化期望\(\theta^{*}=arg\max_\theta\mathbf{E}_{\tau\sim p_\theta(\tau)}\left[\sum_tr(\mathbf{s}_t,\mathbf{a}_t)\right]\)。通常有以下方法：</p>
+
+<ul>
+<li>策略梯度法（Policy gradients）：这类算法直接对目标函数关于参数求梯度。由于路径是很庞大的，该算法采样的形式来计算梯度。例如REINFORCE；自然策略梯度Natural policy gradient；信赖域策略优化Trust region policy optimization</li>
+<li>值函数方法（Value-based）：这类方法尝试去近似估计值函数或Q函数，而在值函数和Q函数下寻找最优策略。例如Q-Learning，DQN；时间差分学习Temporal difference learning； 拟合值迭代Fitted value iteration</li>
+<li>演员-评论家 (actor-critic) 方法：可以看作是策略梯度法和值函数方法的一个混合体，一边用神经网络来进行值函数和Q函数的估计，又使用梯度法求最优策略。例如Asynchronous advantage actor-critic（A3C）；Soft actor-critic（SAC）</li>
+<li>基于模型 (model-based) 的方法：与上面的几类都不同。该方法建立模型描述物理现象或者其他的系统动态，用于计算下一个状态。有了模型以后，可以做很多事情。譬如可以做行动的安排（不需要显式的策略），可以去计算梯度改进策略，也可以结合一些模拟或使用动态规划来进行无模型训练。例如Dyna；引导策略搜索Guided policy search</li>
+</ul>
+
+<h4 id="toc_6">第四讲 强化学习的选择</h4>
+
+<p>强化学习中，每个算法都有自身的特色以及适用范围。因此算法的选择，需要权衡（Tradeoffs）多种因素：</p>
+
+<p>样本效率、稳定性和易用性。样本效率主要体现在需要多少数据才能得到一个较好的策略。稳定性和易用性，主要体现在算法的收敛性。<br/>
+假设前提。有些算法假设系统动态和策略是随机的，有些是确定性的；有些连续有些离散；有些有限期 (episodic) 有些无限期。<br/>
+表示的难度。有些问题去表示一个策略是比较容易的，而有些问题去拟合模型更容易。</p>
+
+<ul>
+<li>6.1 样本效率</li>
+</ul>
+
+<p>样本效率中，一个重要的概念就是离线(off-policy) 算法，还是在线(on-policy) 算法。离线的意义是我们可以在不用现在的策略去生成新样本的情况下，就能改进我们的策略。其实就是能够使用其他策略生成过的历史遗留数据来使得现在的策略更优。算法指的是每次策略被更改，即便只改动了一点点，我们也需要去生成新的样本。</p>
+
+<p>off-policy和on-policy算法<br/>
+上图是一个粗略的在线和离线的分割。右侧为效率低的在线算法，而左侧为高效的离线算法。</p>
+
+<p>然而样本效率低并不代表这个方法是“坏”的。可以根据现实的计算能力来选择合适的算法类型。</p>
+
+<ul>
+<li>6.2 稳定性和易用性</li>
+</ul>
+
+<p>我们需要考虑一系列问题：</p>
+
+<p>算法收敛么？<br/>
+如果收敛的话，收敛到什么地方？<br/>
+每次运行都收敛么？<br/>
+在监督学习中训练巨大的模型，由于采用了梯度下降法，往往都是收敛的。</p>
+
+<p>而增强学习通常不使用梯度下降法，譬如Q学习法本质上是一个固定点迭代（fixed point iteration）的过程，在一定条件下收敛；基于模型的增强学习，当我们在优化转移模型时，它并不优化期望收益函数；策略梯度法是梯度方法，比较好用，但它的样本效率比前两者都要低。</p>
+
+<p>每种方法的收敛性：</p>
+
+<p>值函数拟合方法，在最好的情况下，算法减少了预测误差，但是不一定能够最大化期望收益；在更坏的情况下，它什么都不优化，事实上，很多流行的深度强化值函数拟合方法在非线性的问题中并不能保证收敛性。<br/>
+基于模型的增强学习方法，立足于减少模型预测误差，这是一个监督学习问题，一般会收敛；但这不意味着一个更好的模型能得到一个更好的策略。<br/>
+策略梯度法是仅有的关于目标函数使用梯度下降（上升）方法的，但也有一些缺点。</p>
+
+<ul>
+<li>6.3 假设前提</li>
+</ul>
+
+<p>每种算法都有一些假设前提：</p>
+
+<p>完全的可见性（full observability）常常被值函数拟合类方法所假设；可以通过加入递归的方法来缓解；<br/>
+情景学习（episodic learning）被纯策略梯度法和一些基于模型的增强学习算法假设，这些方法不用去训练值函数，对于有些机器人问题中确实是如此的（机器人拼乐高的例子）；<br/>
+连续性和光滑性（continuity or smoothness）也是一些连续的值函数学习法和一些基于模型的增强学习算法所假设的。</p>
+
+<h4 id="toc_7">第五讲 策略梯度</h4>
+
+<ol>
+<li>The policy gradient algorithm</li>
+<li>What does the policy gradient do?</li>
+<li>Basic variance reduction: causality</li>
+<li>Basic variance reduction: baselines</li>
+<li>Policy gradient examples</li>
+</ol>
+
+<p>Understand policy gradient reinforcement learning, Understand practical considerations for policy gradients.</p>
+
+<h5 id="toc_8">3 离线策略梯度法</h5>
+
+<p>从以上推导，可以看出，策略梯度的方法是在线 (on-policy) 算法。上图的公式可以得知，每次求期望时，必须从当前的策略分布上进行采样，每次梯度更新后，都需要重新采样。每次迭代可能只是更新一点点，也需要把之前的所有样本都丢掉重新采样。</p>
+
+<h5 id="toc_9">4 策略梯度的自动微分（Automatic Differentiation）</h5>
+
+<p>自动微分法是一种介于符号微分和数值微分的方法：数值微分强调一开始直接代入数值近似求解；符号微分强调直接对代数进行求解，最后才代入问题数值；自动微分将符号微分法应用于最基本的算子，比如常数，幂函数，指数函数，对数函数，三角函数等，然后代入数值，保留中间结果，最后再应用于整个函数。因此它应用相当灵活，可以做到完全向用户隐藏微分求解过程，由于它只对基本函数或常数运用符号微分法则，所以它可以灵活结合编程语言的循环结构，条件结构等，使用自动微分和不使用自动微分对代码总体改动非常小，并且由于它的计算实际是一种图计算，可以对其做很多优化，这也是为什么该方法在现代深度学习系统中得以广泛应用。</p>
+
+<ul>
+<li>Policy gradient is on-policy</li>
+<li>Can derive off-policy variant: Use importance sampling, Exponential scaling in T, Can ignore state portion (approximation)</li>
+<li>Can implement with automatic differentiation–need to know what to backpropagate</li>
+<li>Practical considerations: batch size, learning rates, optimizers</li>
+</ul>
+
+<h5 id="toc_10">4 Reducing Variance</h5>
+
+<p><a href="https://zhuanlan.zhihu.com/p/35958186">https://zhuanlan.zhihu.com/p/35958186</a></p>
+
+<p>那么策略梯度的高方差(High Variance)问题怎么解决呢？我们这里介绍两种方法 causality 和 baselines.</p>
+
+<ul>
+<li><p>causality 的基本思想就是：在 t&#39; 以后的 policy 不能够影响 t&#39; 之前的rewards.</p></li>
+<li><p>Baselines 的基本思想就是将 rewards r 减去一个平均值，从而降低variance!</p></li>
+</ul>
+
+<h3 id="toc_11">第六讲 Actor-Critic 方法</h3>
+
+<h3 id="toc_12">1. 重新认识\(Q^\pi,V^\pi,A^\pi\)</h3>
+
+<ul>
+<li>Q函数：从 t 时刻状态为 \(s_t\) 起，执行行动\(a_t\)，之后根据给定策略决策，未来总收益的条件期望。</li>
+<li><p>值函数 (value function)：从t时刻状态为\(\mathbf{s}_t\)起，根据给定策略决策，未来总收益的条件期望。我们可以选择值函数作为基准线，给定策略下Q函数的期望，即未来回报的均值.</p></li>
+<li><p>由于Q函数和值函数的特别关系，值函数也可以表示为 \(V^\pi(\mathbf{s}_t)=\mathbf{E}_{\mathbf{a}_t\sim\pi(\mathbf{a}_t|\mathbf{s}_t)}[Q^\pi(\mathbf{s}_t,\mathbf{a}_t)]\)。</p></li>
+<li><p>由此，可以得到优势函数(advantage function)的定义\(A^\pi(\mathbf{s}_t,\mathbf{a}_t)=Q^\pi(\mathbf{s}_t,\mathbf{a}_t)-V^\pi(\mathbf{s}_t)\)，表现了给定策略，在状态\mathbf{s}_t下，采用了行动\mathbf{a}_t能比该策略的平均情况期望未来收益多出多少。</p></li>
+</ul>
+
+<h4 id="toc_13">2.演员-评论家算法</h4>
+
+<p><a href="https://zhuanlan.zhihu.com/p/45368769">https://zhuanlan.zhihu.com/p/45368769</a></p>
+
+<p>演员-评论家算法不同之处在于第二步。对于策略梯度方法，第二步是通过估计值\(\hat{Q}_{i,t}\)来计算目标函数的梯度，重点在估计计算。对于演员-评论家算法，第二步是拟合\(Q^\pi,V^\pi,A^\pi\)的值函数，进而得到更好的梯度估计，重点是拟合模型。</p>
+
+<p>通过以上的推导，可以用轨迹样本的值函数 V 来估计 Q 函数。</p>
+
+<p>优势函数也可以被近似为\[A^\pi(\mathbf{s}_t,\mathbf{a}_t)\approx r(\mathbf{s}_t,\mathbf{a}_t)+V^\pi(\mathbf{s}_{t+1})-V^\pi(\mathbf{s}_t)\]</p>
+
+<p>由此可知，\(Q^\pi,V^\pi,A^\pi\)三者只需要拟合值函数 V ，即可近似求 \(Q^\pi,A^\pi\)</p>
+
+<p>演员-评论家算法的第二步，就是模拟值函数 V 。可以训练一个参数为\phi神经网络的使得输入为状态\(\mathbf{s}\)，输出给定策略下值函数的估计量\(\hat{V}^\pi(\mathbf{s})\)。</p>
+
+<p>演员-评论家算法即是求解模拟神经网络参数  \(\phi\)  和策略神经网络参数 \(\theta\)。</p>
+
+<ol>
+<li><p>策略评估<br/>
+通过值函数可以评价策略</p></li>
+<li><p>蒙特卡洛求解值函数<br/>
+可以通过蒙特卡洛方法来获取值函数的近似值。由于神经网络进行了平均拟合，由同一个状态出发的轨迹，可能会产生很大的偏倚。由于神经网络拟合了很多样本，将其综合起来得到一个低方差的估计。</p></li>
+<li><p>boostrapped 求解值函数<br/>
+这种用下一时刻的值函数来估计当前时刻的值函数的方法，可以看成“自举方法”（boostrapped）。</p></li>
+<li><p>策略评估案例<br/>
+策略评估两个例子。是TD-Gammon游戏，Tesauro (1992)，最早采用神经网络的方法来评估；还有一个是著名的AlphaGo Silver et al. (2016)，采用了卷积神经网络来拟合。</p></li>
+<li><p>batch actor-critic 算法<br/>
+最简单的AC算法，为batch actor-critic algorithm</p></li>
+</ol>
+
+<h4 id="toc_14">3.无限状态的情况</h4>
+
+<ul>
+<li>3.1 折扣因子</li>
+</ul>
+
+<p>以上均讨论的是状态有限的情况，但是对于无限状态的情况中，例如训练人形Bot学习行走，动作是连续的，无限的，上述的方法需要进行一些改变。</p>
+
+<p>通常折扣因子用\(\gamma\)表示，并且\(\gamma\in(0,1)\)，通常折扣因子设置成0.99。则计算回报时，对下一时刻的回报值乘以了折扣因子，更加通俗一点讲就是“活在当下”。</p>
+
+<p>对于MC（Monte Carlo）方法的策略梯度，有两种形式： 第二种方法不但对回报函数进行了折扣，而且还对梯度进行了折扣，这样使得随着时间往后，策略的影响力越来越小。通常会采用第一种表达的方式来进行计算。</p>
+
+<ul>
+<li>\(gradient = grad[r + gamma * V(s_) - V(s)]\)<br/>
+td_error = critic.learn(s, r, s_)<br/></li>
+<li>\(true_gradient = grad[logPi(s,a) * td_error]\)<br/>
+actor.learn(s, a, td_error) </li>
+</ul>
+
+</div></body>
+
+</html>

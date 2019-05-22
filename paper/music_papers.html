@@ -1,0 +1,564 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>00_music_papers</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h1 id="toc_0">A Survey Of Automatic Music Generation</h1>
+
+<h2 id="toc_1">1 Introduce</h2>
+
+<p>In the survey, I try to summarize the methods of automatic music generation. I searched the papers about this topic from the websites of arxiv, dblp and google scholar to list the methods of automatic music generation in those relative papers. Most of those papers implemented based on  deep learning techniques and been published after 2010 years because of the development and popularity of deep learning techniques after 2010 years. And then giving details including dataset, method, technique and some  challenges of some papers. </p>
+
+<h2 id="toc_2">2 approaches in papers</h2>
+
+<table>
+<thead>
+<tr>
+<th>Date</th>
+<th>Title</th>
+<th>Method</th>
+<th>commit</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>2018</td>
+<td>MUSIC TRANSFORMER: GENERATING MUSIC WITH LONG-TERM STRUCTURE</td>
+<td>Music Transformer with  attention mechanism</td>
+<td><a href="https://magenta.tensorflow.org/music-transformer">Problem</a>: Some “failure” modes include too much repetition, sparse sections, and jarring jumps.</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Character-Level Language Modeling with Deeper Self-Attention</td>
+<td>Attention mechanism</td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Generating lyrics with variational autoencoder and multi-modal artist embeddings</td>
+<td>CNN with MEL(maximum expectation likelihood) spectrograms</td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling</td>
+<td>TCN</td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Enabling Factorized Piano Music Modeling and Generation with the MAESTRO Dataset</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>MuseGAN: Multi-track Sequential Generative Adversarial Networks for Symbolic Music Generation and Accompaniment</td>
+<td>GAN &amp; CNN</td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Convolutional Generative Adversarial Networks with Binary Neurons for Polyphonic Music Generation</td>
+<td>GAN &amp; CNN</td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Neural Melody Composition from Lyrics</td>
+<td>RNN with attention</td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Music Generation by Deep Learning - Challenges and Directions</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Bach2Bach: Generating Music Using A Deep Reinforcement Learning Approach</td>
+<td>Deep Reinforcement Learning</td>
+<td></td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Attention Is All You Need</td>
+<td>solely on attention mechanisms</td>
+<td></td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Tuning recurrent neural networks with reinforcement learning</td>
+<td>LSTM+RL+Music Theory</td>
+<td></td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Chord Generation from Symbolic Melody Using BLSTM Networks</td>
+<td>BLSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>2017</td>
+<td>JamBot: Music Theory Aware Chord Based Generation of Polyphonic Music with LSTMs</td>
+<td>LSTM &amp; Music Theory Aware</td>
+<td></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Algorithmic Songwriting with ALYSIA</td>
+<td>Random Forests</td>
+<td></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>DopeLearning: A Computational Approach to Rap Lyrics Generation</td>
+<td>RankSVM algorithm and a deep neural network model with a novel structure</td>
+<td></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Chinese Song Iambics Generation with Neural Attention-Based Model</td>
+<td>attention-based LSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Deep Learning for Music</td>
+<td>LSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>SeqGAN: Sequence Generative Adversarial Nets with Policy Gradient</td>
+<td>GAN &amp; RL</td>
+<td></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Text-based LSTM networks for Automatic Music Composition</td>
+<td>BLSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Maximum entropy models for generation of expressive music</td>
+<td>Maximum entropy models</td>
+<td></td>
+</tr>
+<tr>
+<td>2015</td>
+<td>GhostWriter: Using an LSTM for Automatic Rap Lyric Generation</td>
+<td>LSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>2014</td>
+<td>Modeling Structural Topic Transitions for Automatic Lyrics Generation</td>
+<td>Hidden Markov Model (HMM)</td>
+<td></td>
+</tr>
+<tr>
+<td>2014</td>
+<td>Bach in 2014: Music Composition with Recurrent Neural Network</td>
+<td>LSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>2012</td>
+<td>Modeling Temporal Dependencies in High-Dimensional Sequences: Application to Polyphonic Music Generation and Transcription</td>
+<td>probabilistic model based on distribution estimators conditioned on a RNN</td>
+<td></td>
+</tr>
+<tr>
+<td>2011</td>
+<td>Generating Text with Recurrent Neural Networks</td>
+<td>RNN trained with the new Hessian-Free optimizer (HF)</td>
+<td></td>
+</tr>
+<tr>
+<td>2002</td>
+<td>A First Look at Music Composition using LSTM Recurrent Neural Networks</td>
+<td>LSTM</td>
+<td></td>
+</tr>
+<tr>
+<td>2001</td>
+<td>Creating Melodies with Evolving Recurrent Neural Networks</td>
+<td>RNN</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+<p>Approaches in above papers:</p>
+
+<ol>
+<li>LSTM RNN</li>
+<li>BLSTM</li>
+<li>Random Forests</li>
+<li>RNN with attention</li>
+<li>LSTM &amp; RL</li>
+<li>GAN &amp; CNN</li>
+<li>LSTM &amp; CNN</li>
+<li>TCN</li>
+</ol>
+
+<h2 id="toc_3">3 details in some papers</h2>
+
+<p>I read careful some of papers, while some of those I just looked through it and tried to find some key points in papers.</p>
+
+<h3 id="toc_4">Paper: Tuning recurrent neural networks with reinforcement learning</h3>
+
+<ul>
+<li>problems: ensure multi-step generated sequences have coherent global structure</li>
+<li>approach: LSTM+RL+Music Theory
+<img src="https://i.imgur.com/Eusmqhb.png" alt=""/>
+An LSTM is trained on a large corpus of songs to predict the next note in a musical sequence. This Note-RNN is then reﬁned using RL, where the reward function is a combination of rewards based on rules of music theory, as well as the output of another trained Note-RNN.</li>
+<li>Github: <a href="https://github.com/natashamjaques/magenta">https://github.com/natashamjaques/magenta</a></li>
+<li>Dataset: Nottingham music dataset</li>
+</ul>
+
+<p>Note that this strategy has the potential for adaptive generation by incorporating feedback from the user.[Jean-Pierre &amp; Francois 2018]</p>
+
+<h3 id="toc_5">Paper: GhostWriter: Using an LSTM for Automatic Rap Lyric Generation</h3>
+
+<ul>
+<li>abstract: demonstrates the effectiveness of a Long Short-Term Memory language model in our initial efforts to generate unconstrained rap lyrics</li>
+<li>approach: LSTM</li>
+<li>The Original Hip-Hop (Rap) Lyrics Archive OHHLA.com - Hip-Hop Since 1992 </li>
+</ul>
+
+<h3 id="toc_6">Paper TCN: An Empirical Evaluation of Generic Convolutional and Recurrent Networks for Sequence Modeling</h3>
+
+<ul>
+<li>abstract: outperforms than canonical recurrent networks such as LSTMs on sequence model</li>
+<li>Datasets: JSB Chorales, Nottingham and so on.</li>
+<li>Github: <a href="https://github.com/locuslab/TCN">https://github.com/locuslab/TCN</a></li>
+</ul>
+
+<h3 id="toc_7">Paper: JamBot: Music Theory Aware Chord Based Generation of Polyphonic Music with LSTMs</h3>
+
+<ul>
+<li>Abstract: First, a chord LSTM predicts a chord progression<br/>
+based on a chord embedding. A second LSTM then generates<br/>
+polyphonic music from the predicted chord progression</li>
+<li>Approach: Double LSTM &amp; Music Theory Aware
+<img src="https://i.imgur.com/6m3bM5g.png" alt=""/></li>
+<li>Github: <a href="https://github.com/brunnergino/JamBot">https://github.com/brunnergino/JamBot</a></li>
+</ul>
+
+<h3 id="toc_8">Paper: Generating lyrics with variational autoencoder and multi-modal artist embeddings</h3>
+
+<ul>
+<li>abstract: generating song lyrics lines conditioned on the style of a specified artist.</li>
+<li>approach: CNN + LSTM 
+<img src="https://i.imgur.com/XSsYYnI.png" alt=""/>
+the pre-training of artist embeddings with the representations learned by a CNN classifier </li>
+</ul>
+
+<h2 id="toc_9">4 tools of music generation</h2>
+
+<h3 id="toc_10">4.1 google magenta</h3>
+
+<p><a href="https://magenta.tensorflow.org/">Magenta</a> helps you generate art and music.  </p>
+
+<ul>
+<li>convert MIDI to a NoteSequences</li>
+<li>convert NoteSequences to MIDI</li>
+<li>Using Machine Learning to make music</li>
+</ul>
+
+<h3 id="toc_11">4.2 tensorflow and pytorch</h3>
+
+<p>deep learning frameworks</p>
+
+<h3 id="toc_12">4.3 openai gym</h3>
+
+<p>a toolkit for developing and comparing reinforcement learning algorithms</p>
+
+<h3 id="toc_13">4.4 some useful sets of deep learning music</h3>
+
+<ul>
+<li><p><a href="https://github.com/ybayle/awesome-deep-learning-music">https://github.com/ybayle/awesome-deep-learning-music</a></p>
+<p>a set in papers in deep learning music and music datasets, techniques and code in music generation, statistics and visualisations in deep learning music.</p></li>
+<li><p>Music Generation by Deep Learning – Challenges and Directions</p>
+<p>list some challenge in deep learning music generation and some examples of strategy. </p>
+<p>Challenges: </p>
+<ol>
+<li>Control </li>
+<li>Structure </li>
+<li>Creativity </li>
+<li>Interactivity</li>
+</ol></li>
+<li><p>Deep Learning Techniques for Music Generation – A Survey</p>
+<p>a survey and an analysis of different ways of using deep learning to generate musical content and includes some basic points of music generation.</p></li>
+</ul>
+
+<h2 id="toc_14">Reference:</h2>
+
+<p>[Jean-Pierre &amp; Francois 2018] Music Generation by Deep Learning – Challenges and Directions </p>
+
+</div></body>
+
+</html>

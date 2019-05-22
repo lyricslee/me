@@ -1,0 +1,380 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>03 lyrics_generation</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h3 id="toc_0">1. lyrics dataset</h3>
+
+<ul>
+<li><p><a href="https://www.kaggle.com/mousehead/songlyrics">Lyrics for 55000+ songs in English from LyricsFreak</a></p></li>
+<li><p><a href="https://www.kaggle.com/gyani95/380000-lyrics-from-metrolyrics">380,000+ lyrics from MetroLyrics</a></p></li>
+<li><p><a href="https://www.kaggle.com/paultimothymooney/poetry">Song Lyrics Poetry and Lyrics (TXT files)</a></p></li>
+<li><p><a href="https://www.kaggle.com/rakannimer/billboard-lyrics">Billboard 1964-2015 Songs + Lyrics 50 years of pop music lyrics</a></p></li>
+<li><p><a href="https://labrosa.ee.columbia.edu/millionsong/musixmatch">The musiXmatch Dataset 240,000 songs lyrical</a></p></li>
+<li><p><a href="https://www.smcnus.org/lyrics/">LyricFind Corpus</a></p></li>
+<li><p><a href="https://www.kaggle.com/PromptCloudHQ/taylor-swift-song-lyrics-from-all-the-albums">Taylor Swift Song Lyrics from all the albums</a></p></li>
+</ul>
+
+<h3 id="toc_1">2. papers</h3>
+
+<h4 id="toc_2">2018 Generating lyrics with variational autoencoder and multi-modal artist embeddings</h4>
+
+<ul>
+<li>encoder: CNN with MEL(maximum expectation likelihood) music spectrograms classify</li>
+<li>decoder: LSTM</li>
+<li>First, a CNN is implemented to classify artists based on spectrogram images, thereby learning artist embeddings.Then, a VAE is trained to reconstruct lines from song lyrics, conditioned on the pre-trained artist embeddings. At inference time, in order to generate lyrics in the style of a desired artist, we sample z from the latent space and decode it conditioned on the embedding of that artist.</li>
+<li>In future work, we plan to evaluate other models for pre-training of artist embeddings, for example spectrogram autoencoders. We will also explore other approaches to learn multi-modal representations, e.g. [14] and adversarial approaches.</li>
+</ul>
+
+<h4 id="toc_3">2018 Combining Learned Lyrical Structures and Vocabulary for Improved Lyric Generation</h4>
+
+<ul>
+<li><p>combining two separately trained language models into a framework that is able to produce output respecting the desired song structure</p></li>
+<li><p>Our approach combines two different TLMs. The ﬁrst model (L S ) is trained to <strong>capture the structure of lyrics</strong>, while the second (L V ) is trained to provide a <strong>richer vocabulary(books)</strong> than what is currently available in the lyrics dataset, while still leveraging the context of the existing lyrics.</p></li>
+<li><p>Although we are able to substantially improve the quality of the generated lyrics, there is still much work ahead of us. We would like to train over a <strong>larger set of books</strong>, and ones that are more current to have <strong>more modern vocabulary.</strong> An important aspect of lyric structure that we are investigating is having the <strong>generation adapt to rhyming structure and phonetic cadence</strong>, as this is something songwriters use often to ﬁt a musical melody. As with most language models out there, semantic consistency still proves challenging, and is something we are actively investigating.</p></li>
+<li><p>method: enrich vocabulary</p></li>
+</ul>
+
+<h4 id="toc_4">2018 Topic-to-Essay Generation with Neural Networks</h4>
+
+<ul>
+<li>an attention mechanism with seq2seq</li>
+</ul>
+
+<h4 id="toc_5">2017 Evaluating Creative Language Generation: The Case of Rap Lyric Ghostwriting</h4>
+
+<ul>
+<li>evaluation methodology for the task of ghostwriting rap lyrics</li>
+</ul>
+
+<h4 id="toc_6">2016 Automatic Generation of Lyrics in Bob Dylan’s Style</h4>
+
+<ul>
+<li>Method: N-grams With LSTM(Character-level RNN)</li>
+<li>Character-level RNN seems good at capturing the grammar(syntax) of the sentences, but may be weak in generating text that makes sense in the context.</li>
+<li>we may need to use larger dataset</li>
+</ul>
+
+<h4 id="toc_7">2016 DopeLearning: A Computational Approach to Rap Lyrics Generation</h4>
+
+<ul>
+<li>1.RankSVM algorithm + 2. a deep neural network model with a novel structure</li>
+<li>The algorithm extracts three types of features of the lyrics—rhyme, structural, and semantic features—and combines them by employing the RankSVM algorithm.</li>
+<li>For the semantic features, we developed a deep neural network model, which was the single best predictor for the relevance of a line.</li>
+</ul>
+
+<h4 id="toc_8">2016 Chinese Song Iambics Generation with Neural Attention-Based Model</h4>
+
+<ul>
+<li>attention-based sequence-tosequence model Bi-LSTM</li>
+<li>Several techniques are investigated to improve the model, including global context integration, hybrid style training, character vector initialization and adaptation.</li>
+</ul>
+
+<h4 id="toc_9">2015 GhostWriter: Using an LSTM for Automatic Rap Lyric Generation</h4>
+
+<ul>
+<li>LSTM<br/></li>
+<li>hope to incorporate some method to evaluate the ﬂuency of generated lyrics (Addanki and Wu, 2014). Lastly, to further avoid over-ﬁtting to the training data and reproducing lyrics with a high similarity, we plan to use weight noise (Jim et al., 1996) to regularize our model.</li>
+<li>LSTM VS N-gram</li>
+</ul>
+
+<h4 id="toc_10">2014 Modeling Structural Topic Transitions for Automatic Lyrics Generation</h4>
+
+<ul>
+<li>Hidden Markov Model (HMM)<br/></li>
+</ul>
+
+<h4 id="toc_11">2014 Automatic Tamil lyric generation based on ontological interpretation for semantics</h4>
+
+<ul>
+<li>N-gram </li>
+<li>This system proposes an N-gram based approach to automatic Tamil lyric generation, by <strong>the ontological semantic interpretation</strong> of the input scene.</li>
+</ul>
+
+<h4 id="toc_12">2012 Markov Constraints for Generating Lyrics with Style</h4>
+
+<ul>
+<li>Markov + Constraints</li>
+<li>Controlled Markov processes consist in reformulating Markov processes in the context of constraint satisfaction.</li>
+</ul>
+
+<h4 id="toc_13">2011  Generating Text with Recurrent Neural Networks</h4>
+
+<ul>
+<li>RNN trained with the new Hessian-Free optimizer (HF)</li>
+</ul>
+
+<h4 id="toc_14">2010 An alternate approach towards meaningful lyric generation in Tamil</h4>
+
+<ul>
+<li>(1) An improved mapping scheme for matching melody with words and </li>
+<li>(2) Knowledge-based Text Generation algorithm based on an existing Ontology and Tamil Morphology Generator.</li>
+</ul>
+
+<h4 id="toc_15">2009 Rap Lyric Generator</h4>
+
+<ul>
+<li>Natural Language Processing </li>
+</ul>
+
+</div></body>
+
+</html>

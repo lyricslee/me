@@ -1,0 +1,567 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>01_introduce</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h2 id="toc_0">1 Introduction to Self Driving Cars</h2>
+
+<ol>
+<li>Learn about the elements of driving: perception, prediction, decision making</li>
+<li>Understand how to design the software and hardware stack to do autonomous driving</li>
+<li>Understand common safety practices for autonomous driving</li>
+<li>Learn the basics of vehicle modeling and control, and design controllers to do speed regulation, path following, etc.</li>
+<li>Use these concepts to help navigate a self driving car in CARLA</li>
+</ol>
+
+<h3 id="toc_1">1.1 Taxonomy of Driving Automation</h3>
+
+<ul>
+<li>Operational Design Domain (ODD)</li>
+<li>Lateral control - steering</li>
+<li>Longitudinal control - braking, accelerating</li>
+<li>Object and Event Detection and Response (OEDR): detection,reaction</li>
+<li><p>planning: long term (route) or  short term</p></li>
+<li><p>Levels </p>
+<ol>
+<li>Level 0 - No Automation</li>
+<li>Level 1 - Driving Assistance </li>
+<li>Level 2 - Partial Driving Automation</li>
+<li>Level 3 - Conditional Driving Automation</li>
+<li>Level 4 - High Driving Automation</li>
+<li>Level 5 - Full Driving Automation</li>
+</ol></li>
+</ul>
+
+<h3 id="toc_2">1.2 Requirements for Perception</h3>
+
+<ul>
+<li><p>Goals for perception</p>
+<ol>
+<li>Static objects: Road and lane markings (on-road),  Curbs (off-road), Traffic lights (off-road), Road signs (off-road),Construction signs, obstructions, and more (on-road)</li>
+<li>Dynamic objects (on-road): Vehicles, Pedestrians</li>
+<li>Ego localization: Position, Velocity, acceleration, Orientation, angular motion</li>
+</ol></li>
+<li><p>Challenges to perception<br/>
+• Robust detection and segmentation<br/>
+• Sensor uncertainty<br/>
+• Occlusion, reflection<br/>
+• Illumination, lens flare<br/>
+• Weather, precipitation</p></li>
+</ul>
+
+<h3 id="toc_3">1.3 Driving Decisions and Actions</h3>
+
+<ul>
+<li>Planning<br/>
+Making decisions: Long term, Short term, Immediate<br/>
+Reactive Planning: rule based planning<br/>
+Predictive Planning: Make predictions about other vehicles and how they are moving.</li>
+</ul>
+
+<h2 id="toc_4">2 Autonomous Vehicle Hardware, Software and Environment Representation</h2>
+
+<h3 id="toc_5">2.1 Sensors and Computing Hardware</h3>
+
+<ul>
+<li><p>Sensors types and characteristics</p>
+<ol>
+<li>Sensor: device that measures or detects a property of the environment, or changes to a property</li>
+<li>Categorization: exteroceptive: extero = surroundings, proprioceptive: proprio = internal</li>
+<li>Camera, Lidar, Radar, GNSS..</li>
+</ol></li>
+<li><p>Self-driving computing hardware</p>
+<ol>
+<li>Need a “self-driving brain”</li>
+<li>Image processing, Object detection, Mapping
+<ul>
+<li>GPUs - Graphic Processing Unit </li>
+<li>FPGAs - Field Programmable Gate Array </li>
+<li>ASICs - Application Specific Integrated Chip</li>
+</ul></li>
+<li>Synchronization Hardware: To synchronize different modules and provide a common clock</li>
+</ol></li>
+</ul>
+
+<h3 id="toc_6">2.2 Hardware Configuration Design</h3>
+
+<h4 id="toc_7">Sensor coverage requirements for different scenarios</h4>
+
+<h4 id="toc_8">Overall coverage, blind spots</h4>
+
+<ul>
+<li><p>Highway Analysis</p>
+<ol>
+<li>Emergency Stop</li>
+<li>Maintain Speed</li>
+<li>Lane Change</li>
+</ol></li>
+<li><p>Urban Analysis, 6 kinds of manuevers:</p>
+<ol>
+<li>Emergency Stop </li>
+<li>Maintain Speed </li>
+<li>Lane Change</li>
+<li>Overtaking </li>
+<li>Turning, crossing at intersections </li>
+<li>Passing roundabouts</li>
+</ol></li>
+</ul>
+
+<h3 id="toc_9">2.3 Software Architecture</h3>
+
+<h4 id="toc_10">Describe the basic architecture of a typical self-driving software system</h4>
+
+<h4 id="toc_11">Identify the standard software decomposition</h4>
+
+<ol>
+<li>Environment Perception </li>
+<li>Environment Mapping </li>
+<li>Motion Planning </li>
+<li>Controller </li>
+<li>System Supervisor</li>
+</ol>
+
+<h3 id="toc_12">2.4 Environment Representation</h3>
+
+<h4 id="toc_13">Environmental Map Types</h4>
+
+<ol>
+<li>Localization of vehicle in the environment: Localization point cloud or feature map.</li>
+<li>Collision avoidance with static objects: Occupancy grid map</li>
+<li><p>Path planning: Detailed road map.</p></li>
+</ol>
+
+<ul>
+<li><p>Point cloud or Feature Map (Localization Map)</p>
+<ol>
+<li>Collects continuous sets if LIDAR</li>
+<li>The difference between LIDAR maps is used to calculate the movement of the autonomous vehicle</li>
+</ol></li>
+<li><p>Occupancy Grid</p>
+<ol>
+<li>Discretized fine grain grid map Occupied Free: Can be 2D or 3D</li>
+<li>Occupancy by a static object: Trees and buildings</li>
+<li>Curbs and other non drivable surfaces: Dynamic objects are removed</li>
+</ol></li>
+</ul>
+
+<h2 id="toc_14">3 Safety for Self-Driving Vehicles</h2>
+
+<h3 id="toc_15">3.1 Safety Assurance for Self-Driving Vehicles</h3>
+
+<h4 id="toc_16">Autonomous driving crashes</h4>
+
+<ul>
+<li>Uber Crash: Multiple Things Gone Wrong<br/>
+No real time checks on safety drivers, After the woman was detected on the road (6 sec before), first classified as unknown object, then misclassified as a vehicle, then a bicycle, 1.3 sec before, Volvo system tried to do emergency braking maneuver, but Uber had disabled it for testing</li>
+</ul>
+
+<h4 id="toc_17">Formal definitions - Basic Safety Terms</h4>
+
+<ul>
+<li>Safety - “absence of unreasonable risk of harm”</li>
+<li>Hazard - “potential source of unreasonable risk of harm”</li>
+</ul>
+
+<h4 id="toc_18">Major hazard sources</h4>
+
+<p>Mechanical, Electrical, Hardware, Software, Perception, Planning, Fallback, Fallback</p>
+
+<h4 id="toc_19">Safety requirements</h4>
+
+<ul>
+<li>NHTSA: Safety Framework</li>
+</ul>
+
+<h3 id="toc_20">3.2 Industry Methods for Safety Assurance and Testing</h3>
+
+<ul>
+<li>Industry perspectives on self driving safety</li>
+<li>Approaches to demonstrating autonomy safety</li>
+<li><p>Waymo: Safety Processes</p>
+<ol>
+<li>Identify hazard scenarios &amp; potential mitigations</li>
+<li>Use hazard assessment methods to define safety requirements: Preliminary analysis, Fault tree, Design Failure Modes &amp; Effects Analyses</li>
+<li>Conduct extensive testing to make sure safety requirements are met</li>
+</ol></li>
+<li><p>Waymo: Levels of testing to ensure safety</p>
+<ol>
+<li>Simulation testing: Test rigorously with simulation, thousands of variations, fuzzing of neighbouring vehicles</li>
+<li>Closed-course testing: Follow 28 core + 19 additional scenario competencies on private test tracks, Focus on four most common crashes:Rear-end, intersection, road departure, lane change</li>
+<li>Real-world driving: Start with smaller fleet, expand steadily, Already testing thousands of vehicles, with more on the way.</li>
+</ol></li>
+<li><p>GM: General Motors Safety Perspective</p>
+<ol>
+<li>Address all 12 elements of NHTSA Safety Framework</li>
+<li>Safety through Comprehensive Risk Management and Deep Integration: identify and address risks, validate solutions, prioritize elimination of risks, not just mitigation.</li>
+<li>All hardware, software systems meet: self-set standards for performance, crash protection, reliability, serviceability, security, safety</li>
+</ol></li>
+<li><p>GM: Safety Processes</p>
+<ol>
+<li>Deductive Analysis: ault tree analysis</li>
+<li>Inductive Analysis</li>
+<li>Exploratory Analysis: HAZOP: Hazard &amp; Operability Study</li>
+</ol></li>
+<li><p>GM: Safety Thresholds<br/>
+All GM vehicles are equipped with two key safety thresholds: </p>
+<ol>
+<li>Fail safes - There is redundant functionality (second controllers, backup systems etc) such that even if primary systems fail, the vehicle can stop normally </li>
+<li>SOTIF - All critical functionalities are evaluated for unpredictable scenarios</li>
+</ol></li>
+<li><p>GM: Testing</p>
+<ul>
+<li>Performance testing at different levels</li>
+<li>Requirements validation of components, levels</li>
+<li>Fault injection testing of safety critical functionality</li>
+<li>Intrusive testing such as electromagnetic interference, etc.<br/></li>
+<li>Durability testing and simulation based testing</li>
+</ul></li>
+<li><p>Analytical vs Data Driven: Definitions</p>
+<ol>
+<li><p>Analytical Safety Ensuring the system works in theory and meets safety requirements found by hazard assessment</p></li>
+<li><p>Data driven safety Safety guarantee due to the fact that the system has performed autonomously without fail on the roads for a very large number of kms</p></li>
+</ol></li>
+</ul>
+
+<h3 id="toc_21">3.3 Safety Frameworks for Self-Driving</h3>
+
+<h4 id="toc_22">Generic Safety Frameworks</h4>
+
+<p>Fault Trees, FMEA, HAZOP</p>
+
+<ul>
+<li>Fault Tree Analysis
+<ol>
+<li>Top down deductive failure analysis</li>
+<li>Boolean logic</li>
+</ol></li>
+<li><p>Failure Mode and Effects Analyses FMEA</p>
+<ol>
+<li>Bottom up process to identify all the effects of faults in a system</li>
+<li>Failure Mode:  Modes or ways in which a component of the system may fail</li>
+<li>Effects Analysis: Analyzing effects of the failure modes on the operation of the system</li>
+</ol></li>
+<li><p>FMEA: Idea</p>
+<ol>
+<li>Categorize failure modes by priority: How serious are their effects? How frequently do they happen? How easily can they be detected?</li>
+<li>Eliminate or reduce failures, starting with top priority</li>
+</ol></li>
+<li><p>HAZOP – a variation on FMEA</p>
+<ol>
+<li>Hazard and operability study (HAZOP)</li>
+<li>Qualitative brainstorming process, needs “imagination”</li>
+<li>Uses guide words to trigger brainstorming (not, more, less etc.)</li>
+<li>Applied to complex &#39;processes&#39;: Sufficient design information is available, and not likely to change significantly</li>
+</ol></li>
+</ul>
+
+<h4 id="toc_23">Autonomous/Automotive Safety Frameworks</h4>
+
+<p>Functional Safety, Safety of Intended Functionality</p>
+
+<ul>
+<li>Functional Safety is defined as: safety due to absence of unreasonable risk, only concerned about malfunctioning system.</li>
+<li>FuSa HARA - safety requirements through risk analysis</li>
+<li>SOTIF – behavior risk assessment</li>
+</ul>
+
+<h2 id="toc_24">4 Vehicle Dynamic Modeling</h2>
+
+<h3 id="toc_25">4.1 Kinematic Modeling in 2D</h3>
+
+<h3 id="toc_26">4.2 The Kinematic Bicycle Model</h3>
+
+<h3 id="toc_27">4.3 Dynamic Modeling in 2D</h3>
+
+<h3 id="toc_28">4.4 Longitudinal Vehicle Modeling</h3>
+
+<h3 id="toc_29">4.5 Lateral Dynamics of Bicycle Model</h3>
+
+<h3 id="toc_30">4.6 Vehicle Actuation</h3>
+
+<h3 id="toc_31">4.7 Tire Slip and Modeling</h3>
+
+<h2 id="toc_32">Vehicle Longitudinal Control</h2>
+
+<h3 id="toc_33">5.1 Proportional-Integral-Derivative (PID) Control</h3>
+
+<h3 id="toc_34">5.2 Longitudinal Speed Control with PID</h3>
+
+<h3 id="toc_35">5.3 Feedforward Speed Control</h3>
+
+<h2 id="toc_36">6 Vehicle Lateral Control</h2>
+
+<h3 id="toc_37">6.1 Introduction to Lateral Vehicle Control</h3>
+
+<h3 id="toc_38">6.2 Geometric Lateral Control - Pure Pursuit</h3>
+
+<h3 id="toc_39">6.3 Geometric Lateral Control - Stanley</h3>
+
+<h3 id="toc_40">6.4 Advanced Steering Control - MPC</h3>
+
+<h2 id="toc_41">7 Final Project: Self-Driving Vehicle Control</h2>
+
+<h3 id="toc_42">7.1 Carla Overview - Self-Driving Car Simulation</h3>
+
+<h3 id="toc_43">7.2 Final Project Overview</h3>
+
+</div></body>
+
+</html>

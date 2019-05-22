@@ -1,0 +1,537 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>06_UCB_11</title>
+<style>
+html,body{ font-family: "SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+  font-size: 16px;
+  color:#222
+  -webkit-text-size-adjust:none;  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto; padding: 1rem;
+  line-height: 1.5rem;
+
+}
+h1,h2,h3,h4,h5,h6{font-family: "PT Sans","SF UI Display", ".PingFang SC","PingFang SC", "Neue Haas Grotesk Text Pro", "Arial Nova", "Segoe UI", "Microsoft YaHei", "Microsoft JhengHei", "Helvetica Neue", "Source Han Sans SC", "Noto Sans CJK SC", "Source Han Sans CN", "Noto Sans SC", "Source Han Sans TC", "Noto Sans CJK TC", "Hiragino Sans GB", sans-serif;
+text-rendering:optimizelegibility;margin-bottom:1em;font-weight:bold; line-height: 1.8rem;
+
+}
+h1,h2{position:relative;padding-top:1rem;padding-bottom:0.2rem;margin-bottom:1rem;
+border-bottom: solid 1px #eee;  
+}
+h2{padding-top:0.8rem;padding-bottom:0.2rem;}
+h1{ font-size: 1.6rem;}
+h2{ font-size: 1.4rem;}
+h3{ font-size: 1.2rem;}
+h4{ font-size: 1.1rem;}
+h5{ font-size: 1.0rem;}
+h6{ font-size: 0.9rem;}
+
+table{border-collapse:collapse;border-spacing:0;
+  margin-top: 0.8rem;
+  margin-bottom: 1.4rem;
+}
+tr{  background-color: #fff;
+  border-top: 1px solid #ccc;}
+th,td{padding: 5px 14px;
+  border: 1px solid #ddd;}
+
+blockquote{font-style:italic;font-size:1.1em;line-height:1.5em;padding-left:1em; border-left:4px solid #D5D5D5;    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 1.5rem; }
+
+a{color:#1863a1}
+a:hover{color: #1b438d;}
+pre,code,p code,li code{font-family:Menlo,Monaco,"Andale Mono","lucida console","Courier New",monospace}
+
+pre{-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;border:1px solid #e7dec3;line-height:1.45em;font-size:0.9rem;margin-bottom:2.1em;padding:.8em 1em;color:#586e75;overflow:auto; background-color:#fdf6e3;}
+
+:not(pre) > code{display:inline-block;text-indent:0em;white-space:no-wrap;background:#fff;font-size:0.9rem;line-height:1.5em;color:#555;border:1px solid #ddd;-webkit-border-radius:0.4em;-moz-border-radius:0.4em;-ms-border-radius:0.4em;-o-border-radius:0.4em;border-radius:0.4em;padding:0 .3em;margin:-1px 4px;}
+pre code{font-size:1em !important;background:none;border:none}
+
+img{max-width:100%;padding: 8px 0px;}
+
+
+hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+figcaption{text-align:center;}
+/* PrismJS 1.14.0
+https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+css+clike+javascript */
+/*
+ Solarized Color Schemes originally by Ethan Schoonover
+ http://ethanschoonover.com/solarized
+
+ Ported for PrismJS by Hector Matos
+ Website: https://krakendev.io
+ Twitter Handle: https://twitter.com/allonsykraken)
+*/
+
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #657b83; /* base00 */
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+  background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+  background: #073642; /* base02 */
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+  background-color: #fdf6e3; /* base3 */
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+  color: #93a1a1; /* base1 */
+}
+
+.token.punctuation {
+  color: #586e75; /* base01 */
+}
+
+.namespace {
+  opacity: .7;
+}
+
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number,
+.token.constant,
+.token.symbol,
+.token.deleted {
+  color: #268bd2; /* blue */
+}
+
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.url,
+.token.inserted {
+  color: #2aa198; /* cyan */
+}
+
+.token.entity {
+  color: #657b83; /* base00 */
+  background: #eee8d5; /* base2 */
+}
+
+.token.atrule,
+.token.attr-value,
+.token.keyword {
+  color: #859900; /* green */
+}
+
+.token.function,
+.token.class-name {
+  color: #b58900; /* yellow */
+}
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #cb4b16; /* orange */
+}
+
+.token.important,
+.token.bold {
+  font-weight: bold;
+}
+.token.italic {
+  font-style: italic;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+pre[class*="language-"].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em; /* works for line-numbers below 1000 lines */
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+}
+
+    .line-numbers-rows > span {
+        pointer-events: none;
+        display: block;
+        counter-increment: linenumber;
+    }
+
+        .line-numbers-rows > span:before {
+            content: counter(linenumber);
+            color: #999;
+            display: block;
+            padding-right: 0.8em;
+            text-align: right;
+        }
+
+
+
+</style>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({TeX: { equationNumbers: { autoNumber: "AMS" } }});</script>
+<style> @media print{ code[class*="language-"],pre[class*="language-"]{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h3 id="toc_0">第 11 讲 Model-Based Reinforcement Learning</h3>
+
+<h4 id="toc_1">1 基于模型的增强学习：框架</h4>
+
+<p>在上一篇中，我们在假设模型动态\(f(\mathbf{s}_t,\mathbf{a}_t)\)已知的情况下，发现可以利用模型动态做很多事情。在连续控制中，我们提到了使用iLQR/DDP的轨迹优化方法，这些方法主要要用到模型动态的一阶微分\(\frac{\mathrm{d}f}{\mathrm{d}\mathbf{x}_t},\frac{\mathrm{d}f}{\mathrm{d}\mathbf{u}_t}\)；我们甚至了解到，Tassa et al. (2012) 使用iLQR做模型预测控制，在我们知道模型是什么的情况下可以不通过学习步骤制定出非常鲁棒的控制（使用MPC，哪怕模型是错的，也有很强的鲁棒性）。如果我们不知道模型的话，要利用这个方法，就得去学习这个模型，然后对其进行微分。在离散问题中，我们也提到了蒙特卡洛树搜索 (MCTS) 方法。在MCTS方法中，我们要去模拟状态的转移，就要知道模型系统的动态，这样我们才能返回到祖先节点进行其他行动的搜索。因此，如果我们知道模型动态\(f(\mathbf{s}_t,\mathbf{a}_t)=\mathbf{s}_{t+1}\)，或者随机的分布\(p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\)，那么我们就可以使用上一篇的方法。因此我们考虑去从数据中学习\(f(\mathbf{s}_t,\mathbf{a}_t)\)，然后根据它来进行之后的计划。这样的方法被统称为基于模型的增强学习 (model-based reinforcement learning)。</p>
+
+<p>一个最简单版本的基于模型的增强学习算法（v0.5版），执行以下三步：</p>
+
+<ul>
+<li>运行某种基本策略\(\pi_0(\mathbf{a}_t|\mathbf{s}_t)\)（如随机策略）来收集样本数据\(\mathcal{D}=\{(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)_i\}\)。</li>
+<li>通过最小化\(\sum_i\Vert f(\mathbf{s}_i,\mathbf{a}_i)-\mathbf{s}_i&#39;\Vert^2的方法来学习模型动态f(\mathbf{s},\mathbf{a})\)。</li>
+<li>根据f(\mathbf{s},\mathbf{a})来计划未来行动。</li>
+</ul>
+
+<p>第一步的策略对于驾驶汽车来说可能是随便转方向盘，显然不是什么好策略，但是也可以用这个来得到一些数据。第二步是去构建一个损失函数并最小化用模型预测出来的状态和真实发生的状态来拟合。第三步则是使用上一篇中的方法来进行计划。这样简单的方法在有些时候也可以起作用。本质上，这正是经典机器人学中系统识别 (system identification) 问题中在使用的方法：现在已经有一个参数形式的f(\mathbf{s},\mathbf{a})了，如已经有了机器人的运动方程，但是很多参数譬如质量和长度什么的不知道，而需要通过回归等方法去估计（有点像待定系数法）。此外，这样的方法中，这个“基本策略”还是要有所讲究的：譬如说不能总是执行一个行动，因为这样我们学习到的模型可能无法适应很多从来没见过的行动；即便基本策略执行各种情况，但是执行它可能错过重要的状态空间部分，这样也是不行的（当然这个说法本身就很玄学了）。总体来说，这个v0.5版本对于我们有一个利用物理知识手工推导的模型系统动态方程（我们有丰富的先验知识），只有个别（如10-30个）参数不知道的情况下还是很好用的：这时候随机策略可能足够好。</p>
+
+<p>但在一般情况下，v0.5版本明显是有缺陷的。如现在智能体在这样一个斜坡坡面上训练，我们的目标是到达山顶。我们第一步进行一些随机走动，训练数据如红色曲线；然后我们需要拟合一个模型，来预测行动如何影响智能体的高度（因为我们的目标是尽可能往高处爬）：我们通过红色部分的数据，得到的结论可能是越往右走，高度越大；最后一步，我们使用这个模型去进行规划，得到的结果就是如黄色轨迹一般坠落山崖。这里出现的问题主要就是如我们之前在模仿学习一篇中讲到的分布不匹配 (distribution mismatch) 问题：我们的训练数据分布和实际遇到的情况不匹配。在这里，我们通过分布p_{\pi_0}(\mathbf{x}_t)来收集数据，但是实际用于规划行动时，我们不再执行\pi_0下的分布，遇到的是p_{\pi_f}(\mathbf{x}_t)，与之前遇到的分布是不同的。即便我们训练了一个在分布p_{\pi_0}(\mathbf{x}_t)下很好的模型，但这个模型在p_{\pi_f}(\mathbf{x}_t)所遇到的状态下可以任意差。值得一提的是，这样的分布不匹配问题在使用越具表达力的模型簇时越严重。因为如果像我们跟前面所说的一样只缺少几个待定参数，而模型具体形式已经知道了，那么其实对数据要求还是不高的；而使用如深度神经网络这样具有高表达力的模型，则会把红色部分的数据拟合得相当好（我觉得是一种过拟合），然后尝试去遵循这个模型，就掉下去了。因此，越具有表达能力的模型事实上能越好地拟合p_{\pi_0}(\mathbf{x}_t)分布下的数据，而这并不代表我们更加了解实际面对的分布p_{\pi_f}(\mathbf{x}_t)。</p>
+
+<p>为了解决这个问题，我们跟之前模仿学习相似，收集更多我们更关心的“实际分布”下的数据，以使得p_{\pi_0}(\mathbf{x}_t)=p_{\pi_f}(\mathbf{x}_t)。因此我们的v1.0版基于模型的增强学习算法如下：</p>
+
+<p>一个最简单版本的基于模型的增强学习算法（v0.5版），执行以下三步：</p>
+
+<ul>
+<li>运行某种基本策略\pi_0(\mathbf{a}_t|\mathbf{s}_t)（如随机策略）来收集样本数据\mathcal{D}={(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)_i}。</li>
+<li>通过最小化\sum_i\Vert f(\mathbf{s}_i,\mathbf{a}_i)-\mathbf{s}_i&#39;\Vert<sup>2的方法来学习模型动态f(\mathbf{s},\mathbf{a})。</sup></li>
+<li>根据f(\mathbf{s},\mathbf{a})来计划未来行动。</li>
+<li>执行这些行动，并得到一系列结果数据{(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)_j}加入到\mathcal{D}中。反复执行2-4步。</li>
+</ul>
+
+<p>前三步与v0.5版无异，而v1.0版增加了第四步，收集新数据加入样本中并重新学习模型动态，希望藉此消除分布不匹配的问题。这个算法和DAgger不同，因为DAgger是为了适应策略的改进，而这里只是一些独立的强化学习步骤。</p>
+
+<p>现在我们再对这个算法进行一些改进。考虑到如果我们犯了一个错误如何纠正：如果智能体失足坠落山崖，那么它就牺牲了，没什么进一步好做的了，这个是致命错误；但并不是所有错误都是致命的。如我们驾驶一辆车，每次问我们的模型，如果我们方向盘朝正前方，那么汽车会往什么方向走？然后模型总是回答，会稍微往右一点点：实际答案是我们的车会往正前方开，但是稍微往右一点点这个答案也相当接近正确答案了。但是麻烦在于，如果我们按照这个模型去行动，每一个时刻开车我们都以为需要加一些向左方向进行补偿，每一时刻方向盘都向左一点点的话，加起来很快这个车就会开出道路了。因此，即便我们的模型只有些许错误，我们在每个时刻尝试进行一些补偿，那么最后这些补偿加起来会成为很严重的错误。</p>
+
+<p>基于模型的增强学习v1.5版跟上一篇中的稳健算法类似，进行一些MPC。如果我们发现根据我们的规划走，这个车却向左偏了，当误差到一定程度时，我们就可以重新进行规划，希望这个重新规划的方法可以补偿。框架如下：</p>
+
+<ul>
+<li>运行某种基本策略\pi_0(\mathbf{a}_t|\mathbf{s}_t)（如随机策略）来收集样本数据\mathcal{D}={(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)_i}。</li>
+<li>通过最小化\sum_i\Vert f(\mathbf{s}_i,\mathbf{a}_i)-\mathbf{s}_i&#39;\Vert<sup>2的方法来学习模型动态f(\mathbf{s},\mathbf{a})。</sup></li>
+<li>根据f(\mathbf{s},\mathbf{a})来计划未来行动。（如使用iLQR）</li>
+<li>基于MPC的思想，仅执行计划中的第一步行动，观察到新的状态\mathbf{s}&#39;。</li>
+<li>将这一组新的(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)加入到\mathcal{D}中。反复执行若干次3-5步之后，回到第2步重新学习模型。</li>
+</ul>
+
+<p>也就是说，每次我们仅执行整个计划序列中的第一步，然后走一步后对整个问题进行重新规划。重新规划路径有助于解决模型误差问题。第三步规划做得越频繁，每一次规划需要达到的精度越低，可以容忍更差的模型和更糟糕的规划方法。相对更简单的规划方法也可以起到作用，如可以接受更短的时长（也就是更加短视地规划问题），甚至一些随机采样的方法经常也可以做得很好。Tassa et al. (2012) 的演示中就说明了即便模型很离谱，MPC也在倾向于做一些正确的事情。</p>
+
+<p>在这个v1.5版本中，最难的一点是做规划。越精密的模型和方法，计划未来行动的代价越大，使得在线进行越困难。如玩Atari游戏，然后使用MCTS的方法，那么计算代价就会相当高。而Guo et al. (2014) 使用模仿学习训练策略，则能更好地实现在线进行游戏。</p>
+
+<p>MPC方法可能很好，但是计算代价有可能会很大。我们之前的想法是构造一个策略函数\pi_\theta(\mathbf{s}_t)来得到具体的行动。为了得到策略函数，我们可以写出如上图的计算图来表明策略函数\pi_\theta(\mathbf{s}_t)如何影响收益，从而我们将梯度或者什么东西进行一系列反向传播。这个做法对确定性策略非常容易，也能拓展到随机策略。基于这种想法吗，我们有了基于模型的增强学习算法v2.0版：</p>
+
+<ul>
+<li>运行某种基本策略\(\pi_0(\mathbf{a}_t|\mathbf{s}_t)\)（如随机策略）来收集样本数据\(\mathcal{D}=\{(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)_i\}\)。</li>
+<li>通过最小化\(\sum_i\Vert f(\mathbf{s}_i,\mathbf{a}_i)-\mathbf{s}_i&#39;\Vert^2\)的方法来学习模型动态\(f(\mathbf{s},\mathbf{a})\)。</li>
+<li>通过\(f(\mathbf{s},\mathbf{a})\)，使用反向传播的方法来优化策略函数\(\pi_\theta(\mathbf{a}_t|\mathbf{s}_t)\)。</li>
+<li>执行\(\pi_\theta(\mathbf{a}_t|\mathbf{s}_t)\)，将新的\((\mathbf{s},\mathbf{a},\mathbf{s}&#39;)加入到\mathcal{D}\)中。反复执行2-4步。</li>
+</ul>
+
+<p>在第三步，我们不再是去用某种方法来规划未来路径，而是使用收益的梯度通过反向传播的方法来优化策略函数。第四步还是为了解决分布不匹配的问题，收集新数据用来重新训练模型动态。需要明确的是，f 只是去最小化损失函数，而\pi 则是通过有点类似于BPTT训练RNN的方法进行求解的。当然这个方法本身并不是很好的，主要原因和训练RNN难度很大一致。我们的f 可能是很复杂的函数，我们对其求导，然后反向传播很多阶以后梯度可能会消失或者爆炸，在数值上很病态。有一些技巧可以对这些问题进行改善。对以上四个版本的框架进行比较，得到以下小结：</p>
+
+<ul>
+<li>v0.5版：我们收集随机样本，训练模型动态，并进行规划。比较适合模型动态形式基本已知，只需要去求解少数参数的情形。优点在于方法简单，没有迭代过程；缺点主要在于分布不匹配问题。</li>
+<li>v1.0版：针对分布不匹配问题，采用交替进行收集数据和重新训练模型并规划的方法。优点在于同样简单，而且解决了分布不匹配的问题；缺点在于它还是一个开环控制过程，在误差下容易出现“小车跑出道路”的问题。</li>
+<li>v1.5版：在v1.0版的基础上加入了MPC进行闭环控制，在每一步运行后进行重新规划。优点在于对小的模型误差鲁棒性较好，在模型不准确的时候也可以得到很好的控制；缺点在于它的计算代价比较大，需要一边在线运行规划算法，一边收集数据。</li>
+<li>v2.0版：不再使用MPC进行反复重新规划，而考虑构建一个策略函数，通过反向传播去更新策略函数。优点在于它在运行时计算代价较小，只需要根据策略函数执行行动，比规划算法容易很多；缺点在于它可能在数值上非常不稳定，尤其是在一些随机域之中。</li>
+</ul>
+
+<p>这些算法很多都已经被用于实际问题中。如Deisenroth et al. (2011) 在RSS的一文&quot;Learning to Control a Low-Cost Manipulator using Data-Efficient Reinforcement Learning&quot;中，使用PLICO (Deisenroth and Rasmussen, 2011, ICML, &quot;PILCO: A model-based and data-efficient approach to policy search&quot;) 方法进行真实物理系统中的机器人控制。该文中，模型动态并不是一个神经网络，而是一个相对比较简单的高斯过程 (Gaussian Process, GP)。里面的方法本质上是v2.0版的框架，只是中间的f 被确定为高斯过程。</p>
+
+<ul>
+<li>运行某种基本策略\pi_0(\mathbf{a}_t|\mathbf{s}_t)（如随机策略）来收集样本数据\mathcal{D}={(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)_i}。</li>
+<li>通过最大化\sum_i\log p(\mathbf{s}_i&#39;|\mathbf{s}_i,\mathbf{a}_i)的方法来学习模型动态p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})。</li>
+<li>通过p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})，使用反向传播的方法来优化策略函数\pi_\theta(\mathbf{a}_t|\mathbf{s}_t)。</li>
+<li>执行\pi_\theta(\mathbf{a}_t|\mathbf{s}_t)，将新的(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)加入到\mathcal{D}中。反复执行2-4步。</li>
+</ul>
+
+<p>其中最难的一点是第三步，在这里针对GP模型有比较特定的方法，但是大意对其他模型也是适用的。假设初始分布p(\mathbf{s}_t)已经给定为高斯分布，我们可以用当前学到的模型动态p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})来计算分布p(\mathbf{s}_{t+1})。初始分布如果没有给定，可以使用一些拟合高斯分布的手段。现在我们已经有了一个策略函数，也有了转移分布（模型动态），我们可以将其复合，然后求其边缘分布得到下一个阶段的分布p(\mathbf{s}_{t+1})。如此这般，反复得到之后每个阶段的分布，然后使用这些边缘分布来求期望收益，再求解这个期望收益关于策略函数中参数\theta的梯度。具体来看，如果边缘分布p(\mathbf{s}_t)是一个高斯分布，那么如果我们的系统被认为是一个高斯过程的话，我们可以得到下一阶段状态的边缘分布\bar{p}(\mathbf{s}_{t+1})的积分表达式，但这个分布通常不是一个高斯分布（可以是混合高斯）：因此我们采用矩方法（匹配前两阶矩）将边缘分布\bar{p}(\mathbf{s}_{t+1})投影到高斯分布p(\mathbf{s}_{t+1})上，作为一个近似。（具体表达式请参见论文，RSS和ICML两篇都有）对于每一阶段，我们都使用其边缘分布p(\mathbf{s}_t)来对收益求期望，最后总的期望收益就是\sum_t\mathbf{E}_{\mathbf{s}_t\sim p(\mathbf{s}_t)}[r(\mathbf{s}_t)]，如果r(\mathbf{s}_t)性质较好（一般收益函数的采用都会去限制在一个比较好求解的范围内，以方便求解）且p(\mathbf{s}_t)是一个高斯分布的话，那么实际上这个期望是容易求的，对其使用链式法则求导即可（收益是与均值、方差有关的，而均值、方差是和策略参数有关的，因此使用链式法则求导）。</p>
+
+<p>Deisenroth et al. (2011) 使用这个方法去控制廉价的机械臂（摄像头130美元，机械臂370美元），来堆叠彩色立方体块。状态是立方体块的踪迹，行动是对机械臂的致动。在视频中，机械臂有4个关节的自由度，代价函数使得立方体块尽可能接近目标；学习实验次数很少，只用几十次。方法很简单，但是在实际问题中还是处理得很好。</p>
+
+<p>在基于模型的增强学习中，我们非常关注的一点是我们应该用什么样的模型簇，这其实是一个权衡的问题。</p>
+
+<ul>
+<li>和上一个例子一样，我们可以使用诸如高斯过程这样非常有效的贝叶斯方法。如果我们使用高斯过程，输入是(\mathbf{s},\mathbf{a})，输出是\mathbf{s}&#39;；优势在于，高斯过程和其他非参数贝叶斯模型的数据效率很高，这是因为它们可以在先验知识和现有证据之间做出取舍，以抵抗过拟合或者数据不足 (low-data regime)：这对于基于模型的增强学习是很重要的，因为这种学习的速度取决于前期训练得有多好，而前期训练通常是数据不足的，如果前期严重过拟合了，就很容易卡住，后期也很难进行推进；缺点在于，高斯过程对于非光滑的系统动态效果不佳，而且对于数据大的情况下这个计算就会非常慢，训练是关于数据量立方级增长的，而神经网络则快很多。</li>
+<li>第二个选项是使用诸如神经网络这样非常强大的参数模型，输入是(\mathbf{s},\mathbf{a})，输出是\mathbf{s}&#39;。如果用一个欧氏（\ell_2）损失函数的话相当于训练一个高斯分布p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})的均值，也可以使用更复杂的损失函数，处理多峰问题（见第二篇），或者选择除了高斯分布外更具表达能力的分布。它的优点不言自明，模型表现力非常强，而且非常擅长使用大量的数据，也适合推广到高维系统；它的缺点在于在数据不足的时候表现不佳，因此在基于模型的增强学习中使用神经网络要倍加小心，因为在早期训练中可能会做出非常诡异的举动。</li>
+<li>其他选项譬如高斯混合模型 (Gaussian Mixture Model, GMM)，在机器人学中用得挺多的。它用很多(\mathbf{s},\mathbf{a},\mathbf{s}&#39;)元组来训练GMM，使用(\mathbf{s},\mathbf{a})来确定是在状态行动联合空间中的哪一块，然后再确定p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})。如果相信模型是譬如分段线性的，那么这样的混合线性模型可能比较适用。（这块我自己不是很熟悉，请大家多指教）同样也有很多其他特定领域的模型，如果你对你的系统比较了解，就可以写出一些方程，然后去学习那些未知参数，通常表现很好。</li>
+<li>其他能做的事情譬如说给定视频的一帧，来预测某行动后的之后帧会是什么，这种高维预测问题在之后会涉及。</li>
+</ul>
+
+<p>Nagabandi et al. (2017) 最近的&quot;Neural Network Dynamics for Model-Based Deep Reinforcement Learning with Model-Free Fine-Tuning&quot;一文中使用了v1.5版本的框架（同时使用了一些无模型的方法来进行微调）来进行模拟机器人控制。这里基于的模型是神经网络，而第三步的行动规划只是做较短期的的随机采样（随机采样多条行动轨迹，然后选取最好的一条）。这样做的原因是对神经网络数据不足时的过拟合倾向进行补偿，只进行短期规划使得错误不会积累太多；同时进行MPC重新规划，最佳路径只选取第一步行动。如果模型预测错误，也问题不大，可以重新规划。在不同种类机器人沿着检查点一步一步走的问题中，机器人移动速度不算很快，但是方案相对比较灵活，适应各种检查点的摆放轨迹。在OpenAI Gym的游泳项目中（游泳前进提高速度），如此基于模型的方法可以用很少的数据点（12k个）完成无模型方法需要很多数据点（4m-11m个）才能达到的目标，即便可能游得没有无模型方法那么快，但至少样本效率很高。基于模型的方法样本效率很高，但是渐进偏倚很大，因为最后动作精度都受限于模型。基于模型的方法使用12k个样本点达到收益函数900，而无模型的方法通过4m-12m个样本点达到收益函数4800；这个例子清晰地告诉我们两者区别原因在于基于模型的方法尝试的是提高模型拟合程度（需要的样本数可能只是无模型的百分之一、千分之一），而无模型的方法则是去提高收益函数。</p>
+
+<h4 id="toc_2">2 从全局模型到局部模型</h4>
+
+<p>从最开始到现在，我们讨论的模型几乎都是全局模型 (global models)，也就是说，我们学习一个f(\mathbf{s}_t,\mathbf{a}_t)，对于整个系统中都起作用。出于这个目的，我们尝试使用单一的函数去拟合，譬如一个巨大的神经网络。它对于我们所能访问到的状态行动处表现不俗，也可以用它来进行很好的决策。在我们的v1.0版框架中，问题在于如果f(\mathbf{s}_t,\mathbf{a}_t)一开始估计不好，那么规划步就会去探索因为模型错误而被乐观估计的区域（模型指向了错误的\mathbf{s}&#39;，恰好比较优秀，规划器以为会访问到，而实际不会）。譬如说对于一个只会行走的生物，模型却认为它下一步能飞起来，那么规划器会尝试去规划它下一步怎么飞，而事实上它并不能飞。（Levine教授的题外话是如果在编写一个物理模拟器的话，调试过程中不妨尝试使用一些增强学习算法，能帮助我们了解怎么样的行动会导致这个模拟器出bug。如早期版本的MuJoCo有很多bug，可能会使只能在地上爬的机器人站起来甚至飞起来，只是优化算法能弄清如何在这里面作弊。）</p>
+
+<p>要把一个模型学习得很好其实是压力山大的，我们需要弄出一个很好的模型，在状态空间的绝大多数区域都收敛到一个很好的解。有些时候我们可以使用较短的规划期、MPC等手段，但总体来说还是问题很大的。在某些任务中，模型比行动策略要复杂很多。譬如把一个有柄的杯子拿起来，我们的策略很简单，拿住杯柄握起来放到对应位置就行，跟各种物理关系不大；而这样一个问题的物理模型则非常复杂，如手可能是软的会变形，接触点可能很多，等等。因此将这些东西全盘考虑进来进行准确预测会很难。</p>
+
+<p>相较于训练很好的全局模型，有一些我们可以做的事情，譬如训练局部模型 (local models)。在我们之前所述的方法中，做轨迹优化通常需要的仅仅是模型在某点的导数，而这正是局部信息。因此，我们某种程度上也可以认为不见得一定要训练好一个全局模型才能做好优化问题，而训练一些能对梯度等局部信息有表征的模型也可以：事实上这个就简单很多了。</p>
+
+<p>现在我们只来关心\frac{\mathrm{d}f}{\mathrm{d}\mathbf{x}_t},\frac{\mathrm{d}f}{\mathrm{d}\mathbf{u}_t}。知道了这些信息之后，我们就可以用iLQR等方法来进行轨迹优化了。因此，我们的想法不是去拟合模型动态，而仅仅是去拟合关于当前轨迹或者策略的\frac{\mathrm{d}f}{\mathrm{d}\mathbf{x}_t},\frac{\mathrm{d}f}{\mathrm{d}\mathbf{u}_t}，譬如使用线性回归的方法。注意到LQR很好的特性是它是线性的，而且这个策略是可以在真实环境中运行的。</p>
+
+<p>我们尝试对一个增强学习过程进行拆解（注：这边图里\pi也变成p了，但我还是尝试把它区分开）。首先我们通过运行策略函数\pi(\mathbf{u}_t|\mathbf{x}_t)，来收集轨迹\mathcal{D}={\tau_i}。然后我们拟合模型动态p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)：为了简单起见，我们假设模型动态是一个高斯分布p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)=\mathcal{N}(f(\mathbf{x}_t,\mathbf{u}_t),\Sigma)，均值可能是比较复杂的非线性函数，然后有一个方差，基本上比较确定但是稍微有一些噪音。这个假设对连续系统还是比较合理的。我们假设在每个时刻，都有一个线性化表达式f(\mathbf{x}_t,\mathbf{u}_t)\approx \mathbf{A}_t\mathbf{x}_t+\mathbf{B}_t\mathbf{u}_t，对于不同时刻矩阵是不同的。这样近似其实已经很有表达力了，因为在不同的时间，前面的系数矩阵可能完全不同，但在给定时间下只是线性而已。这样近似更是因为我们通常只会用到f的一阶导，\frac{\mathrm{d}f}{\mathrm{d}\mathbf{x}_t}=\mathbf{A}_t,\frac{\mathrm{d}f}{\mathrm{d}\mathbf{u}_t}=\mathbf{B}_t：因此如果我们能拟合(\mathbf{A}_t,\mathbf{B}_t)，那么我们就能得到这两个微分结果。从而，我们可以用这个来使用iLQR方法改进我们的策略函数\pi(\mathbf{u}_t|\mathbf{x}_t)，然后重新下一个循环。</p>
+
+<p>在这个大框架下，其实有很多值得探讨的问题。第一个问题是，使用怎样的策略（这里也是控制器controller）去收集数据。我们现在不尝试去拟合一个全局模型了，所以选用怎么样的策略的重要性就更强了。如果我们只是随便选策略的话，那么我们很难去拟合当前策略下的局部信息。回顾iLQR，执行完毕以后可以得到\hat{\mathbf{x}}_t,\hat{\mathbf{u}}_t,\mathbf{K}_t,\mathbf{k}_t，然后最优控制策略是\mathbf{u}_t=\mathbf{K}_t(\mathbf{x}_t-\hat{\mathbf{x}}_t)+\mathbf{k}_t+\hat{\mathbf{u}}_t。一个非常简单的选择（v0.5版）是直接把iLQR的选取\hat{\mathbf{u}}_t作为锚点，\pi(\mathbf{u}_t|\mathbf{x}_t)=\delta(\mathbf{u}_t=\hat{\mathbf{u}}_t)，当在行动中有偏差或者漂移的时候就会出问题。进一步我们选择iLQR给出的最优控制（v1.0版），\pi(\mathbf{u}_t|\mathbf{x}_t)=\delta(\mathbf{u}_t=\mathbf{K}_t(\mathbf{x}_t-\hat{\mathbf{x}}_t)+\mathbf{k}_t+\hat{\mathbf{u}}_t)，看起来这样的确定性策略有点儿“太好了”，如果我们想拟合局部信息，可能总是采取某种意义上的最优策略并不好，可能会总是往一个地方不停钻，使用基本一样的数据去拟合会使局部信息非常病态。一个更好的版本（v2.0版）执行高斯分布：\pi(\mathbf{u}_t|\mathbf{x}_t)=\mathcal{N}(\mathbf{K}_t(\mathbf{x}_t-\hat{\mathbf{x}}_t)+\mathbf{k}_t+\hat{\mathbf{u}}_t,\Sigma_t)，其中均值是iLQR做出的最优控制，并加入了一些噪音，使得数据不总是基本一样，数据多样性稍微加强。在方差的选择上可能需要注意，因为我们想得到不同的轨迹，但也不是彻底不同：这样我们尝试的就是去拟合全局模型而不是局部模型了，但这样的线性化模型对全局模型的效果是很差的。</p>
+
+<p>一个比较建议的方差是设置\Sigma_t=\mathbf{Q}_{\mathbf{u}_t,\mathbf{u}_t}<sup>{-1}。这个原因是代表了我们从状态\mathbf{x}_t执行\mathbf{u}_t后直到最后的最小代价的Q(\mathbf{x}_t,\mathbf{u}_t)=\text{const}+\frac{1}{2}\left[\begin{array}{l}\mathbf{x}_t\\mathbf{u}_t\end{array}\right]<sup>\top\mathbf{Q}_t\left[\begin{array}{l}\mathbf{x}_t\\mathbf{u}_t\end{array}\right]+\left[\begin{array}{l}\mathbf{x}_t\\mathbf{u}_t\end{array}\right]<sup>\top\mathbf{q}_t，而如果\mathbf{Q}_{\mathbf{u}_t,\mathbf{u}_t}很大的话，变动\mathbf{u}_t对Q值影响就很大：如果变动\mathbf{u}_t对Q值很敏感，那么我们就不要变动\mathbf{u}_t很多；反之，它对噪音的承受力就强，我们可以选择噪音的余地就大。我们加入噪音并不想很去干扰Q值，因此我们更愿意去加入一些对Q影响较小的噪音。相较于我们之前提到的LQR是去优化\min\sum_{t=1}<sup>Tc(\mathbf{x}_t,\mathbf{u}_t)，有一个有趣的结论是，使用v2.0方法我们事实上是在最小化一个有定义的目标函数：\min\sum_{t=1}<sup>T\mathbf{E}_{(\mathbf{x}_t,\mathbf{u}_t)\sim</sup></sup></sup></sup></sup> \pi(\mathbf{x}_t,\mathbf{u}_t)}[c(\mathbf{x}_t,\mathbf{u}_t)-\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))]，也就是期望代价减去熵。其中熵函数定义为\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))=-\mathbf{E}_{\pi(\mathbf{u}_t|\mathbf{x}_t)}\log \pi(\mathbf{u}_t|\mathbf{x}_t)。这样的目标其实是试图去找到噪音最大并且代价最小的的策略（双目标规划），也就是使策略尽可能随机，同时保持一个低代价（高收益）：我们去学习一个局部模型，想做的恰好是这样的事情。这样的解又被称为最大熵 (maximum entropy) 解。</p>
+
+<p>第二个问题是如何去拟合这个局部模型。假设我们已经收集了一些轨迹转移数据{(\mathbf{x}_t,\mathbf{u}_t,\mathbf{x}_{t+1})_i}。我们使用高斯分布p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)=\mathcal{N}(f(\mathbf{x}_t,\mathbf{u}_t),\Sigma)的模型动态，因为我们在上一篇中已经提到过对于这样的问题直接做LQR还是能得到最优解，我们可以忽略噪音的影响。最简单的拟合方法是我们直接使用线性回归，譬如假定p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)=\mathcal{N}(\mathbf{A}_t\mathbf{x}_t+\mathbf{B}_t\mathbf{u}_t+\mathbf{c},\mathbf{N}_t)（可以有个截距项）。一种更好的做法是考虑到在相近的时间点，模型动态可能是比较接近的，因此贝叶斯线性回归（一个很细致的讲解在这里）可能是一个比较好的选择，可以使用某些全局模型作为先验分布：我们可以把所有数据用来拟合一个全局模型，并把它作为先验，这样可以提高数据的使用率。这样的想法比较像是我们有一个全局模型，效果还可以但是不够完善，由此我们把它作为先验来提高局部模型的拟合。</p>
+
+<p>当然，学习全局难度的模型需求量远比局部模型高，因为局部模型的矩阵形式比诸如神经网络全局模型简单很多，但是局部模型的难点在于每次策略更新之后，局部模型就得推倒重来，以收集更好的样本（也可以说是在线 (on-policy) 的基于模型的增强学习）：两者是有权衡的，在一个盈亏平衡点后可能学习全局模型的代价相对更小了。具体代价和具体问题紧密相关，有些问题很容易去拟合全局模型，但是有些问题则很难。</p>
+
+<p>第三个问题是，我们更新策略函数总是希望让它能与现在有所不同，那么如果策略函数变化太大会怎么样？在上图中，真实模型是绿色线的非线性函数，我们使用一个蓝色线的线性模型去拟合（因此在中部一点相切）。我们进行一步更新的时候，可能到达一个比较远的位置（红色竖虚线投影），此时蓝色拟合模型和绿色真实模型有很大的差别。在蓝色线性模型下，我们认为轨迹只会是蓝色的虚线；而我们实际运行时，由于蓝色拟合模型完全是错误的，实际上我们拐到了红色虚线这样很远的地方，就完全在计划之外了。我们之所以叫蓝色模型为局部模型，是因为它只能告诉我们在局部范围内如何改进策略，而如果我们策略变动过大，则这样不见得是一个改进（甚至可能是完全错误的），因为我们的局部模型太只关注局部了。我们要做的事情，是去限制每次迭代中，策略函数改变了多少，使得每一步走得不远。</p>
+
+<p>那么我们怎么做才能使得新的策略与原策略接近呢？我们的策略函数是\pi(\mathbf{u}_t|\mathbf{x}_t)=\mathcal{N}(\mathbf{K}_t(\mathbf{x}_t-\hat{\mathbf{x}}_t)+\mathbf{k}_t+\hat{\mathbf{u}}_t,\Sigma_t)，那么根据Markov性，一个轨迹的发生是p(\tau)=p(\mathbf{x}_1)\prod_{t=1}<sup>T\pi(\mathbf{u}_t|\mathbf{x}_t)p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)。如果我们的新的轨迹分布p(\tau)和老的轨迹分布\bar{p}(\tau)比较相近，那么模型动态也会比较接近。KL散度是一个描述两个分布之间差异度的常见度量标准，D_{\mathrm{KL}}(p(\tau)\Vert\bar{p}(\tau))=\mathbf{E}_{p(\tau)}[\log</sup> p(\tau)-\log\bar{p}(\tau)]。从而，我们在更新策略的时候，如果加入一个限制条件D_{\mathrm{KL}}(p(\tau)\Vert\bar{p}(\tau))\leq\epsilon，就能保证两个策略下轨迹分布的差异能被控制在一个局部之内。顺便一提，使用KL散度来控制轨迹分布差异的想法在除此之外的很多其他无模型的增强学习算法（如TRPO）中也有应用。</p>
+
+<p>现在我们来对KL散度的具体形式进行一些推导。因为两个轨迹分布的初始分布和模型动态是一样的，只有策略函数有所区别，因此现在有\log p(\tau)=\log p(\mathbf{x}_1)+\sum_{t=1}<sup>T[\log\pi(\mathbf{u}_t|\mathbf{x}_t)+\log</sup> p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)]和\log\bar{p}(\tau)=\log p(\mathbf{x}_1)+\sum_{t=1}<sup>T[\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)+\log</sup> p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)]。有点类似于策略梯度法，它们相减以后很多项也可以消去，得到\log p(\tau)-\log\bar{p}(\tau)=\sum_{t=1}<sup>T[\log\pi(\mathbf{u}_t|\mathbf{x}_t)-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)]，从而</sup> D_{\mathrm{KL}}(p(\tau)\Vert\bar{p}(\tau))=\mathbf{E}_{p(\tau)}\left[\sum_{t=1}<sup>T[\log\pi(\mathbf{u}_t|\mathbf{x}_t)-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)]\right]=\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[\log\pi(\mathbf{u}_t|\mathbf{x}_t)-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)]。将前一项进行重写，D_{\mathrm{KL}}(p(\tau)\Vert\bar{p}(\tau))=\sum_{t=1}<sup>T\left[\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)]+\mathbf{E}_{p(\mathbf{x}_t)}\mathbf{E}_{\pi(\mathbf{u}_t|\mathbf{x}_t)}[\log\pi(\mathbf{u}_t|\mathbf{x}_t)]\right]，然而\mathbf{E}_{\pi(\mathbf{u}_t|\mathbf{x}_t)}[\log\pi(\mathbf{u}_t|\mathbf{x}_t)]=\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))。因此，D_{\mathrm{KL}}(p(\tau)\Vert\bar{p}(\tau))=\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)-\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))]。回顾我们刚才使用加入高斯噪音的v2.0版本策略函数\pi(\mathbf{u}_t|\mathbf{x}_t)=\mathcal{N}(\mathbf{K}_t(\mathbf{x}_t-\hat{\mathbf{x}}_t)+\mathbf{k}_t+\hat{\mathbf{u}}_t,\Sigma_t)是去优化\min\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[c(\mathbf{x}_t,\mathbf{u}_t)-\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))]的，因此如果我们能把D_{\mathrm{KL}}搞到目标函数里面，那么我们就能用iLQR作为均值加上随机高斯噪音来优化这个问题。</sup></sup></sup></sup></sup></p>
+
+<p>一般我们会采用拉格朗日乘子法来把约束放到目标函数里面。一个对偶梯度下降法（Dual Gradient Descent，DGD，其实在这里是上升）是这么做的：考虑问题\min_{\mathbf{x}}f(\mathbf{x})~\text{s.t.}~C(\mathbf{x})=0，则拉格朗日函数\mathcal{L}(\mathbf{x},\lambda)=f(\mathbf{x})+\lambda C(\mathbf{x})，因此对偶问题为\max_\lambda g(\lambda)，其中g(\lambda)=\min_{\mathbf{x}}\mathcal{L}(\mathbf{x},\lambda)（假设强对偶，感觉意思是不强对偶的话也强行这么做先），从而通过优化对偶变量的方式，最优对偶变量下的优化问题正是原始问题的解。假设在给定拉格朗日乘子\lambda下，g(\lambda)=\mathcal{L}(\mathbf{x}<sup><em>(\lambda),\lambda)，对其求导得\frac{\mathrm{d}g}{\mathrm{d}\lambda}=\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}\mathbf{x}^</em>}\frac{\mathrm{d}\mathbf{x}<sup><em>}{\mathrm{d}\lambda}+\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}\lambda}=\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}\lambda}(\mathbf{x}^</em>,\lambda)，这是因为一阶最优性条件保证了\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}\mathbf{x}<sup>*}=0。因此对偶梯度法做循环迭代以下三步：</sup></sup></sup></p>
+
+<p>在给定拉格朗日乘子\lambda下，求解最优的\mathbf{x}<sup>*=\arg\min_{\mathbf{x}}\mathcal{L}(\mathbf{x},\lambda)。</sup><br/>
+求解\frac{\mathrm{d}g}{\mathrm{d}\lambda}=\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}\lambda}(\mathbf{x}<sup>*,\lambda)。</sup><br/>
+拉格朗日乘子走一个梯度步\lambda\leftarrow\lambda+\alpha\frac{\mathrm{d}g}{\mathrm{d}\lambda}。<br/>
+这里面最难实现的应该是第一步。我们要用DGD方法来求解之前所说的约束下问题\min_p\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[c(\mathbf{x}_t,\mathbf{u}_t)]~\text{s.t.}~D_{\text{KL}}(p(\tau)\Vert\bar{p}(\tau))\leq\epsilon。其中，D_{\mathrm{KL}}(p(\tau)\Vert\bar{p}(\tau))=\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)-\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))]。那么它的拉格朗日函数是\mathcal{L}(p,\lambda)=\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[c(\mathbf{x}_t,\mathbf{u}_t)-\lambda\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)-\lambda\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))]-\lambda\epsilon，现在给定拉格朗日乘子下，要去最小化这个函数，求出p<sup>*=\arg\min_p\mathcal{L}(p,\lambda)。后面-\lambda\epsilon是常数项先扔掉，然后把整个式子除掉\lambda（不严格地，假设乘子不为0），那么原优化问题和\mathcal{L}(p,\lambda)=\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}\left[\frac{1}{\lambda}c(\mathbf{x}_t,\mathbf{u}_t)-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)-\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))\right]同解。那么我们只需要构造一个新的代价函数\tilde{c}(\mathbf{x}_t,\mathbf{u}_t)=\frac{1}{\lambda}c(\mathbf{x}_t,\mathbf{u}_t)-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)，然后执行LQR，加入高斯噪音就可以了。迭代执行以下步骤：</sup></sup></sup></sup></sup></p>
+
+<p>构造\tilde{c}(\mathbf{x}_t,\mathbf{u}_t)=\frac{1}{\lambda}c(\mathbf{x}_t,\mathbf{u}_t)-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)，并使用LQR加入高斯噪音的方法得到\pi<sup>*(\mathbf{u}_t|\mathbf{x}_t)。</sup><br/>
+\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}\lambda}(p,\lambda)=\sum_{t=1}<sup>T\mathbf{E}_{p(\mathbf{x}_t,\mathbf{u}_t)}[-\log\bar{\pi}(\mathbf{u}_t|\mathbf{x}_t)-\mathcal{H}(\pi(\mathbf{u}_t|\mathbf{x}_t))]-\epsilon=D_{\text{KL}}(p(\tau)\Vert</sup> \bar{p}(\tau))-\epsilon，更新乘子\lambda\leftarrow\lambda+\alpha\frac{\mathrm{d}\mathcal{L}}{\mathrm{d}\lambda}(p,\lambda)。<br/>
+控制两个策略间的KL散度在很多场合下都是非常有意义的（譬如在无模型增强学习中也存在采样的误差），而且控制两个策略间的KL散度等价于控制轨迹分布之间的KL散度。</p>
+
+<p>Levine et al. (2015) 发表在ICRA上的&quot;Learning Contact-Rich Manipulation Skills with Guided Policy Search&quot;一文阐述了使用局部模型，使用KL散度信赖域，结合iLQR进行规划来控制机器人的应用。机器人学习堆叠乐高块（插入动作），通过旋转机械臂来拟合模型动态，每收集一些（10条）轨迹就停下来几秒用来更新局部模型，并更新策略函数。机械臂在反复试验后，逐渐倾向于完成插入乐高块的任务。这个工作并不训练神经网络，只是做局部的线性模型拟合来研究怎么去做这个任务。高斯噪声使得机器人倾向于进行一些探索。</p>
+
+<p>Fu et al. (2016) 的发表在IROS上的&quot;One-shot learning of manipulation skills with online dynamics adaptation and neural network priors&quot;一文将全局模型和局部模型结合起来，使用全局模型做先验，进行贝叶斯回归来训练局部模型，来控制机器人完成任务。特别的是，机器人使用过去的经验来完成新的任务（任务不同，但有相似结构）。机器人使用过去的经验来训练一个全局模型(\Phi,\mu_0)，然后接受新任务的很多轨迹信息(\mathbf{x}_t,\mathbf{u}_t,\mathbf{x}_t&#39;)，在线训练一个经验估计(\hat{\Sigma},\hat{\mu})，从而得到后验局部模型(\Sigma,\mu)，做MPC每一步重新规划。在视频中可以看到，因为在线学习，所以在试验过程中一边就把局部模型给学习了，逐渐适应任务以提高执行水平。</p>
+
+<h3 id="toc_3">第 12 讲 Advanced Model Learning and Images</h3>
+
+<p><a href="https://zhuanlan.zhihu.com/p/33267647">https://zhuanlan.zhihu.com/p/33267647</a></p>
+
+<h4 id="toc_4">1 使用基于模型的增强学习训练策略</h4>
+
+<p>在上两篇中，我们对基于模型的深度学习进行了大致的探讨，包括如果我们已知模型信息如何进行利用来做出正确的决策（如MCTS和iLQR），在不知道确切模型的情况下如何收集数据学习模型。其中在上一篇中，我们给出了收集数据学习模型的框架，并使用iLQR（包括加入噪声成为Linear-Gaussian）进行规划；我们分别探讨了如何训练全局模型（如高斯过程GP，神经网络等）、如何通过控制旧轨迹和新轨迹的KL散度的方法在一个信赖域中训练局部模型（如线性模型），也可以用诸如贝叶斯回归的方法将全局模型作为先验更好地训练局部模型。在训练模型之外，我们讨论的控制基本上局限于v1.5版本以下的在线执行某些规划过程，主要是v1.5版本的闭环MPC方法，是具有相当的鲁棒性的。</p>
+
+<p>在这一篇中，我们将探讨通过基于模型的增强学习算法来训练策略，如何像v2.0版本一样使用策略来做决策。获得一个策略有很多好处，首先使用策略来进行在线行动选择是一个轻量级的方法，远比v1.5的每步在线重新使用规划方法求解快；此外更重要的是，训练策略可能有比训练模型有更好的泛化能力（但不一定，取决于问题）。举个例子，考虑到（譬如在棒垒球中）我们去接一个球，基于模型的算法考虑物体的飞行轨迹，譬如如何受重力和风力影响，然后求解运动问题，确定落地点，然后过去接球；而事实上人类去解这个问题更简单，如我们只需要追赶这个球，保持一定的速度使得球在视野里面就行了，我们没必要关注具体的物理动态，也能接住这个球。这个例子说明了有可能使用策略的话，观测和行动之间会是一个比较简单的关系，从而训练一个不错的策略比搞清楚模型具体是什么更容易泛化，更容易提炼出某种意义上的“知识”作为策略以适应新情况：人类的接球策略可以在物体不是球的时候也通用，而根据物理模型规划计算则需要做很大变化了。</p>
+
+<p>我们继续祭出之前多次使用过的计算图。这个计算图本质上体现了策略函数和模型动态影响代价（收益）的形式（包含了三个重要组成部分，注意这里换成最小化代价了，其实是一样的）。在v2.0版框架中，我们考虑使用反向传播的方法来优化策略函数\(\pi_\theta(\mathbf{u}_t|\mathbf{x}_t)\)：如果这三个东西都是可微的，那么我们就可以求出代价关于\theta的梯度（对于确定性策略更容易，对于有些随机策略也是可行的，如之前所讲的PILCO方法匹配前两阶矩），从而反向传播是可以做到的。但不幸的是，直接这样简单的做法通常并不可行。</p>
+
+<p>考虑最早期的行动，最早期的行动通常对整个轨迹有非常大的影响（如上图，第一个动作变化可能会使得整条轨迹有很大的晃动），可能会影响所有后续的状态和动作，因此关于它的梯度应该是非常大的；而在后期的行动，在整个序贯决策问题中关于总代价起到的作用就比较小了，因此关于它的梯度就小：从而，这个梯度会相当病态。这个参数敏感问题在射击法 (shooting method) 中也同样存在，在射击法中我们同样也不使用一阶算法而使用类似LQR的二阶算法，但是在这里我们就不再有一个类似LQR的容易的二阶方法来求解这个问题了：因为引入了含参的复杂的策略函数，这些参数在整个问题中将非常纠结，因此不再能用简单的动态规划方法求解了；我们会发现，其实这样的求解序贯问题和训练RNN非常相似，而训练RNN的一个重要方法就是BPTT：因此，训练这个问题所遇到的问题和BPTT中梯度爆炸/消失的问题本质上非常相似，但是RNN我们可以通过选择类似LSTM的表达结构来使得梯度变好，而对于我们的问题来说，系统动态f是外生的客观存在的，我们只能去学习而并不能自主选择。因此我们遇到的问题相对来说更棘手。</p>
+
+<h4 id="toc_5">2 引导策略搜索 (GPS)</h4>
+
+<p>相比射击法，搭配法 (collocation methods) 优化每个时刻的状态或者同时优化状态和行动，并使用约束来表示状态转移的关系。这样的方法相对射击法而言，就没有那么参数敏感了，但是困难在于它不是一个无约束优化问题了。有一个特点是，我们可以将策略引入优化问题中，作为约束条件，而不再成为射击法一样的计算图的一环，便有了\(\min_{\mathbf{u}_1,\ldots,\mathbf{u}_T,\mathbf{x}_1,\ldots,\mathbf{x}_T,\theta}\sum_{t=1}^Tc(\mathbf{x}_t,\mathbf{u}_t)~\text{s.t.}~\mathbf{x}_t=f(\mathbf{x}_{t-1},\mathbf{u}_{t-1}),\mathbf{u}_t=\pi_\theta(\mathbf{x}_t)\)（这里先假设都是确定性的）。这个表达形式还是同时优化状态和行动的，也可以只去优化状态，\(\mathbf{u}_t=f^{-1}(\mathbf{x}_t,\mathbf{x}_{t+1})\)，这样行动就是相邻两个状态的产物。</p>
+
+<p>为了求解这样的问题，我们使用增广拉格朗日乘子法 (augmented Lagrangian method)，非常类似于上一篇中的DGD算法，只是求解\(\min_{\mathbf{x}}f(\mathbf{x})~\text{s.t.}~C(\mathbf{x})=0\)问题时，拉格朗日函数变成了增广拉格朗日函数\(\bar{\mathcal{L}}(\mathbf{x},\lambda)=f(\mathbf{x})+\lambda C(\mathbf{x})+\rho\Vert C(\mathbf{x})\Vert^2\)，加了一个二次惩罚项，使得在严重违反约束条件时更倾向于控制约束条件以增加稳定性（这个函数最常见在ADMM算法中被涉及到，这个算法也算是ADMM的一个特例）。增广拉格朗日算法的总体框架还是和之前一样，迭代进行以下步骤：</p>
+
+<ul>
+<li>在给定拉格朗日乘子\(\lambda下\)，求解最优的\(\mathbf{x}^*=\arg\min_{\mathbf{x}}\bar{\mathcal{L}}(\mathbf{x},\lambda)\)。</li>
+<li>求解\(\frac{\mathrm{d}g}{\mathrm{d}\lambda}=\frac{\mathrm{d}\bar{\mathcal{L}}}{\mathrm{d}\lambda}(\mathbf{x}^*,\lambda)\)。</li>
+<li>拉格朗日乘子走一个梯度步\(\lambda\leftarrow\lambda+\alpha\frac{\mathrm{d}g}{\mathrm{d}\lambda}\)。</li>
+</ul>
+
+<p>我们记\(\tau=(\mathbf{u}_1,\ldots,\mathbf{u}_T,\mathbf{x}_1,\ldots,\mathbf{x}_T)\)，则优化问题可以简写为\(\min_{\tau,\theta}c(\tau)~\text{s.t.}~\mathbf{u}_t=\pi_\theta(\mathbf{x}_t)\)。它的增广拉格朗日函数可以写成\(\bar{\mathcal{L}}(\tau,\theta,\lambda)=c(\tau)+\sum_{t=1}^T\lambda_t(\pi_\theta(\mathbf{x}_t)-\mathbf{u}_t)+\sum_{t=1}^T\rho_t(\pi_\theta(\mathbf{x}_t)-\mathbf{u}_t)^2\)。这个函数有两块未知参数和一块乘子，因此考虑形式上非常接近于ADMM的这样一个算法：</p>
+
+<ul>
+<li>固定\(\theta,\lambda\)，使用诸如iLQR的方法优化轨迹\(\tau\leftarrow\arg\min_\tau\bar{\mathcal{L}}(\tau,\theta,\lambda)\)。</li>
+<li>固定\tau,\lambda，使用诸如SGD的方法优化策略参数\(\theta\leftarrow\arg\min_\theta\bar{\mathcal{L}}(\tau,\theta,\lambda)\)。</li>
+<li>拉格朗因为日乘子走一个梯度步\(\lambda\leftarrow\lambda+\alpha\frac{\mathrm{d}g}{\mathrm{d}\lambda}\)。</li>
+</ul>
+
+<p>其中第一步相当于重新构建一个代价函数，把后面部分包进去，然后执行iLQR。第二步注意到\theta只和后两项有关，而后两项的形式简单，且能完全按时间分解：这样的好处是不需要再做反向传播了，而稍作变形，本质上只是一个非常传统的最小二乘监督学习问题，可以用一些SGD方法进行求解。因此整个过程是交替使用轨迹优化和监督学习，不需要再做BPTT。这样的方法理论上需要凸性，但是如果没有凸性的话有些时候实践中效果也还可以。当然，要让这样的算法在实际中可用，还需要做一些其他工作。</p>
+
+<p>这样的算法属于引导策略搜索 (Guided Policy Search, GPS)，这样的叫法主要因为策略训练是跟着轨迹优化的结果而来的。有意思的是，该算法一方面可以被理解成在约束下的轨迹优化算法，同时因为第二步就是一个监督学习过程，另一方面可以被理解成对最优控制的模仿学习。这也建立起了基于模型的增强学习与模仿学习之间的关系。最优控制扮演了老师的角色，同时最优控制又需要去适应学习者（因为第一步轨迹优化是与给定策略有关的），避免一些学习者不能模仿的行动，属于一种自适应学习。广义的GPS算法的一般结构是这样的：</p>
+
+<ul>
+<li>关于某些修改后的代价函数\(\tilde{c}(\mathbf{x}_t,\mathbf{u}_t)\)进行轨迹分布\(p(\tau)\)的优化。</li>
+<li>关于某些监督学习的目标函数优化策略参数\(\theta\)。</li>
+<li>修改对偶变量\(\lambda\)。</li>
+</ul>
+
+<p>本质上只是之前算法的推广泛化，第一步修改代价函数以加入增广拉格朗日函数的两项，第二步不需要考虑原始代价函数因为原始代价函数只与轨迹有关，而与策略参数无关。我们需要选择的是轨迹分布p(\tau)的形式（或者干脆确定性的\tau，确定性形式比较容易，而随机形式一般需要使用比较简单的分布类如高斯分布去近似）、分布p(\tau)或者\tau的优化算法（第一步的轨迹优化算法）、修改后的代价函数\(\tilde{c}(\mathbf{x}_t,\mathbf{u}_t)\)、用来训练\(\pi_\theta(\mathbf{u}_t|\mathbf{x}_t)\)监督学习的目标函数。举例来说，确定性形式其他部分就跟我们刚才所说一致，问题为\(\min_{\tau,\theta}c(\tau)~\text{s.t.}~\mathbf{u}_t=\pi_\theta(\mathbf{x}_t)\)，我们的第一步中修改的目标函数就是\(\tilde{c}(\tau)=c(\tau)+\sum_{t=1}^T\lambda_t(\pi_\theta(\mathbf{x}_t)-\mathbf{u}_t)+\sum_{t=1}^T\rho_t(\pi_\theta(\mathbf{x}_t)-\mathbf{u}_t)^2 \)。</p>
+
+<p>我们有时候也会遇到需要从多条轨迹中学习策略的问题。以上图为例，我们从小红点出发，想走到小绿叉位置。然而从一个点出发的路径容易规划，但是这样一条单一的路径可能对策略学习不太好，所以我们想从多个不同的出发点开始学习策略以提高策略的泛化能力。这样的问题又可以被表述为\(\min_{\tau_1,\ldots,\tau_N,\theta}\sum_{i=1}^Nc(\tau_i)~\text{s.t.}~\mathbf{u}_{t,i}=\pi_\theta(\mathbf{x}_{t,i}), \forall t,i\)，同时优化一组轨迹，减少它们的共同代价，并将它们限制在同一策略之下。</p>
+
+<h4 id="toc_6">3 PLATO算法</h4>
+
+<p>在这一块，我们介绍另一种使用模仿学习的方法。这个想法是基于之前我们提到的约束下的轨迹优化问题又可以理解为一种对最优控制的模仿学习。那么说到模仿学习，那么算法就不只有一种了，在之前的模仿学习中我们就介绍过DAgger算法，一个模仿最优控制的应用就是之前提到过的Guo et al. (2014) 使用MCTS来提供Atari游戏样本，并使用DAgger算法来实现模仿学习MCTS策略。</p>
+
+<p>最原始的DAgger存在一些问题。譬如该方法的第三步要求人工标注新样本，这非常不自然的，因此我们使用某些如最优控制的方法让计算机自动标注这些新样本，算是得到了解决。DAgger的另一个很大的问题是我们在一开始需要通过人工数据来训练一个策略，然后运行这个策略来得到数据。但是这个策略在一开始可能是非常糟糕的，我们只有在反复增加数据之后才能缓解分布不匹配的问题，而分布不匹配问题在一开始非常严重，甚至是灾难性的（如驾车）。如果我们能用一些基于模型的增强学习算法来“更好地”运行这些策略，使得安全系数提高，那么不失为一件好事。</p>
+
+<p>Kahn et al. (2016) 在&quot;PLATO: Policy Learning using Adaptive Trajectory Optimization&quot;提出的PLATO算法正为解决这个问题而存在。该算法将MPC思想引入到DAgger算法中，而MPC的每步重新规划正是为了克服误差的。DAgger算法的第二步尝试执行监督学习训练出来的\(\pi_\theta(\mathbf{u}_t|\mathbf{o}_t)\)来获取数据集，就是我们学出来什么策略就运行什么策略，来克服分布不匹配问题；而事实上PLATO算法告诉我们，我们可以稍微做一点妥协，且同样也能得到收敛性保证：我们尝试使用一个近似的策略\(\hat{\pi}(\mathbf{u}_t|\mathbf{x}_t)=\mathcal{N}(\mathbf{K}_t\mathbf{x}_t+\mathbf{k}_t,\Sigma_{\mathbf{u}_t})\)，而这个策略出自使用LQR来求出\(\hat{\pi}(\mathbf{u}_t|\mathbf{x}_t)=\arg\min_{\hat{\pi}}\sum_{t&#39;=t}^T\mathbf{E}_{\hat{\pi}}[c(\mathbf{x}_{t&#39;},\mathbf{u}_{t&#39;})]+\lambda D_{\text{KL}}(\hat{\pi}(\mathbf{u}_t|\mathbf{x}_t)\Vert\pi_\theta(\mathbf{u}_t|\mathbf{o}_t))\)， 和之前一样，结果是一个线性均值的高斯分布。譬如在驾车过程中，如果发生碰撞就会得到一个很高的代价，这样的策略就会以降低代价函数为目标，同时也保证新策略不与就策略差别过大。我们在每一步中执行这样的新策略作为校正，均衡长期代价和与当前策略的接近程度。注意到，我们的策略\(\hat{\pi}(\mathbf{u}_t|\mathbf{x}_t)\)在每一步最小化的是长期的期望代价和当前阶段的KL散度（两者的一种权衡），因此它实际想做到的是做出一个不背离当前阶段策略太远的长期期望代价最低的决策。因此，我们将该算法结合MPC进行使用，在每一步就需要重新规划。</p>
+
+<p>在这里，我们和前面GPS中所提到的一样，使用了输入重映射的技巧，控制\(\hat{\pi}(\mathbf{u}_t|\color{red}{\mathbf{x}_t})和 \pi_\theta(\mathbf{u}_t|\color{red}{\mathbf{o}_t})\)之间的KL散度，这是因为我们学到的策略可能只是关于观测到的图像，而我们实际发生的控制策略则需要根据状态得到。PLATO算法想做到的是，在训练阶段，我们可以有一些外部的观察者来给出车辆的状态信息，使\(\hat{\pi}(\mathbf{u}_t|\color{red}{\mathbf{x}_t})\)相对来说比较聪明，以避免很多不必要的损失；但是\(\pi_\theta(\mathbf{u}_t|\color{red}{\mathbf{o}_t})\)还是要根据原始的传感器等信息来学的，这个可能比较难学，但是我们在真实测试环境中还是要靠\(\pi_\theta\)。我们知道观测是由状态决定的，但是我们的模型是用来预测未来的状态的，如果我们有模型的话我们可以知道p(\mathbf{x}_{t+1}|\mathbf{x}_t,\mathbf{u}_t)，但是观测的分布p(\mathbf{o}_t|\mathbf{x}_t)是不知道且极难的：相对预测下一帧图像而言，我们更容易弄清楚下一个状态是什么。因此我们也不是对未来的观测做规划，而是对未来的状态做规划。我们知道下一阶段的状态是什么，但是不知道下一帧观察是什么：因此我们执行一步操作后，我们就能得到下一阶段的观测，然后重新规划，进行这样的循环。</p>
+
+<p>这样一个训练四旋翼躲避障碍物的任务中，在训练过程中，四旋翼被监视器等设备所控制（或者使用激光测距仪等），因此它能很好地得到自己的状态进行重新规划，同时也使用输入重映射技巧，端到端地训练直接的从观测到行动的策略；在实际测试中，则使用原始观测图像。总体来说，这种DAgger的变种算法中，我们代价函数中的\(D_{\text{KL}}(\hat{\pi}(\mathbf{u}_t|\mathbf{x}_t)\Vert\pi_\theta(\mathbf{u}_t|\mathbf{o}_t))\)使得我们能去学习改进策略，直到最后变成一个完全在线的行为，这意味着分布不匹配问题得到了解决；\(\mathbf{E}_{\hat{\pi}}[c(\mathbf{x}_{t&#39;},\mathbf{u}_{t&#39;})]\)使得我们能避免高代价（如碰撞损毁），即便我们的策略和原始策略有差异，哪怕产生分布不匹配的问题，我们也不想产生太高的代价。</p>
+
+<p>这样一个训练四旋翼躲避障碍物的任务中，在训练过程中，四旋翼被监视器等设备所控制（或者使用激光测距仪等），因此它能很好地得到自己的状态进行重新规划，同时也使用输入重映射技巧，端到端地训练直接的从观测到行动的策略；在实际测试中，则使用原始观测图像。总体来说，这种DAgger的变种算法中，我们代价函数中的\(D_{\text{KL}}(\hat{\pi}(\mathbf{u}_t|\mathbf{x}_t)\Vert\pi_\theta(\mathbf{u}_t|\mathbf{o}_t))\)使得我们能去学习改进策略，直到最后变成一个完全在线的行为，这意味着分布不匹配问题得到了解决；\(\mathbf{E}_{\hat{\pi}}[c(\mathbf{x}_{t&#39;},\mathbf{u}_{t&#39;})]\)使得我们能避免高代价（如碰撞损毁），即便我们的策略和原始策略有差异，哪怕产生分布不匹配的问题，我们也不想产生太高的代价。</p>
+
+<h4 id="toc_7">4 一些总结</h4>
+
+<p>在本篇中，我们首先提到可以使用反向传播的方法训练策略，但是由于梯度爆炸/消失等问题效果不佳。接着我们通过将策略作为约束条件来进行搭配法的方式，使得基于模型的增强学习非常像对最优控制（轨迹优化等）的模仿学习，并具体讲了DAgger类算法和GPS算法。DAgger算法不需要一个能自适应策略变化的专家，因此如果我们有一个很难去修改目标函数等以适应策略的规划算法的话，DAgger是一个很好的选择。但是DAgger也有自己的假定，它假设我们的学习者可以学到一个策略，使得和专家行为之间的差距是可以被控制在一个很小的范围之内的，也就是说假设不存在学习者怎么都学不会的情形。事实上，这样差距不可控的情形是存在的，如在部分观测的问题中。一个极端的例子是在驾车时不给车任何观测信息，也有可能我们的策略簇根本无法学会专家行为。而GPS算法则需要专家去适应学习者，也需要修改轨迹优化算法来加入策略的损失信息，但是正因如此，专家时刻跟着学习者走，它不需要控制差距的范围。</p>
+
+<p>我们之所以想去模仿最优控制，主要是因为这样做相对比较稳定且好用：我们现在已经能把监督学习算法做得很好了，最优控制算法通常来说也效果不错，因此两者结合通常也可以期望能有不错的结果。我们可以使用输入重映射的技巧，在做最优控制时候使用低维度的状态信息，而在训练策略时候可以引入高维观测信息。它也能克服直接做反向传播方法的诸多困难。此外，这样的做法通常样本利用率高，且对于实际物理系统可行。</p>
+
+<p>我们对迄今为止讨论的两大类基于模型的增强学习算法进行总结。第一类是不引入策略，光学习模型并使用模型进行规划。这类方法迭代逐渐收集数据来克服分布不匹配的问题，同时我们也可以使用MPC的方法在每一步进行重新规划来克服模型误差带来的影响。第二类更先进点的算法是引入并学习策略。当然我们可以使用反向传播的方法来训练策略函数，这类算法的代表是使用高斯过程匹配两阶矩的PILCO，相对简单但是不稳定。更通用的方法是模仿最优控制，可以像GPS一样做约束下的最优化，也可以使用DAgger类的算法诸如PLATO。还有一类没有提及的方法是Dyna方法，是介于有模型方法和无模型方法之间的混合方法：大意如训练一个模型（神经网络）作为模拟器来生成样本，但是使用无模型的方法进行学习。如果我们已经有了一个无模型的算法，但是苦于数据不足的话，是个不错的选择。</p>
+
+<p>当然，基于模型的增强学习算法也有局限性。首先顾名思义，我们必须要有某种模型，但不见得总能得到某种模型：有的时候模型简单，但有的时候就很复杂；而且有时候学好模型比学好策略更难（模型复杂但策略不复杂）。学习一个模型需要很多时间和数据，而且比无模型的方法求解计算代价更高。虽然基于模型的方法通常需要的数据量较少也能得到一个还可以的控制，但也取决于学习模型和策略哪个更容易。速度和表达力通常需要有一个权衡：有时候一个表达能力很强的模型（如神经网络）速度很慢（取决于具体问题），有时候一个速度较快的模型（如线性模型）去处理非常复杂动态系统的表达力不够。同时，基于模型的增强学习算法需要引入很多额外的假设，这在无模型算法中通常没有。如需要认为（局部某种意义上的）可线性化或者连续，这个在很多真实物理系统还是可以的，但是对一些离散系统（如Atari游戏）就不适用了；尤其是对于线性局部模型，需要能够重置系统以在同一状态下多次尝试，虽然有些无模型的方法也需要这个假设，但是通常在在线处理就够好了；在有些模型（如GP类全局模型）中，需要假设光滑性，不能不可微；等等。</p>
+
+<p>我们也对基于模型的方法和无模型的方法进行综合比较。因为要进行增强学习，我们必须要收集数据，要么是在廉价的模拟器上，要么是在昂贵的真实物理系统，所以首先比较样本效率。通常样本效率最低的是不基于梯度的算法（如NES (Natural Evolution Strategies)、CMA-ES等），这类算法是无模型的算法，且不计算神经网络的梯度，但依赖于随机优化。完全在线的算法（如A3C算法）虽然比前者要好一些但是样本效率还是较低，这类算法在线学习，不使用基于策略的回放缓冲池，依赖大规模的并行。策略梯度法（如TRPO等）的样本效率较前者再进一步，虽然也是在线但是使用批量处理的方法提高效率。样本效率更好一些是基于回放缓冲池的值函数方法（如Q学习、DDPG、NAF等），这类方法是离线的。基于模型的深度增强学习算法（如GPS）和基于模型的“浅度”增强学习算法（如PILCO，不使用深度神经网络）则递进提高了样本效率，但在这块也意味着引入了越来越严格的假设。这边差不多每一级基本上是样本效率差了10倍。Salimans et al. (2017) 的&quot;Evolution Strategies as a Scalable Alternative to Reinforcement Learning&quot;一文说明cheetah任务中进化算法样本效率比完全在线的算法低十几倍。Wang et al. (2017) 的&quot;Sample Efficient Actor-Critic with Experience Replay&quot;一文训练A3C算法约需一亿步（完全真实时间15天）。Schulman et al. (2016) 使用TRPO+GAE方法约需一千万步（完全真实时间1.5天），十倍的效率提升。Gu et al. (2016) 的&quot;Continuous Deep Q-Learning with Model-based Acceleration&quot; 使用DDPG方法（完全真实时间3小时）达到十倍的效率提升，使用NAF完全真实时间2.5小时。到了基于模型的增强学习，计算的时间可能比数据收集时间更多，因此瓶颈重点转移到了计算。Chebotar et al. (2017) 的&quot;Combining Model-Based and Model-Free Updates for Trajectory-Centric Reinforcement Learning&quot;一文体现了对于真实控制问题GPS比DDPG有10倍的样本效率提升。对于浅层方法，效率提升大约也是10倍，但是相对来说问题更简单了。注意到有很多时候我们不能只看真实时间，模拟器可能非常快，因此如果我们能并行得到很多计算资源，那么可能样本效率低的算法反而更快，都是一些权衡。</p>
+
+<p>最后我们来讨论如何根据问题选择合适的增强学习算法。最重要的问题可能是我们是否是从模拟器中学习，因为这决定了算法样本效率的重要性。如果是的话，我们要看模拟成本是不是相对训练成本是可以忽略不计的（决定样本效率有多不重要）：如果是，我们会考虑样本效率较低的算法如策略梯度法TRPO/PPO，和完全在线的算法如A3C，这样实际运行时间可能较少，而且如策略梯度法可能更容易调参；如果模拟成本不低，那么我们可能希望使用如Q学习/DDPG/NAF的基于值函数的方法来提高样本利用率。值得一提的是，如果使用模拟器，另一个问题是我们某种意义上可以用模拟器来算出梯度，哪怕不能直接得到也可以得到一个数值解（尤其是如果我们在求解连续问题）我们可能不是在需要无模型的算法，而是需要MCTS或者轨迹优化这样的方法；也并不总是这样，有时如策略梯度法的无模型方法可能比这些规划算法要效果好，但无论如何是值得讨论的。回到我们不使用模拟器的情形，此时样本效率可能很重要，取决于我们有多少时间（或者能否自动收集数据，是否需要在工作时有人监督）。如果我们没什么时间，那么可能会倾向于诸如GPS的基于模型的算法，此时对模型的选择和假设很重要；如果我们时间还是很充裕的，那么可以使用可能更有效的值函数法。</p>
+
+<h4 id="toc_8">第 14 讲</h4>
+
+<h4 id="toc_9">1 概率图模型上的推断</h4>
+
+<p>在前面的笔记中，我们已经学习了如何使用一些常用算法来做出正确决策以优化收益函数。现在，我们转过头来关注如何对人类（专家）行为进行建模：这种模型之后的逆增强学习中可以用来使用观测推断收益函数是什么。在这里，我们关注一些概率模型来对观察到的行为进行建模，建立起概率推断和最优控制、强化学习之间的关系，并从中得出一些新的（稍微不同的）新的增强学习算法。</p>
+
+<p>让我们考虑人类在各种层面上的行为，如运动、在房间里行动，或者更高层面上的如开车的路径规划。一个合理的假设是，人类想要实现某种目标，都是去定义一些收益函数，并基于人类所能做出的行动\mathbf{a}和人类对世界和物理的理解（也就是一个人类自以为的f(\mathbf{s},\mathbf{a})），做一些诸如最优控制的规划行动以实现目的。这个想法非常类似于我们之前的优化形式，\(\mathbf{a}_1,\ldots,\mathbf{a}_T=\arg\max_{\mathbf{a}_1,\ldots,\mathbf{a}_T}\sum_{t=1}^Tr(\mathbf{s}_t,\mathbf{a}_t)~\text{s.t.}~\mathbf{s}_{t+1}=f(\mathbf{s}_t,\mathbf{a}_t)\)，根据不同对象建立起不同的模型（如人的跑步是基于对人身体构造和物理环境的理解，汽车路径规划是对交通情况的理解），根据不同目标制定出不同的收益函数。对于一些随机情况，可能我们需要得到一个最佳策略诸如\(\pi=\arg\max_\pi\mathbf{E}_{\mathbf{s}_{t+1}\sim p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t),\mathbf{a}_t\sim\pi(\mathbf{a}_t|\mathbf{s}_t)}\left[\sum_tr(\mathbf{s}_t,\mathbf{a}_t)\right]来最大化期望收益的期望，然后从中挑选出行动\mathbf{a}_t\sim\pi(\mathbf{a}_t,\mathbf{s}_t)\)。这是基于人的理性决策的假设，因此要研究一个人如何做出决策，如果我们能得到对应的收益函数，那么从某种意义上说就可以用最优控制或者增强学习的框架来解释或预测在各种场合下这个人的决策。</p>
+
+<p>比如说有一项实验，使用果子奖励刺激猴子把场景里一个物体移动到某个指定位置。我们知道最优的移动轨迹必然是两点连线的直线段，但是猴子可能不会走这样的直线，总会多多少少有一些弯曲，但同样能完成任务。这是因为，猴子的决策基本总不是完美的，反正目标能完成就能拿到奖励，所以在某些领域有一些误差其实影响并不大（走了一条较长的路线差了几秒钟猴子可能觉得无所谓，而如果没有把物体移动到指定位置那么就没果子吃了，差别很大）。对于猴子来说，行为是随机的，但是“好的行为”总是有一定相似度的。现在的问题是，如何使用数学的方法来表达，次优的路径也是可以的但是不达目标的路径是不行的这个界限，以及如何刻画这个随机行为。</p>
+
+<p>我们考虑使用概率图模型来表达这个“近似最优的”行为：与之前我们只采取最优策略不同，我们也需要让一些次优行动有非零概率存在。在之前，我们知道了状态\mathbf{s}和行动\mathbf{a}通过系统动态p(\mathbf{s}&#39;|\mathbf{s},\mathbf{a})共同决定了下一个状态\mathbf{s}&#39;。对于这样的一串\tau=(\mathbf{s}_{1:T},\mathbf{a}_{1:T})，我们应有出现概率p(\tau)，但是只有真实物理场景对猴子进行限制（如猴子不能飞），但没有对猴子试图做的最优行为或者意图进行假设。为了对猴子的意图进行建模，我们加入了\mathcal{O}元素来代表最优性，也就是说，代表猴子尝试使用一些最优手段来完成（阶段性）目标。简单起见，我们假设\mathcal{O}元素是一个0-1变量，如果猴子没在完成意图就是0，反之是1，也可以理解成一个事件。接下来我们要做的事情就是来描述\(p(\tau|\mathcal{O}_{1:T})。在这里一个重要假设是p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\propto\exp(r(\mathbf{s}_t,\mathbf{a}_t))，那么条件概率p(\tau|\mathcal{O}_{1:T})=\frac{p(\tau,\mathcal{O}_{1:T})}{p(\mathcal{O}_{1:T})}\propto p(\tau)\prod_t\exp(r(\mathbf{s}_t,\mathbf{a}_t))=p(\tau)\exp\left(\sum_tr(\mathbf{s}_t,\mathbf{a}_t)\right)\)，</p>
+
+<p>也就是正比于该轨迹实际的发生的概率乘上轨迹总收益的自然指数。因此，收益最大的（可行）轨迹就变得可能性最大；如果有一条轨迹收益也一样大，物理可能性相同，那么它同样也很可能发生：如有多条它们将平分可能性。注意在这里，p(\tau)只是用于评判给定了所有状态和行动后，这样一个序列的可能性，并不去决策。</p>
+
+<p>这个模型表达了有些轨迹虽然不是最好的，但是也还不错的这样一个特征：猴子的例子告诉我们，在终点有一个巨大的收益，但是在路途中间并没有什么收益，因此可能有非常非常多的较优路径存在，但它们最后都指向了同一个终点。在这个模型中，收益最高的行为是最有可能的，当收益下降的时候它的可能性指数下降。有些轨迹虽然可能发生，但是可能性非常低，因此智能体可能不愿意承担这个风险：因为想去最大化期望收益，智能体可能宁愿选择收益较低的但是可能性较高的轨迹。这个模型有一些好处。第一点，它可以对次优行为进行建模，这个在逆增强学习中非常有意义，用于观察他人的行为来揣测他的真实目标。第二点，可以使用一些推断算法来求解控制规划问题。此外，它可以对为什么会偏好随机行为（相较于确定性行为）给出解释。</p>
+
+<p>我们的推断 (inference) 问题是，如果执行最优策略，那么在当前状态下做出某个行动的概率是多少。为了解决这样的问题，我们需要回答三类问题：第一类是如何计算后向信息 \((backward messages) \beta_t(\mathbf{s}_t,\mathbf{a}_t)=p(\mathcal{O}_{t:T}|\mathbf{s}_t,\mathbf{a}_t)；第二类是如何计算策略 (policy) \pi(\mathbf{a}_t|\mathbf{s}_t)=p(\mathbf{a}_t|\mathbf{s}_t,\mathcal{O}_{1:T})\)；第三类是如何计算前向信息 \((forward messages) \alpha_t(\mathbf{s}_t)=p(\mathbf{s}_t|\mathcal{O}_{1:t-1})。\)</p>
+
+<p>首先我们来看后向信息\(\beta_t(\mathbf{s}_t,\mathbf{a}_t)=p(\mathcal{O}_{t:T}|\mathbf{s}_t,\mathbf{a}_t)，给定某个时间点的状态和行动，得出未来最优性变量的观测概率（它不关心过去）。之所以说是后向信息，是它的计算方式类似于LQR中的倒推。在递推边界t=T时，根据定义有\beta_T(\mathbf{s}_T,\mathbf{a}_T)=p(\mathcal{O}_T|\mathbf{s}_T,\mathbf{a}_T)\propto\exp(r(\mathbf{s}_T,\mathbf{a}_T))，只需要做归一化；在中间，我们使用全概率公式进行积分，并使用Markov性进行概率拆分，得到 p(\mathcal{O}_{t:T}|\mathbf{s}_t,\mathbf{a}_t)=\int p(\mathcal{O}_{t:T},\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\mathrm{d}\mathbf{s}_{t+1}=\int p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1})p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\mathrm{d}\mathbf{s}_{t+1}。其中我们已知p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\propto\exp(r(\mathbf{s}_t,\mathbf{a}_t))和p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)，而剩余一块根据全概率公式有p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1})=\int p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1},\mathbf{a}_{t+1})p(\mathbf{a}_{t+1}|\mathbf{s}_{t+1})\mathrm{d}\mathbf{a}_{t+1}，其中p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1},\mathbf{a}_{t+1})=\beta_{t+1}(\mathbf{s}_{t+1},\mathbf{a}_{t+1})；p(\mathbf{a}_{t+1}|\mathbf{s}_{t+1})\)比较奇怪，它并不是一个策略函数，而只是一个给定状态做出什么决策的先验概率，在这里我们可以先认为是均匀分布的，概率密度是一个常数。我们进一步令\(\beta_t(\mathbf{s}_t)=p(\mathcal{O}_{t:T}|\mathbf{s}_t)\)，则所有的概率可以由以下倒推过程完成：</p>
+
+<p>\[for t=T-1 to 1:<br/>
+\beta_t(\mathbf{s}_t,\mathbf{a}_t)=p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\mathbf{E}_{\mathbf{s}_{t+1}\sim p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)}[\beta_{t+1}(\mathbf{s}_{t+1})] \beta_t(\mathbf{s}_t)=\mathbf{E}_{\mathbf{a}_t\sim p(\mathbf{a}_t|\mathbf{s}_t)}[\beta_t(\mathbf{s}_t,\mathbf{a}_t)]\]</p>
+
+<ul>
+<li>首先我们来看后向信息\(\beta_t(\mathbf{s}_t,\mathbf{a}_t)=p(\mathcal{O}_{t:T}|\mathbf{s}_t,\mathbf{a}_t)，给定某个时间点的状态和行动，得出未来最优性变量的观测概率（它不关心过去）。之所以说是后向信息，是它的计算方式类似于LQR中的倒推。在递推边界t=T时，根据定义有\beta_T(\mathbf{s}_T,\mathbf{a}_T)=p(\mathcal{O}_T|\mathbf{s}_T,\mathbf{a}_T)\propto\exp(r(\mathbf{s}_T,\mathbf{a}_T))，只需要做归一化；在中间，我们使用全概率公式进行积分，并使用Markov性进行概率拆分，得到 p(\mathcal{O}_{t:T}|\mathbf{s}_t,\mathbf{a}_t)=\int p(\mathcal{O}_{t:T},\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\mathrm{d}\mathbf{s}_{t+1}=\int p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1})p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\mathrm{d}\mathbf{s}_{t+1}。其中我们已知p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\propto\exp(r(\mathbf{s}_t,\mathbf{a}_t))和p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)\)，而剩余一块根据全概率公式有\(p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1})=\int p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1},\mathbf{a}_{t+1})p(\mathbf{a}_{t+1}|\mathbf{s}_{t+1})\mathrm{d}\mathbf{a}_{t+1}，其中p(\mathcal{O}_{t+1:T}|\mathbf{s}_{t+1},\mathbf{a}_{t+1})=\beta_{t+1}(\mathbf{s}_{t+1},\mathbf{a}_{t+1})；p(\mathbf{a}_{t+1}|\mathbf{s}_{t+1})比较奇怪，它并不是一个策略函数，而只是一个给定状态做出什么决策的先验概率，在这里我们可以先认为是均匀分布的，概率密度是一个常数。我们进一步令\beta_t(\mathbf{s}_t)=p(\mathcal{O}_{t:T}|\mathbf{s}_t)，则所有的概率可以由以下倒推过程完成：\)</li>
+</ul>
+
+<p>\(for t=T-1 to 1:<br/>
+\beta_t(\mathbf{s}_t,\mathbf{a}_t)=p(\mathcal{O}_t|\mathbf{s}_t,\mathbf{a}_t)\mathbf{E}_{\mathbf{s}_{t+1}\sim p(\mathbf{s}_{t+1}|\mathbf{s}_t,\mathbf{a}_t)}[\beta_{t+1}(\mathbf{s}_{t+1})] \beta_t(\mathbf{s}_t)=\mathbf{E}_{\mathbf{a}_t\sim p(\mathbf{a}_t|\mathbf{s}_t)}[\beta_t(\mathbf{s}_t,\mathbf{a}_t)]\)<br/>
+回顾我们的值函数迭代 (value iteration) 算法，和这个算法不谋而合。因为这里所有的操作都是乘法形式，我们将其取对数变成加法形式。\(令V_t(\mathbf{s}_t)=\log \beta_t(\mathbf{s}_t)，Q_t(\mathbf{s}_t,\mathbf{a}_t)=\log \beta_t(\mathbf{s}_t,\mathbf{a}_t)。根据第二条关系有V_t(\mathbf{s}_t)=\log\int\exp(Q_t(\mathbf{s}_t,\mathbf{a}_t))\mathrm{d}\mathbf{a}_t。从极限的角度看，随着Q的值变大，显然会有V_t(\mathbf{s}_t)\rightarrow\max_{\mathbf{a}_t}Q_t(\mathbf{s}_t,\mathbf{a}_t)，因此前者的这种操作也被称为softmax，是max函数的一个软化。根据第一条关系，有Q_t(\mathbf{s}_t,\mathbf{a}_t)=r(\mathbf{s}_t,\mathbf{a}_t)+\log\mathbf{E}[\exp(V_{t+1}(\mathbf{s}_{t+1}))]。这个形式看起来很奇怪：如果状态转移是确定的，那么期望就可以拿掉了，对数和指数就抵消了，有Q_t(\mathbf{s}_t,\mathbf{a}_t)=r(\mathbf{s}_t,\mathbf{a}_t)+V_{t+1}(\mathbf{s}_{t+1})，和值函数迭代形式一致；如果状态转移是随机的，那么\log\mathbf{E}[\exp(V_{t+1}(\mathbf{s}_{t+1}))]就是一个softmax，最乐观的转移。然而，乐观也不是个好事情，Ziebart et al. (2010) &quot;Modeling Interaction via the Principle of Maximum Causal Entropy&quot; 一文提供了一个基于最大因果熵 (maximal causal entropy) 原则的方法，此时Q_t(\mathbf{s}_t,\mathbf{a}_t)=r(\mathbf{s}_t,\mathbf{a}_t)+\mathbf{E}[V_{t+1}(\mathbf{s}_{t+1})]。\)</p>
+
+<p>在之前，我们还剩余了一个对\(p(\mathbf{a}_{t+1}|\mathbf{s}_{t+1})的均匀分布的假设。如果这个先验分布不是均匀分布，值函数将会变成V_t(\mathbf{s}_t)=\log\int\exp(Q_t(\mathbf{s}_t,\mathbf{a}_t)+\log p(\mathbf{a}_t|\mathbf{s}_t))\mathrm{d}\mathbf{a}_t，并保持Q_t(\mathbf{s}_t,\mathbf{a}_t)=r(\mathbf{s}_t,\mathbf{a}_t)+\mathbf{E}[V_{t+1}(\mathbf{s}_{t+1})]不变。如果我们定义一个新的Q函数，\tilde{Q}_t(\mathbf{s}_t,\mathbf{a}_t)=r(\mathbf{s}_t,\mathbf{a}_t)+\log p(\mathbf{a}_t|\mathbf{s}_t)+\mathbf{E}[V_{t+1}(\mathbf{s}_{t+1})]，那么值函数又变成V_t(\mathbf{s}_t)=\log\int\exp(\tilde Q_t(\mathbf{s}_t,\mathbf{a}_t))\mathrm{d}\mathbf{a}_t了：这说明我们的\log p(\mathbf{a}_t|\mathbf{s}_t)项总能和r(\mathbf{s}_t,\mathbf{a}_t)\)项合并到一起去，因此我们在实际求解的时候可以不失一般性地假设这一项不对算法产生任何困难：如果有一个非均匀分布的先验，就把它放到收益函数里面去就行了。</p>
+
+<ul>
+<li>第二个是策略\(\pi(\mathbf{a}_t|\mathbf{s}_t)=p(\mathbf{a}_t|\mathbf{s}_t,\mathcal{O}_{1:T})，也就是给定当前状态和所有最优性变量，得出行动的概率。首先根据Markov性，有\pi(\mathbf{a}_t|\mathbf{s}_t)=p(\mathbf{a}_t|\mathbf{s}_t,\mathcal{O}_{t:T})。将条件概率进行一步变形，前者就等于\frac{p(\mathbf{a}_t,\mathbf{s}_t|\mathcal{O}_{t:T})}{p(\mathbf{s}_t|\mathcal{O}_{t:T})}。根据贝叶斯公式，又可以变形为\frac{p(\mathcal{O}_{t:T}|\mathbf{a}_t,\mathbf{s}_t)p(\mathbf{a}_t,\mathbf{s}_t)/p(\mathcal{O}_{t:T})}{p(\mathcal{O}_{t:T}|\mathbf{s}_t)p(\mathbf{s}_t)/p(\mathcal{O}_{t:T})}=\frac{p(\mathcal{O}_{t:T}|\mathbf{a}_t,\mathbf{s}_t)}{p(\mathcal{O}_{t:T}|\mathbf{s}_t)}\frac{p(\mathbf{a}_t,\mathbf{s}_t)}{p(\mathbf{s}_t)}。两个分式相乘，前者为后向信息之比\frac{\beta_t(\mathbf{s}_t,\mathbf{a}_t)}{\beta_t(\mathbf{s}_t)}，后者为先验p(\mathbf{a}_t|\mathbf{s}_t)\)，如果我们假设先验是均匀分布的话那么后者是常数，因此可以去掉。从而，我们有\(\pi(\mathbf{a}_t|\mathbf{s}_t)=\frac{\beta_t(\mathbf{s}_t,\mathbf{a}_t)}{\beta_t(\mathbf{s}_t)}\)。在我们之前的倒推过程中，如果换成Q函数和V函数的话，就是：</li>
+</ul>
+
+<p>\(for t=T-1 to 1:<br/>
+Q_t(\mathbf{s}_t,\mathbf{a}_t)=r(\mathbf{s}_t,\mathbf{a}_t)+\mathbf{E}[V_{t+1}(\mathbf{s}_{t+1})] V_t(\mathbf{s}_t)=\log\int\exp(Q_t(\mathbf{s}_t,\mathbf{a}_t))\mathrm{d}\mathbf{a}_t\)<br/>
+而\(\pi(\mathbf{a}_t|\mathbf{s}_t)=\frac{\beta_t(\mathbf{s}_t,\mathbf{a}_t)}{\beta_t(\mathbf{s}_t)}=\exp(Q_t(\mathbf{s}_t,\mathbf{a}_t)-V_t(\mathbf{s}_t))=\exp(A_t(\mathbf{s}_t,\mathbf{a}_t))\)，正好是一个优势函数的指数的概念，也比较符合逻辑。这些函数还有一些变种，如对Q函数贴现 \(Q_t(\mathbf{s}_t,\mathbf{a}_t)=r(\mathbf{s}_t,\mathbf{a}_t)+\gamma\mathbf{E}[V_{t+1}(\mathbf{s}_{t+1})]就变成了贴现随机最优控制 (discounted SOC)\)显式加入一个温度（热力学概念）\(V_t(\mathbf{s}_t)=\alpha\log\int\exp(Q_t(\mathbf{s}_t,\mathbf{a}_t)/\alpha)\mathrm{d}\mathbf{a}_t，我们的Q和V都对温度非常敏感，当\alpha\rightarrow0时softmax就退化成max，且有温度时\pi(\mathbf{a}_t|\mathbf{s}_t)=\exp(A_t(\mathbf{s}_t,\mathbf{a}_t)/\alpha)。\)</p>
+
+<p>这样的策略的一个直接的解释是，使得“更好的”行动更可能发生。如果有多个性质一样好的行动，它们的可能性一致，只是一个概率分布的策略只需随机挑选一个。它和Boltzmann探索（见第六篇）有很强的相似性。随着温度下降，它逐渐逼近与一个贪心的策略。</p>
+
+<ul>
+<li>最后一个推断问题是前向信息 (forward messages) \(\alpha_t(\mathbf{s}_t)=p(\mathbf{s}_t|\mathcal{O}_{1:t-1})，给定之前的所有最优性变量，得出在当前时点到达某状态的概率。这个对策略来说并不重要，但是在逆增强学习中非常重要。前向信息的边界\alpha_1(\mathbf{s}_1)=p(\mathbf{s}_1)，通常认为初始分布是已知的。将该概率进行展开，变成一个二重积分p(\mathbf{s}_t|\mathcal{O}_{1:t-1})=\int p(\mathbf{s}_t|\mathbf{s}_{t-1},\mathbf{a}_{t-1})p(\mathbf{a}_{t-1}|\mathbf{s}_{t-1},\mathcal{O}_{t-1})p(\mathbf{s}_{t-1}|\mathcal{O}_{1:t-2})\mathrm{d}\mathbf{s}_{t-1}\mathrm{d}\mathbf{a}_{t-1}。\)其中第一项\(p(\mathbf{s}_t|\mathbf{s}_{t-1},\mathbf{a}_{t-1})我们假设是已知的系统状态转移，第三项p(\mathbf{s}_{t-1}|\mathcal{O}_{1:t-2})=\alpha_{t-1}(\mathbf{s}_{t-1})。第二项略微复杂，使用贝叶斯定理得到p(\mathbf{a}_{t-1}|\mathbf{s}_{t-1},\mathcal{O}_{t-1})=\frac{p(\mathcal{O}_{t-1}|\mathbf{s}_{t-1},\mathbf{a}_{t-1})p(\mathbf{a}_{t-1}|\mathbf{s}_{t-1})}{p(\mathcal{O}_{t-1}|\mathbf{s}_{t-1})}，其中p(\mathcal{O}_{t-1}|\mathbf{s}_{t-1},\mathbf{a}_{t-1})\propto\exp(r(\mathbf{s}_{t-1},\mathbf{a}_{t-1}))，我们假设p(\mathbf{a}_{t-1}|\mathbf{s}_{t-1})是均匀分布，分母也是一个归一化常数，因此p(\mathbf{a}_{t-1}|\mathbf{s}_{t-1},\mathcal{O}_{t-1})\propto\exp(r(\mathbf{s}_{t-1},\mathbf{a}_{t-1}))\)。于是就得到一个正向的递推关系了。</li>
+</ul>
+
+<p>有了前向消息和后向信息之后，给定所有最优性变量，求某时刻的某状态的发生概率就比较容易了。\(p(\mathbf{s}_t|\mathcal{O}_{1:T})=\frac{p(\mathbf{s}_t,\mathcal{O}_{1:T})}{p(\mathcal{O}_{1:T})}=\frac{p(\mathcal{O}_{t:T}|\mathbf{s}_t)p(\mathbf{s}_t|\mathcal{O}_{1:t-1})p(\mathcal{O}_{1:t-1})}{p(\mathcal{O}_{1:T})}，其中p(\mathcal{O}_{t:T}|\mathbf{s}_t)=\beta_t(\mathbf{s}_t)，p(\mathbf{s}_t|\mathcal{O}_{1:t-1})=\alpha_t(\mathbf{s}_t)，其他可以看作归一化常数，因此p(\mathbf{s}_t|\mathcal{O}_{1:T})\propto\beta_t(\mathbf{s}_t)\alpha_t(\mathbf{s}_t)\)，这整个理论和HMM很像。注意到这个概率是前向消息和后项消息的乘积，可以说是一个交汇。考虑上图左边圆点是起点，右边叉叉是终点的路径。黄色锥区域是能够有高概率到达终点的状态，蓝色锥区域是有高概率从初始状态以高收益到达的状态，然后基本上就是两者的交（概率上相乘）。Li and Todorov (2006) 做了人和猴子类似从一个点到另一个点的实验，记录空间位置变化，基本上也是中间部分方差最大。</p>
+
+<p>总结来说，我们这边用概率图模型来描述最优控制，而且这个最优控制可以用概率推断来实现（类似于HMM和EKF），而且与动态规划、值函数迭代关系非常强（它这里面max是软化的，可以通过降低温度来使得变成硬性max）。</p>
+
+<h4 id="toc_10">2 软化的增强学习算法</h4>
+
+<p>使用之前提到的软化max函数，可以得到很多增强学习算法，例如我们在这里对Q学习进行软化。对于标准的Q学习，参数的迭代格式为\(\phi\leftarrow\phi+\alpha\nabla_\phi Q_\phi(\mathbf{s},\mathbf{a})(r(\mathbf{s},\mathbf{a})+\gamma V(\mathbf{s}&#39;)-Q_\phi(\mathbf{s},\mathbf{a}))，目标值函数为V(\mathbf{s}&#39;)=\max_{\mathbf{a}&#39;}Q_\phi(\mathbf{s}&#39;,\mathbf{a}&#39;)\)。而对于软化Q学习来说，梯度步还是一样的，但是目标值函数变成了软化max函数\(V(\mathbf{s}&#39;)=\text{soft}\max_{\mathbf{a}&#39;}Q_\phi(\mathbf{s}&#39;,\mathbf{a}&#39;)=\log\int\exp(Q_\phi(\mathbf{s}&#39;,\mathbf{a}&#39;))\mathrm{d}\mathbf{a}&#39;\)。同样，策略函数也变成了类似Boltzmann探索的\(\pi(\mathbf{a}|\mathbf{s})=\exp(Q_\phi(\mathbf{s},\mathbf{a})-V(\mathbf{s}))=\exp(A(\mathbf{s},\mathbf{a}))。因此，只需要将DQN的第三步中“使用目标网络Q_{\phi&#39;}计算出目标值y_j=r_j+\gamma\max_{\mathbf{a}_j&#39;}Q_{\phi&#39;}(\mathbf{s}_j&#39;,\mathbf{a}_j&#39;)”改成 y_j=r_j+\gamma\text{ soft}\max_{\mathbf{a}_j&#39;}Q_{\phi&#39;}(\mathbf{s}_j&#39;,\mathbf{a}_j&#39;) 就可以了。第一步的“在环境中执行某个操作\mathbf{a}_i，观察到(\mathbf{s}_i,\mathbf{a}_i,r_i,\mathbf{s}&#39;_i)”\)的操作，如果想在线执行（如SARSA），也需要用软化max来抽取。</p>
+
+<p>策略梯度法也可以进行软化。Ziebart et al. (2010) &quot;Modeling Interaction via the Principle of Maximum Causal Entropy&quot; 一文的一个结论是\(\pi(\mathbf{a}|\mathbf{s})=\exp(Q_\phi(\mathbf{s},\mathbf{a})-V(\mathbf{s}))最大化\sum_t\mathbf{E}_{\pi(\mathbf{s}_t,\mathbf{a}_t)}[r(\mathbf{s}_t,\mathbf{a}_t)]+\mathbf{E}_{\pi(\mathbf{s}_t)}[\mathcal{H}(\pi(\mathbf{a}_t|\mathbf{s}_t))]。关于该结论的一个比较直观的理解是，当\pi最小化D_{\text{KL}}\left(\pi(\mathbf{a}|\mathbf{s})\middle\Vert\frac{1}{Z}\exp(Q(\mathbf{s},\mathbf{a}))\right)时（Z为归一化因子），\pi(\mathbf{a}|\mathbf{s})\propto\exp(Q_\phi(\mathbf{s},\mathbf{a}))。而如果我们展开KL距离表达式，D_{\text{KL}}\left(\pi(\mathbf{a}|\mathbf{s})\middle\Vert\frac{1}{Z}\exp(Q(\mathbf{s},\mathbf{a}))\right)=\mathbf{E}_{\pi(\mathbf{a}|\mathbf{s})}[Q(\mathbf{s},\mathbf{a})]-\mathcal{H}(\pi)\)，这是因为取完对数正好是这样。因此，如果要对策略梯度法进行软化，我们也只需要在目标函数内，在期望收益之后加上策略函数的熵就可以了：这个熵给策略一定压力，使得它不会退化成一个确定性策略。这种方法通常被称为熵正则化 (entropy regularized) 策略梯度法，通常用于防止策略过早地熵崩塌 (premature entropy collapse)。这在行动空间是连续的时候尤为重要，如我们之前在策略梯度法的第二个问题中提到，高斯策略下，策略梯度法通常希望减少策略的方差，因为减少方差通常可以导致局部的收益增大，但这同时也会使得策略梯度卡住，改进停止，加入熵也是一个方法。</p>
+
+<p>同时，这个方法和软化的Q学习也非常有关，详见Haarnoja et al. (2017) 的&quot;Reinforcement Learning with Deep Energy-Based Policies&quot; 和Schulman et al. (2017) 的&quot;Equivalence Between Policy Gradients and Soft Q-Learning&quot;。这里给出一个比较简单的介绍。由于\(\mathcal{H}(\pi(\mathbf{a}_t|\mathbf{s}_t))=\mathbf{E}_{\pi(\mathbf{a}_t|\mathbf{s}_t)}[-\log\pi(\mathbf{a}_t|\mathbf{s}_t)]，软化的策略梯度法的目标函数就等于J(\theta)=\sum_t\mathbf{E}_{\pi(\mathbf{s}_t,\mathbf{a}_t)}[r(\mathbf{s}_t,\mathbf{a}_t)-\log\pi(\mathbf{a}_t|\mathbf{s}_t)]\)。将其关于策略参数取梯度，\( \nabla_\theta J(\theta)\approx\frac{1}{N}\sum_i\sum_t\nabla_\theta\log\pi_\theta(\mathbf{a}_t|\mathbf{s}_t)\left(r(\mathbf{s}_t,\mathbf{a}_t)+\left(\sum_{t&#39;=t+1}^Tr(\mathbf{s}_{t&#39;},\mathbf{a}_{t&#39;})-\log\pi(\mathbf{a}_{t&#39;}|\mathbf{s}_{t&#39;})\right)-\log\pi(\mathbf{a}_t|\mathbf{s}_t)-1\right)\) ，最后的那个1可以通过基线 (baseline) 拿掉，而中间的\(\left(\sum_{t&#39;=t+1}^Tr(\mathbf{s}_{t&#39;},\mathbf{a}_{t&#39;})-\log\pi(\mathbf{a}_{t&#39;}|\mathbf{s}_{t&#39;})\right)\approx Q(\mathbf{s}_{t+1},\mathbf{a}_{t+1})。注意到，软化的Q学习中，\log\pi(\mathbf{a}_t|\mathbf{s}_t)=Q(\mathbf{s}_t,\mathbf{a}_t)-V(\mathbf{s}_t)，因此代入进去得到\nabla_\theta J(\theta)\approx\frac{1}{N}\sum_i\sum_t(\nabla_\theta Q(\mathbf{a}_t|\mathbf{s}_t)-\nabla_\theta V(\mathbf{s}_t))\left(r(\mathbf{s}_t,\mathbf{a}_t)+Q(\mathbf{s}_{t+1},\mathbf{a}_{t+1})-Q(\mathbf{s}_t,\mathbf{a}_t)+V(\mathbf{s}_t)\right)，同样V(\mathbf{s}_t) 可以拿掉。对于软化的Q学习，它的梯度为-\frac{1}{N}\sum_i\sum_t\nabla_\theta Q(\mathbf{a}_t|\mathbf{s}_t)\left(r(\mathbf{s}_t,\mathbf{a}_t)+\text{soft}\max_{\mathbf{a}_{t+1}}Q(\mathbf{s}_{t+1},\mathbf{a}_{t+1})-Q(\mathbf{s}_t,\mathbf{a}_t)\right)，\)看起来是非常相似的。符号不同是因为Q学习是梯度下降，而策略梯度法是梯度上升。</p>
+
+<p>总体来说，软化方法的好处主要是有以下几点。首先毫无疑问地，它增加了探索（类似Boltzmann探索）且防止了熵的坍塌。软化方法对状态的覆盖面更广、鲁棒性增强，也更容易对特定的任务进行调参（预训练）。对于并列最优的情况，软化max得到的是一个分布，几个选项将等概率选择，通过调整温度参数和收益尺度可以使得软化max变成硬max。在之后我们也将体现这个模型更适合对人类行为建模。</p>
+
+<p>Haarnoja et al. (2017) 的&quot;Reinforcement Learning with Deep Energy-Based Policies&quot; 使用软化的Q学习方法来进行成功的实践。用策略梯度法来学习MuJoCo小人跑步的任务，超参数稍微进行调整，可能虽然得分都很高但是跑步形态完全不同，这是因为增强学习算法一旦发现一块比较好的区域，就会去加强这块区域的利用率，很容易达到局部最优。如上图中，机器人想到达这个蓝块，代价函数为到这个蓝块的距离。机器人可以选择黄色或绿色路线，初始看起来可能效果差不多，但是黄色路线实际上是走不通的：软化的方法可以让两条线路有更均衡的被选择概率，防止某一块被过度增强，不错失可能性。这个方法被称为随机的基于能量的策略 (stochastic energy-based policy)。要保证所有假设都被验证，就是用之前介绍过的软化Q学习算法，问题是如何实现从分布中采样。为了实现这个目标，它们训练一个随机网络来根据状态和某高斯随机噪音来得到行动（类似模仿学习中提到过的隐性密度模型），使用均摊的SVGD (Stein Variational Gradient Descent) (Wang and Liu, 2017) 来训练以符合\(\pi(\mathbf{a}|\mathbf{s})\propto\exp(Q(\mathbf{s},\mathbf{a}))\)，和GAN的想法非常接近。</p>
+
+<p>四足动物在一个槽里移动的训练，在预训练时，软化的Q学习相比DDPG（加上\epsilon-贪心）来说探索覆盖面更广（一开始就显示出了非常强的探索性）。事实上，有预训练比没有预训练效果好很多，而且软化Q学习的预训练效果比DDPG预训练要好。</p>
+
+</div></body>
+
+</html>

@@ -33,6 +33,7 @@
 - [5. Deep Learning](ml/DeepLearning.html)
 - [6. Decision Tree](ml/DecisionTree.html)
 - [7. PLA: Perceptrons Learning Alogrithm](ml/PLA.html)
+- [8. Tune Xgboost](ml/19_tune_xgboost.html)
 
 ### 7. Autonomous System
 - [1. BFS_DFS_Heuristics](rl/08_BFS_DFS_Search.html)
